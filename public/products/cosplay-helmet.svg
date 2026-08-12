@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="shellg" x1="70" y1="90" x2="250" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE6A6"/>
+      <stop offset="0.45" stop-color="#E9A33B"/>
+      <stop offset="1" stop-color="#8E5406"/>
+    </linearGradient>
+    <linearGradient id="visor" x1="96" y1="170" x2="230" y2="230" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123B4B"/>
+      <stop offset="0.5" stop-color="#0B2530"/>
+      <stop offset="1" stop-color="#1E7793"/>
+    </linearGradient>
+    <pattern id="layers" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="1.5" fill="#FFFFFF" opacity="0.20"/>
+    </pattern>
+    <clipPath id="cp">
+      <path d="M160 74c52 0 84 38 84 90v76c0 34-30 56-84 56s-84-22-84-56v-76c0-52 32-90 84-90z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="160" cy="316" rx="86" ry="14" fill="#0F172A" opacity="0.10"/>
+
+  <path d="M160 74c52 0 84 38 84 90v76c0 34-30 56-84 56s-84-22-84-56v-76c0-52 32-90 84-90z" fill="url(#shellg)"/>
+  <g clip-path="url(#cp)">
+    <rect x="70" y="66" width="180" height="240" fill="url(#layers)"/>
+    <path d="M96 84c-14 40-16 108-6 214" stroke="#FFFFFF" stroke-width="16" opacity="0.20" fill="none"/>
+    <path d="M228 92c12 44 12 110 2 206" stroke="#0F172A" stroke-width="20" opacity="0.12" fill="none"/>
+  </g>
+
+  <!-- crest -->
+  <path d="M152 62h16c4 0 6 4 4 8l-10 22h-4l-10-22c-2-4 0-8 4-8z" fill="#B8720E"/>
+  <path d="M120 92c26-14 54-14 80 0" stroke="#FFF1CE" stroke-width="5" stroke-linecap="round" opacity="0.6" fill="none"/>
+
+  <!-- visor -->
+  <path d="M92 168c40-16 96-16 136 0v34c0 16-30 26-68 26s-68-10-68-26z" fill="url(#visor)"/>
+  <path d="M104 176c36-12 78-12 112 0" stroke="#5FD3F0" stroke-width="4" stroke-linecap="round" opacity="0.55" fill="none"/>
+  <path d="M108 196c14 12 30 18 46 20" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" opacity="0.18" fill="none"/>
+
+  <!-- vents + jaw -->
+  <path d="M116 250h88M124 264h72" stroke="#8E5406" stroke-width="7" stroke-linecap="round" opacity="0.55"/>
+  <circle cx="90" cy="196" r="10" fill="#B8720E"/>
+  <circle cx="230" cy="196" r="10" fill="#B8720E"/>
+</svg>

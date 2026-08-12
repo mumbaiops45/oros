@@ -2,6 +2,7 @@ import Hero from "@/components/home/Hero";
 import Benefits from "@/components/home/Benefits";
 import CategoryShowcase from "@/components/home/CategoryShowcase";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
+import CustomOrder from "@/components/home/CustomOrder";
 import StorySplit from "@/components/home/StorySplit";
 import BestSellers from "@/components/home/BestSellers";
 import Reviews from "@/components/home/Reviews";
@@ -14,6 +15,7 @@ export default function Home() {
       <Benefits />
       <CategoryShowcase />
       <FeaturedProducts />
+      <CustomOrder />
       <StorySplit />
       <BestSellers />
       <Reviews />

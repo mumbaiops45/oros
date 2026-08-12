@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { formatPrice } from "@/data/catalog";
-import { BagIcon, HeartIcon, StarIcon } from "@/components/Icons";
+import { formatMoq, formatPrice } from "@/data/catalog";
+import { BagIcon, BoxesIcon, HeartIcon, StarIcon } from "@/components/Icons";
 
 const THUMB_TONES = [
   "bg-rose-50",
@@ -19,6 +19,7 @@ const THUMB_TONES = [
  */
 export default function ProductCard({ product, index = 0, onDark = false }) {
   const tone = THUMB_TONES[index % THUMB_TONES.length];
+  const moq = product.moq ?? 1;
 
   return (
     <article
@@ -40,6 +41,12 @@ export default function ProductCard({ product, index = 0, onDark = false }) {
             }`}
           >
             {product.badge}
+          </span>
+        )}
+
+        {product.custom && (
+          <span className="absolute bottom-3 left-3 rounded-full bg-slate-900/85 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+            Customisable
           </span>
         )}
 
@@ -72,6 +79,22 @@ export default function ProductCard({ product, index = 0, onDark = false }) {
           <StarIcon className="h-3.5 w-3.5 text-amber-400" />
           <span className="text-xs font-semibold text-slate-700">{product.rating}</span>
           <span className="text-xs text-slate-400">({product.reviews})</span>
+          {product.material && (
+            <span className="ml-auto rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-500">
+              {product.material}
+            </span>
+          )}
+        </div>
+
+        {/* Minimum order quantity — shown on every card */}
+        <div className="mt-2.5 flex items-center gap-1.5 rounded-lg bg-primary/10 px-2 py-1.5">
+          <BoxesIcon className="h-3.5 w-3.5 shrink-0 text-primary" />
+          <span className="text-[11px] font-semibold text-primary">
+            MOQ {formatMoq(moq)}
+          </span>
+          <span className="truncate text-[11px] text-slate-400">
+            {product.custom ? "· made to order" : moq > 1 ? "· sold in packs" : "· ready to ship"}
+          </span>
         </div>
 
         <div className="mt-auto flex items-end justify-between gap-2 pt-4">

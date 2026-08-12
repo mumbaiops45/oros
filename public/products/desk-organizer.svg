@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="box" x1="66" y1="200" x2="256" y2="346" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBD08A"/>
+      <stop offset="0.5" stop-color="#E5A13C"/>
+      <stop offset="1" stop-color="#A76A17"/>
+    </linearGradient>
+    <pattern id="layers" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="1.4" fill="#FFFFFF" opacity="0.24"/>
+    </pattern>
+    <clipPath id="cp"><rect x="62" y="212" width="196" height="126" rx="18"/></clipPath>
+  </defs>
+
+  <ellipse cx="160" cy="348" rx="98" ry="14" fill="#0F172A" opacity="0.10"/>
+
+  <!-- pens / tools sitting in the tall well -->
+  <rect x="86" y="112" width="14" height="118" rx="7" fill="#37A6CA"/>
+  <path d="M93 104l7 12H86z" fill="#1E7793"/>
+  <rect x="108" y="130" width="14" height="100" rx="7" fill="#EF6B6B"/>
+  <path d="M115 122l7 12h-14z" fill="#B93E3E"/>
+  <rect x="130" y="146" width="14" height="84" rx="7" fill="#5BC98F"/>
+  <path d="M137 138l7 12h-14z" fill="#2F8A5C"/>
+
+  <!-- body -->
+  <rect x="62" y="212" width="196" height="126" rx="18" fill="url(#box)"/>
+  <g clip-path="url(#cp)"><rect x="62" y="206" width="196" height="140" fill="url(#layers)"/></g>
+
+  <!-- compartments -->
+  <rect x="78" y="200" width="88" height="34" rx="12" fill="#C4831F"/>
+  <rect x="82" y="204" width="80" height="26" rx="9" fill="#7E4E0C" opacity="0.55"/>
+  <rect x="178" y="238" width="64" height="30" rx="11" fill="#C4831F"/>
+  <rect x="182" y="242" width="56" height="22" rx="8" fill="#7E4E0C" opacity="0.55"/>
+
+  <!-- clips + sticky notes in the low tray -->
+  <rect x="188" y="222" width="42" height="12" rx="3" fill="#FDE68A"/>
+  <rect x="192" y="216" width="42" height="12" rx="3" fill="#FCA5A5"/>
+
+  <rect x="62" y="322" width="196" height="16" rx="8" fill="#8F580E" opacity="0.45"/>
+  <path d="M62 268h196" stroke="#0F172A" stroke-width="2.5" opacity="0.14"/>
+</svg>

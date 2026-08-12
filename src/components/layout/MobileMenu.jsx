@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDownIcon, CloseIcon } from "@/components/Icons";
+import { BoxesIcon, ChevronDownIcon, CloseIcon } from "@/components/Icons";
 
 export default function MobileMenu({ categories, open, onClose }) {
   const [openIndex, setOpenIndex] = useState(0);
@@ -18,8 +18,13 @@ export default function MobileMenu({ categories, open, onClose }) {
       />
       <div className="fixed inset-x-3 top-3 z-50 max-h-[88vh] overflow-y-auto rounded-3xl bg-white p-5 shadow-2xl">
         <div className="mb-4 flex items-center justify-between">
-          <span className="font-display text-xl font-semibold tracking-[0.28em] text-slate-900">
-            OROS
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-xl font-semibold tracking-[0.28em] text-slate-900">
+              OROS
+            </span>
+            <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.42em] text-slate-400">
+              3D Studio
+            </span>
           </span>
           <button
             type="button"
@@ -30,6 +35,23 @@ export default function MobileMenu({ categories, open, onClose }) {
             <CloseIcon />
           </button>
         </div>
+
+        {/* Bulk / MOQ — mirrors the navbar button on desktop */}
+        <a
+          href="#custom"
+          onClick={onClose}
+          className="mb-5 flex items-center gap-3 rounded-2xl bg-primary px-4 py-3 text-white"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20">
+            <BoxesIcon className="h-4 w-4" />
+          </span>
+          <span className="leading-tight">
+            <span className="block text-sm font-bold">Bulk / MOQ order</span>
+            <span className="block text-[11px] text-white/80">
+              Custom prints from 10 units · up to 35% off
+            </span>
+          </span>
+        </a>
 
         <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
           Category
@@ -73,11 +95,11 @@ export default function MobileMenu({ categories, open, onClose }) {
 
         <div className="mt-5 grid gap-2">
           <a
-            href="#"
+            href="#products"
             onClick={onClose}
             className="rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-white"
           >
-            Shop all products
+            Shop all prints
           </a>
           <a
             href="#"

@@ -252,12 +252,93 @@ export const PinterestIcon = ({ className = "h-5 w-5", ...props }) => (
   </svg>
 );
 
+/* ---------------------------------------------------------------------------
+   3D printing set
+   --------------------------------------------------------------------------- */
+
+export const PrinterIcon = (props) => (
+  <Svg {...props}>
+    <path d="M4 4h16v16H4z" />
+    <path d="M4 9h16" />
+    <path d="M12 9v3" />
+    <path d="M10.5 12h3l-1 3h-1Z" />
+    <path d="M8 20h8" />
+  </Svg>
+);
+
+export const LayersIcon = (props) => (
+  <Svg {...props}>
+    <path d="m12 3 9 5-9 5-9-5Z" />
+    <path d="m3 12.5 9 5 9-5" />
+    <path d="m3 16.5 9 5 9-5" />
+  </Svg>
+);
+
+export const CubeIcon = (props) => (
+  <Svg {...props}>
+    <path d="M12 3 20 7.5v9L12 21l-8-4.5v-9Z" />
+    <path d="M12 3v9l8 4.5M12 12 4 16.5" />
+  </Svg>
+);
+
+export const BoxesIcon = (props) => (
+  <Svg {...props}>
+    <rect x="3" y="13" width="8" height="8" rx="1.6" />
+    <rect x="13" y="13" width="8" height="8" rx="1.6" />
+    <rect x="8" y="3" width="8" height="8" rx="1.6" />
+    <path d="M12 3v8M3 17h8M13 17h8" />
+  </Svg>
+);
+
+export const RulerIcon = (props) => (
+  <Svg {...props}>
+    <path d="M3.5 15.5 15.5 3.5a2 2 0 0 1 2.8 0l2.2 2.2a2 2 0 0 1 0 2.8L8.5 20.5a2 2 0 0 1-2.8 0l-2.2-2.2a2 2 0 0 1 0-2.8Z" />
+    <path d="m7.5 11.5 2 2M11 8l2 2M14.5 4.5l2 2" />
+  </Svg>
+);
+
+export const PaletteIcon = (props) => (
+  <Svg {...props}>
+    <path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 1.4-2-.7-1.2.1-2.5 1.5-2.5H17a4 4 0 0 0 4-4c0-5-4-9.5-9-9.5Z" />
+    <circle cx="8" cy="11" r="1.1" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="7.8" r="1.1" fill="currentColor" stroke="none" />
+    <circle cx="16" cy="10" r="1.1" fill="currentColor" stroke="none" />
+  </Svg>
+);
+
+export const UploadIcon = (props) => (
+  <Svg {...props}>
+    <path d="M12 16V4" />
+    <path d="m7.5 8.5 4.5-4.5 4.5 4.5" />
+    <path d="M4 16v2.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V16" />
+  </Svg>
+);
+
+export const CheckIcon = (props) => (
+  <Svg {...props}>
+    <path d="m5 12.5 4.5 4.5L19 7" />
+  </Svg>
+);
+
+export const CalculatorIcon = (props) => (
+  <Svg {...props}>
+    <rect x="4" y="3" width="16" height="18" rx="2.5" />
+    <rect x="7.5" y="6.5" width="9" height="3.5" rx="1" />
+    <path d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01M16 17.5h.01" />
+  </Svg>
+);
+
 export const benefitIcons = {
-  leaf: LeafIcon,
-  flask: FlaskIcon,
-  rabbit: RabbitIcon,
-  recycle: RecycleIcon,
+  printer: PrinterIcon,
+  layers: LayersIcon,
+  palette: PaletteIcon,
+  ruler: RulerIcon,
+  cube: CubeIcon,
+  boxes: BoxesIcon,
+  upload: UploadIcon,
   truck: TruckIcon,
   shield: ShieldIcon,
   spark: SparkIcon,
+  recycle: RecycleIcon,
+  leaf: LeafIcon,
 };

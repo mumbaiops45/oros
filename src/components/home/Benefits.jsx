@@ -7,14 +7,15 @@ export default function Benefits() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-15">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            Why OROS
+            Why OROS 3D
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
-            Good for you, gentler on the planet
+            A real print farm, not a drop-ship desk
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Five promises we have kept on every single batch since 2016 — audited
-            and printed on the back of every bottle.
+            Every model on this site comes off our own machines in Mumbai — which
+            is why we can change a colour, a size or a quantity without changing
+            the price of everything else.
           </p>
         </div>
 

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronRightIcon } from "@/components/Icons";
+import { formatMoq } from "@/data/catalog";
+import { ArrowRightIcon, BoxesIcon, ChevronRightIcon } from "@/components/Icons";
 
 /**
  * Three-pane category menu.
@@ -112,10 +113,37 @@ export default function MegaMenu({ categories }) {
                   <p className="line-clamp-2 text-center text-[13px] font-medium leading-snug text-slate-700 group-hover:text-primary">
                     {product.name}
                   </p>
+                  <p className="mt-1.5 text-center text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                    {product.custom ? "Custom · " : ""}Min {formatMoq(product.moq ?? 1)}
+                  </p>
                 </a>
               </li>
             ))}
           </ul>
+
+          {/* Bulk / MOQ shortcut — the same entry point as the navbar button */}
+          <a
+            href="#custom"
+            className="group mt-4 flex items-center justify-between gap-3 rounded-2xl bg-primary/10 px-4 py-3 transition hover:bg-primary/15"
+          >
+            <span className="flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-white">
+                <BoxesIcon className="h-4 w-4" />
+              </span>
+              <span>
+                <span className="block text-[13px] font-semibold text-slate-900">
+                  Need it in bulk or made to your design?
+                </span>
+                <span className="block text-[11px] text-slate-500">
+                  Minimum order quantity starts at 10 units — up to 35% off
+                </span>
+              </span>
+            </span>
+            <span className="flex items-center gap-1.5 text-xs font-bold text-primary">
+              Get a quote
+              <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
+            </span>
+          </a>
         </div>
       </div>
     </div>

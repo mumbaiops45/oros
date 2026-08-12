@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="body" x1="96" y1="100" x2="236" y2="352" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8AE0F4"/>
+      <stop offset="0.52" stop-color="#37A6CA"/>
+      <stop offset="1" stop-color="#175C74"/>
+    </linearGradient>
+    <pattern id="layers" width="11" height="11" patternUnits="userSpaceOnUse">
+      <rect width="11" height="1.5" fill="#FFFFFF" opacity="0.26"/>
+    </pattern>
+    <clipPath id="cp">
+      <path d="M120 102c-28 60-48 140-26 212 12 38 100 38 112 0 22-72 2-152-26-212z"/>
+    </clipPath>
+  </defs>
+  <ellipse cx="160" cy="352" rx="80" ry="15" fill="#0F172A" opacity="0.10"/>
+  <path d="M120 102c-28 60-48 140-26 212 12 38 100 38 112 0 22-72 2-152-26-212z" fill="url(#body)"/>
+  <g clip-path="url(#cp)">
+    <rect x="80" y="92" width="160" height="256" fill="url(#layers)"/>
+    <path d="M112 110c-18 62-30 140-14 206" stroke="#FFFFFF" stroke-width="16" opacity="0.16" fill="none"/>
+    <path d="M206 116c16 62 24 138 8 200" stroke="#0F172A" stroke-width="20" opacity="0.10" fill="none"/>
+  </g>
+  <ellipse cx="160" cy="103" rx="40" ry="12" fill="#8AE0F4"/>
+  <ellipse cx="160" cy="103" rx="27" ry="8" fill="#124F65"/>
+  <path d="M108 246c16 12 46 18 60 18" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.28" fill="none"/>
+</svg>

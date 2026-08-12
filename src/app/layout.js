@@ -5,9 +5,9 @@ import Footer from "@/components/layout/Footer";
 
 
 export const metadata = {
-  title: "OROS — Pure Botanicals for Everyday Rituals",
+  title: "OROS 3D — 3D Printed Objects & Custom Batch Printing",
   description:
-    "Certified organic skincare, hair care and wellness essentials, cold-pressed in small batches and shipped plastic-neutral across India.",
+    "Shop ready-to-ship 3D printed decor, desk gear, figurines, cosplay props and functional parts — or upload your own design for a custom run. Bulk pricing from a minimum order quantity of 10 units.",
 };
 
 export default function RootLayout({ children }) {

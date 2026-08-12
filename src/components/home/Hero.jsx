@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { ArrowRightIcon, LeafIcon, StarIcon, TruckIcon } from "@/components/Icons";
+import { ArrowRightIcon, BoxesIcon, CubeIcon, StarIcon } from "@/components/Icons";
 
 const STATS = [
-  { value: "62,000+", label: "Happy customers" },
+  { value: "180,000+", label: "Parts printed" },
   { value: "4.9 / 5", label: "Average rating" },
-  { value: "100%", label: "Organic certified" },
+  { value: "0.08 mm", label: "Layer precision" },
 ];
 
 export default function Hero() {
@@ -19,23 +19,23 @@ export default function Hero() {
         {/* Left — copy */}
         <div className="text-center lg:text-left">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white ring-1 ring-white/30 backdrop-blur">
-            <LeafIcon className="h-4 w-4" />
-            Certified organic · Made in India
+            <CubeIcon className="h-4 w-4" />
+            Designed &amp; 3D printed in India
           </span>
 
           <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
-            Pure botanicals for
-            <br className="hidden sm:block" /> your everyday{" "}
+            Objects worth
+            <br className="hidden sm:block" /> printing, made{" "}
             <span className="relative inline-block">
-              <span className="relative z-10">ritual</span>
+              <span className="relative z-10">your way</span>
               <span className="absolute inset-x-0 -bottom-1 z-0 h-1.5 rounded-full bg-white/55" />
             </span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/90 lg:mx-0 lg:text-lg">
-            Cold-pressed in small batches, bottled within 72 hours of harvest and
-            shipped plastic-neutral. Skincare, hair care and wellness that stay
-            honest from farm to shelf.
+            Shop hundreds of ready-to-ship 3D printed vases, gadgets, figurines
+            and functional parts — or send us your own design and we will print
+            it in the colour, size and quantity you need.
           </p>
 
           <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
@@ -47,10 +47,11 @@ export default function Hero() {
               <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
             </a>
             <a
-              href="#story"
+              href="#custom"
               className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/50 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-white/15 sm:w-auto"
             >
-              Our story
+              <BoxesIcon className="h-4 w-4" />
+              Custom &amp; bulk order
             </a>
           </div>
 
@@ -74,8 +75,8 @@ export default function Hero() {
           <div className="absolute left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/25" />
 
           <Image
-            src="/hero-bottle.svg"
-            alt="OROS botanical serum and balm"
+            src="/hero-printer.svg"
+            alt="An OROS 3D printer laying down the final layers of a spiral vase"
             width={560}
             height={620}
             priority
@@ -93,13 +94,14 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* MOQ is surfaced right in the hero, not buried in a policy page */}
           <div className="animate-float-delay absolute -right-1 bottom-12 flex items-center gap-2.5 rounded-2xl bg-white px-3.5 py-2.5 shadow-xl sm:right-0">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <TruckIcon className="h-4 w-4" />
+              <BoxesIcon className="h-4 w-4" />
             </span>
             <div className="leading-tight">
-              <p className="text-xs font-bold text-slate-900">Free shipping</p>
-              <p className="text-[10px] text-slate-500">On orders ₹499+</p>
+              <p className="text-xs font-bold text-slate-900">Bulk from 10 pcs</p>
+              <p className="text-[10px] text-slate-500">Save up to 35%</p>
             </div>
           </div>
         </div>

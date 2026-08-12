@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="armour" x1="100" y1="90" x2="230" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C9B4FF"/>
+      <stop offset="0.5" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#4C2496"/>
+    </linearGradient>
+    <pattern id="layers" width="9" height="9" patternUnits="userSpaceOnUse">
+      <rect width="9" height="1.3" fill="#FFFFFF" opacity="0.22"/>
+    </pattern>
+    <clipPath id="cp">
+      <path d="M126 148h68l16 108a14 14 0 0 1-14 16h-72a14 14 0 0 1-14-16z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="160" cy="352" rx="72" ry="13" fill="#0F172A" opacity="0.10"/>
+
+  <!-- printed base disc -->
+  <ellipse cx="160" cy="330" rx="64" ry="20" fill="#3B2470"/>
+  <ellipse cx="160" cy="324" rx="64" ry="20" fill="#6D3FD4"/>
+  <ellipse cx="160" cy="324" rx="46" ry="13" fill="#4C2496" opacity="0.45"/>
+
+  <!-- torso -->
+  <path d="M126 148h68l16 108a14 14 0 0 1-14 16h-72a14 14 0 0 1-14-16z" fill="url(#armour)"/>
+  <g clip-path="url(#cp)"><rect x="104" y="140" width="112" height="140" fill="url(#layers)"/></g>
+  <path d="M160 168v96" stroke="#3B2470" stroke-width="3" opacity="0.35"/>
+  <path d="M132 200h56M136 226h48" stroke="#E4D9FF" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- shoulders -->
+  <path d="M120 152c-18 4-28 18-26 36 14 4 28-2 34-14z" fill="#7C4DE8"/>
+  <path d="M200 152c18 4 28 18 26 36-14 4-28-2-34-14z" fill="#7C4DE8"/>
+
+  <!-- arm + sword -->
+  <rect x="206" y="182" width="20" height="74" rx="10" fill="#6D3FD4"/>
+  <rect x="230" y="70" width="12" height="150" rx="6" fill="#D9DEE6"/>
+  <path d="M236 62l8 16h-16z" fill="#EEF2F6"/>
+  <rect x="218" y="214" width="36" height="12" rx="6" fill="#4C2496"/>
+
+  <!-- helmet -->
+  <path d="M134 100c0-18 12-30 26-30s26 12 26 30v26c0 12-12 20-26 20s-26-8-26-20z" fill="url(#armour)"/>
+  <rect x="140" y="106" width="40" height="12" rx="6" fill="#2A1554"/>
+  <path d="M158 70c2-14 8-22 14-24 2 12 0 20-6 26z" fill="#A78BFA"/>
+</svg>

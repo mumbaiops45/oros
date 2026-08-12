@@ -8,14 +8,14 @@ export default function FeaturedProducts() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-15">
         <div className="mb-10 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            Our favourites
+            Most downloaded, most printed
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
-            Loved in 62,000 bathrooms
+            Straight off the build plate
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            The formulas our customers reorder most — every one of them free from
-            parabens, sulphates and synthetic fragrance.
+            Ready-to-ship prints in stock today. Every card shows its material and
+            minimum order quantity — most start at a single piece.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export default function FeaturedProducts() {
             href="#"
             className="group inline-flex items-center gap-2 rounded-full border-2 border-primary px-8 py-3.5 text-sm font-bold text-primary transition hover:bg-primary hover:text-white"
           >
-            View more products
+            View all 90+ prints
             <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
           </a>
         </div>

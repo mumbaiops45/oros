@@ -16,11 +16,11 @@ export default function BestSellers() {
               This month&apos;s best sellers
             </span>
             <h2 className="mt-4 font-display text-3xl font-semibold text-white sm:text-4xl">
-              Restocked twice this month
+              Reprinted twice this month
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base">
-              These five sold out in under 40 hours the last time. Grab them
-              before the next batch goes live.
+              These five cleared the shelf in under 40 hours last time. All of
+              them can be re-run in your colour at bulk pricing.
             </p>
           </div>
 

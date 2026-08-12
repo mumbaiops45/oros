@@ -6,6 +6,7 @@ import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
 import {
   BagIcon,
+  BoxesIcon,
   ChevronDownIcon,
   HeartIcon,
   MenuIcon,
@@ -15,8 +16,9 @@ import {
 
 const NAV_LINKS = [
   { label: "Shop All", href: "#products" },
+  { label: "Custom Order", href: "#custom" },
   { label: "Best Sellers", href: "#bestsellers" },
-  { label: "Our Story", href: "#story" },
+  { label: "Our Studio", href: "#story" },
 ];
 
 export default function Header() {
@@ -126,12 +128,27 @@ export default function Header() {
                 OROS
               </span>
               <span className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.42em] text-slate-400">
-                Organics
+                3D Studio
               </span>
             </a>
 
-            {/* Right — the only place primary appears in the navbar */}
+            {/* Right — bulk order sits alongside account, wishlist and cart */}
             <div className="flex flex-1 items-center justify-end gap-1">
+              {/* Minimum order quantity / custom batch entry point */}
+              <a
+                href="#custom"
+                title="Bulk & custom orders — minimum order quantity starts at 10 units"
+                className="group relative mr-1 flex items-center gap-2 rounded-full bg-primary px-3 py-2.5 text-white shadow-[0_10px_22px_-12px_rgba(55,166,202,0.9)] transition hover:-translate-y-0.5 sm:px-3.5"
+              >
+                <BoxesIcon className="h-[18px] w-[18px]" />
+                <span className="hidden text-xs font-bold leading-none xl:inline">
+                  Bulk&nbsp;/&nbsp;MOQ
+                </span>
+                <span className="absolute -right-1 -top-1 flex h-4 items-center justify-center rounded-full bg-slate-900 px-1.5 text-[9px] font-bold text-white">
+                  10+
+                </span>
+              </a>
+
               <a
                 href="#"
                 aria-label="Account"

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 620" fill="none">
+  <defs>
+    <linearGradient id="frame" x1="90" y1="90" x2="470" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#E4F4F9"/>
+      <stop offset="1" stop-color="#A9DBEA"/>
+    </linearGradient>
+    <linearGradient id="print" x1="210" y1="250" x2="350" y2="440" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#BFE7F3"/>
+      <stop offset="1" stop-color="#4FAFCE"/>
+    </linearGradient>
+    <linearGradient id="plate" x1="150" y1="430" x2="410" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DCEEF4"/>
+      <stop offset="1" stop-color="#8FC4D6"/>
+    </linearGradient>
+    <pattern id="layers" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="1.8" fill="#1E7793" opacity="0.16"/>
+    </pattern>
+    <clipPath id="vaseclip">
+      <path d="M236 268c-22 46-36 108-20 158 10 30 78 30 88 0 16-50 2-112-20-158z"/>
+    </clipPath>
+  </defs>
+
+  <!-- printer frame -->
+  <g stroke="url(#frame)" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.95">
+    <path d="M118 128h324"/>
+    <path d="M118 128v372"/>
+    <path d="M442 128v372"/>
+    <path d="M118 500h324"/>
+  </g>
+  <g stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.35">
+    <path d="M132 146h296"/>
+    <path d="M132 146v334"/>
+  </g>
+
+  <!-- gantry rail + moving head -->
+  <rect x="112" y="216" width="336" height="16" rx="8" fill="#FFFFFF" opacity="0.85"/>
+  <g>
+    <rect x="248" y="200" width="76" height="52" rx="12" fill="#FFFFFF"/>
+    <rect x="258" y="212" width="30" height="12" rx="6" fill="#37A6CA" opacity="0.45"/>
+    <path d="M272 252h30l-8 26h-14z" fill="#DCEEF4"/>
+    <path d="M279 278h16l-6 14h-4z" fill="#9FD5E6"/>
+    <circle cx="287" cy="296" r="5" fill="#FFFFFF"/>
+  </g>
+
+  <!-- filament path from spool to head -->
+  <path d="M470 196c-40 6-52 22-58 44-6 22-40 20-86 6" stroke="#FFFFFF" stroke-width="5"
+        stroke-linecap="round" fill="none" opacity="0.6"/>
+  <g transform="translate(494 186)">
+    <circle r="46" fill="#FFFFFF" opacity="0.92"/>
+    <circle r="34" fill="#4FAFCE" opacity="0.55"/>
+    <g stroke="#FFFFFF" stroke-width="2" opacity="0.5" fill="none">
+      <circle r="30"/><circle r="24"/><circle r="18"/>
+    </g>
+    <circle r="10" fill="#1E7793"/>
+  </g>
+
+  <!-- the vase being printed, top layers still forming -->
+  <path d="M236 268c-22 46-36 108-20 158 10 30 78 30 88 0 16-50 2-112-20-158z" fill="url(#print)"/>
+  <g clip-path="url(#vaseclip)">
+    <rect x="200" y="260" width="180" height="200" fill="url(#layers)"/>
+    <path d="M228 280c-16 48-24 104-12 148" stroke="#FFFFFF" stroke-width="18" opacity="0.5" fill="none"/>
+  </g>
+  <ellipse cx="280" cy="268" rx="26" ry="8" fill="#FFFFFF" opacity="0.95"/>
+  <ellipse cx="280" cy="268" rx="16" ry="4.5" fill="#1E7793" opacity="0.35"/>
+
+  <!-- heated build plate -->
+  <ellipse cx="280" cy="446" rx="132" ry="26" fill="#1E7793" opacity="0.18"/>
+  <rect x="150" y="428" width="260" height="30" rx="15" fill="url(#plate)"/>
+  <rect x="150" y="428" width="260" height="11" rx="5.5" fill="#FFFFFF" opacity="0.65"/>
+  <path d="M178 448h204" stroke="#1E7793" stroke-width="4" stroke-linecap="round" opacity="0.25"/>
+
+  <!-- finished prints on the shelf -->
+  <g opacity="0.95">
+    <path d="M356 388c-10 20-16 44-8 62 6 14 36 14 42 0 8-18 2-42-8-62z" fill="#FFFFFF" opacity="0.85"/>
+    <ellipse cx="369" cy="388" rx="13" ry="4" fill="#BFE7F3"/>
+    <rect x="176" y="396" width="52" height="54" rx="12" fill="#FFFFFF" opacity="0.8"/>
+    <rect x="188" y="410" width="28" height="26" rx="6" fill="#8FC4D6" opacity="0.7"/>
+  </g>
+
+  <!-- status readout -->
+  <g transform="translate(118 520)">
+    <rect width="150" height="44" rx="14" fill="#FFFFFF" opacity="0.95"/>
+    <circle cx="26" cy="22" r="9" fill="#37A6CA"/>
+    <rect x="46" y="12" width="84" height="7" rx="3.5" fill="#9FD5E6"/>
+    <rect x="46" y="26" width="52" height="7" rx="3.5" fill="#CFE7EF"/>
+  </g>
+</svg>

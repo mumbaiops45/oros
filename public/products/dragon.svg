@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="scale" x1="70" y1="330" x2="240" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F7A55"/>
+      <stop offset="0.5" stop-color="#3FBF88"/>
+      <stop offset="1" stop-color="#8DE9BE"/>
+    </linearGradient>
+    <linearGradient id="wing" x1="150" y1="120" x2="260" y2="230" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B8F2D8"/>
+      <stop offset="1" stop-color="#3FBF88"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="160" cy="356" rx="84" ry="14" fill="#0F172A" opacity="0.10"/>
+
+  <!-- wing -->
+  <path d="M176 172c34-28 66-32 84-14-14 8-18 22-14 36-22 8-46 4-70-10z" fill="url(#wing)" opacity="0.9"/>
+  <path d="M182 168c22-16 44-20 60-12M186 180c20-8 40-8 56 0" stroke="#217A57" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- articulated body: one stroke, segment gaps read as printed joints -->
+  <path d="M72 340c26-6 34-34 20-56-16-26 6-52 34-46 30 6 34-24 22-44-10-18 4-40 26-42"
+        stroke="url(#scale)" stroke-width="44" stroke-linecap="round" fill="none"/>
+  <path d="M72 340c26-6 34-34 20-56-16-26 6-52 34-46 30 6 34-24 22-44-10-18 4-40 26-42"
+        stroke="#0B3D2B" stroke-width="44" stroke-dasharray="2.5 15" stroke-linecap="butt" opacity="0.22" fill="none"/>
+  <path d="M72 340c26-6 34-34 20-56-16-26 6-52 34-46 30 6 34-24 22-44-10-18 4-40 26-42"
+        stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.16" fill="none"
+        transform="translate(-9 -4)"/>
+
+  <!-- spine ridge -->
+  <path d="M96 300l12-8 2 12zM118 254l13-6v13zM146 214l13-6v13zM166 166l13-6v13z" fill="#0F5F42" opacity="0.6"/>
+
+  <!-- head -->
+  <path d="M196 84c22-10 44-2 48 16 2 12-8 22-24 24-6 12-20 14-30 4-10-10-8-32 6-44z" fill="url(#scale)"/>
+  <path d="M214 78c-4-14 2-24 12-28 0 12 4 20 12 24z" fill="#1F7A55"/>
+  <path d="M232 86c8-12 18-16 28-12-8 6-10 14-8 22z" fill="#1F7A55"/>
+  <circle cx="222" cy="102" r="5" fill="#0B3D2B"/>
+  <circle cx="223.5" cy="100.5" r="1.8" fill="#FFFFFF"/>
+  <path d="M244 118c8 2 14 8 14 14-8 2-16-2-20-8z" fill="#8DE9BE"/>
+
+  <!-- tail tip -->
+  <path d="M62 344c-14 4-24 12-26 22 16 4 30-2 36-12z" fill="#1F7A55"/>
+</svg>

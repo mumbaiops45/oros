@@ -22,7 +22,7 @@ export default function CategoryShowcase() {
               Shop by category
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
-              Find your ritual
+              Pick a shelf to print for
             </h2>
           </div>
           <a

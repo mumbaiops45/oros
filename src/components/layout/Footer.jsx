@@ -6,10 +6,10 @@ import {
   partners,
 } from "@/data/catalog";
 import {
+  BoxesIcon,
   ClockIcon,
   FacebookIcon,
   InstagramIcon,
-  LeafIcon,
   MailIcon,
   PhoneIcon,
   PinIcon,
@@ -40,21 +40,24 @@ export default function Footer() {
                   OROS
                 </span>
                 <span className="mt-1 text-[9px] font-medium uppercase tracking-[0.42em] text-slate-400">
-                  Organics
+                  3D Studio
                 </span>
               </div>
 
               <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-600">
-                We cold-press small batches of certified organic botanicals in
-                Maharashtra and bottle them within 72 hours of harvest. No
-                parabens, no sulphates, no filler — just honest formulas that do
-                what the label says.
+                We design and 3D print everyday objects on 48 machines in Mumbai —
+                decor, desk gear, figurines, cosplay props and functional parts.
+                Bring us a file or an idea and we will print it in the material,
+                colour and quantity you actually need.
               </p>
 
-              <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold text-primary">
-                <LeafIcon className="h-4 w-4" />
-                India Organic &amp; USDA certified
-              </div>
+              <a
+                href="#custom"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold text-primary transition hover:bg-primary hover:text-white"
+              >
+                <BoxesIcon className="h-4 w-4" />
+                Bulk &amp; custom orders — MOQ from 10 pcs
+              </a>
             </div>
 
             {/* 2 — categories */}
@@ -150,7 +153,7 @@ export default function Footer() {
 
             <div className="lg:text-right">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                Our partners
+                Materials &amp; tech partners
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-x-7 gap-y-4 lg:justify-end">
                 {partners.map((partner) => (
@@ -170,8 +173,8 @@ export default function Footer() {
 
         {/* Bottom bar — sits directly on primary */}
         <div className="mt-8 flex flex-col items-center justify-between gap-3 text-center text-xs text-white/85 sm:flex-row sm:text-left">
-          <p>© {new Date().getFullYear()} OROS Organics Pvt. Ltd. All rights reserved.</p>
-          <p>Made with care in Mumbai · GST 27AABCO1234M1Z5</p>
+          <p>© {new Date().getFullYear()} OROS 3D Studio Pvt. Ltd. All rights reserved.</p>
+          <p>Printed layer by layer in Mumbai · GST 27AABCO1234M1Z5</p>
         </div>
       </div>
     </footer>

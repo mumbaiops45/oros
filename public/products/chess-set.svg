@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="dark" x1="96" y1="80" x2="220" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4C5A6B"/>
+      <stop offset="0.5" stop-color="#242D3A"/>
+      <stop offset="1" stop-color="#0E141C"/>
+    </linearGradient>
+    <linearGradient id="light" x1="30" y1="200" x2="110" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C6D2DE"/>
+    </linearGradient>
+    <pattern id="layers" width="9" height="9" patternUnits="userSpaceOnUse">
+      <rect width="9" height="1.3" fill="#FFFFFF" opacity="0.16"/>
+    </pattern>
+    <clipPath id="cp">
+      <path d="M118 96c34-14 76 4 84 42 4 22-8 40-8 62 0 24 8 42 18 62h-96c14-26 20-46 16-64-16-6-28-18-32-34-6-30 4-56 18-68z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="160" cy="348" rx="94" ry="14" fill="#0F172A" opacity="0.10"/>
+
+  <!-- light pawn beside it -->
+  <g>
+    <circle cx="66" cy="212" r="24" fill="url(#light)"/>
+    <path d="M56 232c-2 26-8 44-18 58h56c-10-14-16-32-18-58z" fill="url(#light)"/>
+    <ellipse cx="66" cy="292" rx="34" ry="12" fill="#E4EBF2"/>
+    <ellipse cx="66" cy="288" rx="34" ry="12" fill="url(#light)"/>
+    <path d="M46 250h40" stroke="#9FB0C1" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- knight -->
+  <path d="M118 96c34-14 76 4 84 42 4 22-8 40-8 62 0 24 8 42 18 62h-96c14-26 20-46 16-64-16-6-28-18-32-34-6-30 4-56 18-68z" fill="url(#dark)"/>
+  <g clip-path="url(#cp)"><rect x="88" y="82" width="120" height="188" fill="url(#layers)"/></g>
+  <path d="M126 92c6-16 14-24 22-26-2 12 0 20 6 26z" fill="#39465A"/>
+  <circle cx="146" cy="136" r="7" fill="#F2F6FA"/>
+  <path d="M108 152c14 8 30 10 44 6" stroke="#0B1119" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+  <path d="M172 118c14 10 20 26 16 42" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.18" fill="none"/>
+
+  <!-- base -->
+  <ellipse cx="160" cy="270" rx="56" ry="16" fill="#0E141C" opacity="0.5"/>
+  <path d="M112 262h96l12 46h-120z" fill="url(#dark)"/>
+  <ellipse cx="160" cy="308" rx="62" ry="18" fill="#39465A"/>
+  <ellipse cx="160" cy="304" rx="62" ry="18" fill="url(#dark)"/>
+  <ellipse cx="160" cy="304" rx="42" ry="11" fill="#0B1119" opacity="0.45"/>
+</svg>

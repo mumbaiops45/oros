@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { ArrowRightIcon, SparkIcon, UserIcon } from "@/components/Icons";
+import { ArrowRightIcon, BoxesIcon, UserIcon } from "@/components/Icons";
 
 const ACCOUNT_PERKS = [
-  "200 welcome points on signup",
-  "Order tracking & one-tap reorder",
-  "Early access to every new batch",
+  "Your uploaded STL files kept on file",
+  "Live print status & one-tap reprint",
+  "Saved colours, materials and quantities",
 ];
 
 export default function DualCta() {
@@ -24,10 +24,10 @@ export default function DualCta() {
               </span>
 
               <h2 className="mt-4 font-display text-2xl font-semibold leading-tight text-white sm:text-3xl">
-                Make an account, keep the perks
+                Make an account, keep your models
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-white/85">
-                One profile for your rituals, refills and reward points — no
+                One profile for your designs, print jobs and reorders — no
                 paperwork, no spam.
               </p>
 
@@ -53,7 +53,7 @@ export default function DualCta() {
 
             <Image
               src="/account-illustration.svg"
-              alt="OROS member profile"
+              alt="An OROS account dashboard with saved 3D models and print progress"
               width={420}
               height={360}
               className="animate-float-soft w-48 shrink-0 self-center drop-shadow-2xl sm:w-60"
@@ -68,45 +68,45 @@ export default function DualCta() {
           <div className="relative flex h-full flex-col gap-8 sm:flex-row sm:items-center">
             <div className="flex-1">
               <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-primary">
-                <SparkIcon className="h-3.5 w-3.5" />
-                Handpicked edit
+                <BoxesIcon className="h-3.5 w-3.5" />
+                Bulk &amp; corporate
               </span>
 
               <h2 className="mt-4 font-display text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl">
-                See this season&apos;s featured products
+                Ordering for an event, a team or a shop?
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                Twenty-four formulas chosen by our formulators — the ones worth
-                clearing shelf space for this month.
+                Tell us the design and the count. Batch pricing kicks in from the
+                tenth unit and we quote within six working hours.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
                 <div>
-                  <p className="font-display text-2xl font-semibold text-slate-900">24</p>
+                  <p className="font-display text-2xl font-semibold text-slate-900">10 pcs</p>
                   <p className="text-[11px] uppercase tracking-wide text-slate-500">
-                    Featured picks
+                    Minimum order qty
                   </p>
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-semibold text-slate-900">Up to 30%</p>
+                  <p className="font-display text-2xl font-semibold text-slate-900">Up to 35%</p>
                   <p className="text-[11px] uppercase tracking-wide text-slate-500">
-                    Bundle savings
+                    Batch savings
                   </p>
                 </div>
               </div>
 
               <a
-                href="#products"
+                href="#custom"
                 className="group mt-7 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:shadow-xl"
               >
-                See featured products
+                Get a bulk quote
                 <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
               </a>
             </div>
 
             <Image
               src="/featured-illustration.svg"
-              alt="Featured OROS products"
+              alt="A batch of identical 3D printed products with a bulk discount tag"
               width={420}
               height={360}
               className="animate-float-delay w-48 shrink-0 self-center drop-shadow-2xl sm:w-60"

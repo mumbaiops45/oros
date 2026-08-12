@@ -1,307 +1,318 @@
 /**
- * Static demo catalogue for the OROS home page.
+ * Static demo catalogue for the OROS 3D home page.
  * Swap this file for a real API/CMS call later — every component reads from
  * these exports only, nothing is hard-coded inside the UI.
+ *
+ * Every product carries a `moq` (minimum order quantity). Ready-to-ship prints
+ * are `moq: 1`; anything `custom` is made to order and carries a batch minimum.
  */
 
-const IMG = {
-  serum: "/products/serum-dropper.svg",
-  pump: "/products/pump-bottle.svg",
-  jar: "/products/cream-jar.svg",
-  tube: "/products/tube.svg",
-  oil: "/products/oil-bottle.svg",
-  soap: "/products/soap-bar.svg",
-  tin: "/products/tin.svg",
-  pouch: "/products/pouch.svg",
-};
+/**
+ * IMAGES — paste your real image src here.
+ * Every product, category and partner below has its own `image:` line, so you
+ * can replace them one by one. Values can be:
+ *   - a file in /public          →  "/products/vase.jpg"
+ *   - a remote URL               →  "https://cdn.example.com/vase.jpg"
+ *     (remote hosts must be added to `images.remotePatterns` in next.config)
+ */
 
 export const categories = [
   {
-    name: "Skin Care",
-    slug: "skin-care",
-    blurb: "Cold-pressed serums, cleansers & masks",
-    image: IMG.serum,
-    tone: "bg-rose-50",
-    accent: "text-rose-600",
-    subcategories: [
-      {
-        name: "Face Serums",
-        slug: "face-serums",
-        products: [
-          { name: "Vitamin C Glow Serum", price: 1290, image: IMG.serum },
-          { name: "Bakuchiol Night Serum", price: 1450, image: IMG.oil },
-          { name: "Hyaluronic Dew Drops", price: 1190, image: IMG.serum },
-          { name: "Rosehip Repair Elixir", price: 1560, image: IMG.oil },
-        ],
-      },
-      {
-        name: "Cleansers",
-        slug: "cleansers",
-        products: [
-          { name: "Neem & Tulsi Face Wash", price: 540, image: IMG.tube },
-          { name: "Oat Milk Cream Cleanser", price: 690, image: IMG.pump },
-          { name: "Charcoal Detox Gel", price: 620, image: IMG.tube },
-          { name: "Rice Water Foam", price: 580, image: IMG.pump },
-        ],
-      },
-      {
-        name: "Moisturisers",
-        slug: "moisturisers",
-        products: [
-          { name: "Shea Day Cream SPF 30", price: 980, image: IMG.jar },
-          { name: "Aloe Water Gel", price: 720, image: IMG.jar },
-          { name: "Ceramide Night Balm", price: 1150, image: IMG.tin },
-          { name: "Squalane Light Lotion", price: 860, image: IMG.pump },
-        ],
-      },
-      {
-        name: "Face Masks",
-        slug: "face-masks",
-        products: [
-          { name: "Multani Clay Mask", price: 640, image: IMG.jar },
-          { name: "Turmeric Bright Mask", price: 690, image: IMG.pouch },
-          { name: "Overnight Honey Mask", price: 820, image: IMG.tin },
-          { name: "Sea Kelp Sheet Mask", price: 240, image: IMG.pouch },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Hair Care",
-    slug: "hair-care",
-    blurb: "Sulphate-free wash, oils & scalp care",
-    image: IMG.pump,
-    tone: "bg-amber-50",
-    accent: "text-amber-700",
-    subcategories: [
-      {
-        name: "Shampoo",
-        slug: "shampoo",
-        products: [
-          { name: "Amla Root Shampoo", price: 740, image: IMG.pump },
-          { name: "Rosemary Volume Wash", price: 780, image: IMG.pump },
-          { name: "Anti-Dandruff Neem Wash", price: 690, image: IMG.pump },
-          { name: "Baby-Soft Rice Shampoo", price: 620, image: IMG.pump },
-        ],
-      },
-      {
-        name: "Conditioner",
-        slug: "conditioner",
-        products: [
-          { name: "Hibiscus Silk Conditioner", price: 790, image: IMG.tube },
-          { name: "Shea Deep Repair", price: 850, image: IMG.tube },
-          { name: "Leave-In Curl Cream", price: 910, image: IMG.tube },
-          { name: "Rice Protein Rinse", price: 760, image: IMG.pump },
-        ],
-      },
-      {
-        name: "Hair Oils",
-        slug: "hair-oils",
-        products: [
-          { name: "Bhringraj Growth Oil", price: 890, image: IMG.oil },
-          { name: "Cold-Pressed Coconut Oil", price: 480, image: IMG.oil },
-          { name: "Onion & Black Seed Oil", price: 760, image: IMG.oil },
-          { name: "Argan Shine Serum Oil", price: 1120, image: IMG.serum },
-        ],
-      },
-      {
-        name: "Scalp Care",
-        slug: "scalp-care",
-        products: [
-          { name: "Salt Scalp Scrub", price: 820, image: IMG.jar },
-          { name: "Tea Tree Scalp Tonic", price: 940, image: IMG.serum },
-          { name: "Clay Detox Hair Mask", price: 880, image: IMG.jar },
-          { name: "Herbal Henna Powder", price: 390, image: IMG.pouch },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Body Care",
-    slug: "body-care",
-    blurb: "Butters, scrubs & handmade soaps",
-    image: IMG.soap,
-    tone: "bg-emerald-50",
-    accent: "text-emerald-700",
-    subcategories: [
-      {
-        name: "Body Wash",
-        slug: "body-wash",
-        products: [
-          { name: "Lemongrass Body Wash", price: 690, image: IMG.pump },
-          { name: "Oat & Honey Shower Milk", price: 740, image: IMG.pump },
-          { name: "Mint Cooling Wash", price: 660, image: IMG.pump },
-          { name: "Sandalwood Shower Gel", price: 720, image: IMG.pump },
-        ],
-      },
-      {
-        name: "Body Butter",
-        slug: "body-butter",
-        products: [
-          { name: "Whipped Shea Butter", price: 980, image: IMG.jar },
-          { name: "Cocoa Stretch Balm", price: 1080, image: IMG.tin },
-          { name: "Kokum Repair Butter", price: 1020, image: IMG.jar },
-          { name: "Almond Body Lotion", price: 780, image: IMG.pump },
-        ],
-      },
-      {
-        name: "Scrubs",
-        slug: "scrubs",
-        products: [
-          { name: "Coffee Body Scrub", price: 690, image: IMG.jar },
-          { name: "Himalayan Salt Polish", price: 780, image: IMG.jar },
-          { name: "Walnut Ubtan Scrub", price: 540, image: IMG.pouch },
-          { name: "Sugar Lip Scrub", price: 320, image: IMG.tin },
-        ],
-      },
-      {
-        name: "Handmade Soaps",
-        slug: "handmade-soaps",
-        products: [
-          { name: "Goat Milk Soap Bar", price: 260, image: IMG.soap },
-          { name: "Activated Charcoal Bar", price: 280, image: IMG.soap },
-          { name: "Rose Geranium Bar", price: 290, image: IMG.soap },
-          { name: "Neem Tulsi Bar", price: 240, image: IMG.soap },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Wellness",
-    slug: "wellness",
-    blurb: "Teas, ayurveda & essential oils",
-    image: IMG.pouch,
-    tone: "bg-lime-50",
-    accent: "text-lime-700",
-    subcategories: [
-      {
-        name: "Herbal Teas",
-        slug: "herbal-teas",
-        products: [
-          { name: "Tulsi Ginger Tea", price: 420, image: IMG.pouch },
-          { name: "Blue Pea Calm Tea", price: 480, image: IMG.pouch },
-          { name: "Chamomile Sleep Tea", price: 520, image: IMG.pouch },
-          { name: "Detox Green Blend", price: 460, image: IMG.pouch },
-        ],
-      },
-      {
-        name: "Ayurvedic Blends",
-        slug: "ayurvedic-blends",
-        products: [
-          { name: "Ashwagandha Powder", price: 640, image: IMG.pouch },
-          { name: "Triphala Churna", price: 380, image: IMG.pouch },
-          { name: "Moringa Superfood", price: 560, image: IMG.pouch },
-          { name: "Turmeric Latte Mix", price: 490, image: IMG.tin },
-        ],
-      },
-      {
-        name: "Essential Oils",
-        slug: "essential-oils",
-        products: [
-          { name: "Lavender Essential Oil", price: 890, image: IMG.serum },
-          { name: "Eucalyptus Steam Oil", price: 640, image: IMG.serum },
-          { name: "Sweet Orange Oil", price: 590, image: IMG.serum },
-          { name: "Peppermint Relief Oil", price: 680, image: IMG.serum },
-        ],
-      },
-      {
-        name: "Immunity",
-        slug: "immunity",
-        products: [
-          { name: "Amla Vitamin C Shots", price: 720, image: IMG.oil },
-          { name: "Giloy Immunity Drops", price: 540, image: IMG.serum },
-          { name: "Honey & Ginger Elixir", price: 610, image: IMG.oil },
-          { name: "Chyawanprash Classic", price: 460, image: IMG.jar },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Baby Care",
-    slug: "baby-care",
-    blurb: "Gentle, dermat-tested, tear-free",
-    image: IMG.tube,
+    name: "Home & Decor",
+    slug: "home-decor",
+    blurb: "Vases, planters, lamps & wall panels",
+    image: "/homeDecor.jpg", // ← category image
     tone: "bg-sky-50",
     accent: "text-sky-700",
     subcategories: [
       {
-        name: "Baby Bath",
-        slug: "baby-bath",
+        name: "Vases & Planters",
+        slug: "vases-planters",
         products: [
-          { name: "Tear-Free Baby Wash", price: 590, image: IMG.pump },
-          { name: "Baby Milk Soap", price: 220, image: IMG.soap },
-          { name: "Calendula Bubble Bath", price: 640, image: IMG.pump },
-          { name: "Baby Hair Cleanser", price: 570, image: IMG.pump },
+          { name: "Spiral Twist Vase", price: 1290, moq: 1, image: "/products/vase.svg" },
+          { name: "Hex Geometric Planter", price: 890, moq: 1, image: "/products/planter.svg" },
+          { name: "Wave Bud Vase — Set of 3", price: 1650, moq: 1, image: "/products/vase.svg" },
+          { name: "Self-Watering Herb Pot", price: 1150, moq: 1, image: "/products/planter.svg" },
         ],
       },
       {
-        name: "Baby Massage",
-        slug: "baby-massage",
+        name: "Lamps & Lighting",
+        slug: "lamps-lighting",
         products: [
-          { name: "Almond Massage Oil", price: 680, image: IMG.oil },
-          { name: "Ayurvedic Baby Oil", price: 740, image: IMG.oil },
-          { name: "Winter Warmth Oil", price: 690, image: IMG.oil },
-          { name: "Sleep Well Lavender Oil", price: 720, image: IMG.serum },
+          { name: "Lithophane Moon Lamp", price: 2490, moq: 1, image: "/products/lamp.svg" },
+          { name: "Voronoi Table Lamp", price: 2890, moq: 1, image: "/products/lamp.svg" },
+          { name: "Photo Lithophane Nightlight", price: 1690, moq: 1, custom: true, image: "/products/lamp.svg" },
+          { name: "Honeycomb Pendant Shade", price: 2190, moq: 1, image: "/products/lamp.svg" },
         ],
       },
       {
-        name: "Baby Lotion",
-        slug: "baby-lotion",
+        name: "Wall Art",
+        slug: "wall-art",
         products: [
-          { name: "Daily Baby Lotion", price: 560, image: IMG.pump },
-          { name: "Shea Baby Cream", price: 620, image: IMG.jar },
-          { name: "Nappy Rash Balm", price: 480, image: IMG.tin },
-          { name: "Baby Lip & Cheek Balm", price: 290, image: IMG.tin },
+          { name: "Topographic Map Panel", price: 1990, moq: 1, custom: true, image: "/products/wall-art.svg" },
+          { name: "City Skyline Wall Tile", price: 1490, moq: 1, image: "/products/wall-art.svg" },
+          { name: "Parametric Wave Panel", price: 2290, moq: 1, image: "/products/wall-art.svg" },
+          { name: "Layered Mandala Art", price: 1790, moq: 1, image: "/products/wall-art.svg" },
         ],
       },
       {
-        name: "Mother Care",
-        slug: "mother-care",
+        name: "Kitchen & Dining",
+        slug: "kitchen-dining",
         products: [
-          { name: "Stretch Mark Butter", price: 1080, image: IMG.jar },
-          { name: "Nipple Care Balm", price: 640, image: IMG.tin },
-          { name: "Post-Partum Bath Salt", price: 720, image: IMG.pouch },
-          { name: "Lactation Herbal Tea", price: 520, image: IMG.pouch },
+          { name: "Hex Coaster Set of 6", price: 690, moq: 1, image: "/products/wall-art.svg" },
+          { name: "Cutlery Caddy", price: 990, moq: 1, image: "/products/desk-organizer.svg" },
+          { name: "Spice Rack Organiser", price: 1290, moq: 1, image: "/products/desk-organizer.svg" },
+          { name: "Stackable Herb Pot Trio", price: 1390, moq: 1, image: "/products/planter.svg" },
         ],
       },
     ],
   },
   {
-    name: "Gifting",
-    slug: "gifting",
-    blurb: "Hampers & festive ritual boxes",
-    image: IMG.tin,
+    name: "Desk & Gadgets",
+    slug: "desk-gadgets",
+    blurb: "Stands, organisers & cable tidies",
+    image: "/deskGadget.png", // ← category image
+    tone: "bg-emerald-50",
+    accent: "text-emerald-700",
+    subcategories: [
+      {
+        name: "Phone & Tablet Stands",
+        slug: "phone-tablet-stands",
+        products: [
+          { name: "Adjustable Phone Dock", price: 749, moq: 1, image: "/products/phone-stand.svg" },
+          { name: "Foldable Travel Stand", price: 590, moq: 1, image: "/products/phone-stand.svg" },
+          { name: "Tablet Riser Pro", price: 1190, moq: 1, image: "/products/phone-stand.svg" },
+          { name: "Bedside Charging Cradle", price: 890, moq: 1, image: "/products/phone-stand.svg" },
+        ],
+      },
+      {
+        name: "Desk Organisers",
+        slug: "desk-organisers",
+        products: [
+          { name: "Modular Pen & Tool Caddy", price: 1090, moq: 1, image: "/products/desk-organizer.svg" },
+          { name: "Stackable Drawer Trays", price: 1290, moq: 1, image: "/products/desk-organizer.svg" },
+          { name: "Monitor Shelf Riser", price: 1890, moq: 1, image: "/products/desk-organizer.svg" },
+          { name: "Business Card Holder", price: 449, moq: 1, custom: true, image: "/products/desk-organizer.svg" },
+        ],
+      },
+      {
+        name: "Headphone Stands",
+        slug: "headphone-stands",
+        products: [
+          { name: "Arc Headphone Stand", price: 1390, moq: 1, image: "/products/headphone-stand.svg" },
+          { name: "Under-Desk Hook Mount", price: 549, moq: 1, image: "/products/headphone-stand.svg" },
+          { name: "Weighted Studio Stand", price: 1790, moq: 1, image: "/products/headphone-stand.svg" },
+          { name: "Dual Headset Tower", price: 2090, moq: 1, image: "/products/headphone-stand.svg" },
+        ],
+      },
+      {
+        name: "Cable & Charging",
+        slug: "cable-charging",
+        products: [
+          { name: "Magnetic Cable Clips — 8 pc", price: 390, moq: 1, image: "/products/enclosure.svg" },
+          { name: "Under-Desk Cable Tray", price: 1190, moq: 1, image: "/products/enclosure.svg" },
+          { name: "Charging Station Dock", price: 1590, moq: 1, image: "/products/enclosure.svg" },
+          { name: "Router & Modem Shelf", price: 1290, moq: 1, image: "/products/enclosure.svg" },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Toys & Figurines",
+    slug: "toys-figurines",
+    blurb: "Articulated prints, minis & puzzles",
+    image: "/ToyFigurines.jpg", // ← category image
+    tone: "bg-rose-50",
+    accent: "text-rose-600",
+    subcategories: [
+      {
+        name: "Articulated Toys",
+        slug: "articulated-toys",
+        products: [
+          { name: "Articulated Crystal Dragon", price: 1490, moq: 1, image: "/products/dragon.svg" },
+          { name: "Flexi Baby Octopus", price: 690, moq: 1, image: "/products/dragon.svg" },
+          { name: "Print-in-Place Slug", price: 590, moq: 1, image: "/products/dragon.svg" },
+          { name: "Snap-Together Robot", price: 990, moq: 1, image: "/products/figurine.svg" },
+        ],
+      },
+      {
+        name: "Tabletop Miniatures",
+        slug: "tabletop-miniatures",
+        products: [
+          { name: "Knight Commander Mini", price: 890, moq: 1, image: "/products/figurine.svg" },
+          { name: "Dungeon Terrain Pack", price: 2490, moq: 1, image: "/products/figurine.svg" },
+          { name: "Custom Character Mini", price: 1890, moq: 1, custom: true, image: "/products/figurine.svg" },
+          { name: "Resin Bust — 75 mm", price: 2290, moq: 1, image: "/products/figurine.svg" },
+        ],
+      },
+      {
+        name: "Puzzles & Fidgets",
+        slug: "puzzles-fidgets",
+        products: [
+          { name: "Gear Fidget Spinner", price: 490, moq: 1, image: "/products/gear-part.svg" },
+          { name: "Impossible Cube Puzzle", price: 740, moq: 1, image: "/products/chess-set.svg" },
+          { name: "Infinity Flip Cube", price: 640, moq: 1, image: "/products/enclosure.svg" },
+          { name: "Marble Run Starter Kit", price: 1990, moq: 1, image: "/products/gear-part.svg" },
+        ],
+      },
+      {
+        name: "Chess & Board Games",
+        slug: "chess-board-games",
+        products: [
+          { name: "Low-Poly Chess Set", price: 2890, moq: 1, image: "/products/chess-set.svg" },
+          { name: "Dice Tower & Tray", price: 1290, moq: 1, image: "/products/chess-set.svg" },
+          { name: "Card Deck Holder — 4 pc", price: 890, moq: 1, image: "/products/desk-organizer.svg" },
+          { name: "Custom Logo Chess Set", price: 4490, moq: 5, custom: true, image: "/products/chess-set.svg" },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Cosplay & Props",
+    slug: "cosplay-props",
+    blurb: "Helmets, armour & display props",
+    image: "/CosplayProps.jpg", // ← category image
     tone: "bg-violet-50",
     accent: "text-violet-700",
     subcategories: [
       {
-        name: "Gift Hampers",
-        slug: "gift-hampers",
+        name: "Helmets & Masks",
+        slug: "helmets-masks",
         products: [
-          { name: "The Glow Ritual Box", price: 2490, image: IMG.tin },
-          { name: "Calm Evening Hamper", price: 2890, image: IMG.pouch },
-          { name: "Hair Revival Kit", price: 1990, image: IMG.oil },
-          { name: "New Mom Care Box", price: 3190, image: IMG.jar },
+          { name: "Sci-Fi Ranger Helmet", price: 6490, moq: 1, image: "/products/cosplay-helmet.svg" },
+          { name: "Samurai Kabuto Mask", price: 5290, moq: 1, image: "/products/cosplay-helmet.svg" },
+          { name: "Made-to-Measure Helmet", price: 8990, moq: 1, custom: true, image: "/products/cosplay-helmet.svg" },
+          { name: "Half-Face Cyber Mask", price: 2890, moq: 1, image: "/products/cosplay-helmet.svg" },
         ],
       },
       {
-        name: "Festive Boxes",
-        slug: "festive-boxes",
+        name: "Prop Weapons",
+        slug: "prop-weapons",
         products: [
-          { name: "Diwali Glow Edit", price: 3490, image: IMG.tin },
-          { name: "Wedding Favour Set", price: 1690, image: IMG.soap },
-          { name: "Rakhi Wellness Box", price: 1890, image: IMG.pouch },
-          { name: "Corporate Gift Trio", price: 2290, image: IMG.pouch },
+          { name: "Foam-Core Prop Sword", price: 3490, moq: 1, image: "/products/figurine.svg" },
+          { name: "Modular Blaster Kit", price: 4290, moq: 1, image: "/products/enclosure.svg" },
+          { name: "Glowing Staff Topper", price: 2690, moq: 1, image: "/products/lamp.svg" },
+          { name: "Shield Boss & Rim Set", price: 3190, moq: 1, image: "/products/wall-art.svg" },
         ],
       },
       {
-        name: "Combo Kits",
-        slug: "combo-kits",
+        name: "Wearable Armour",
+        slug: "wearable-armour",
         products: [
-          { name: "Cleanse + Glow Duo", price: 1590, image: IMG.serum },
-          { name: "Hair Oil & Wash Combo", price: 1390, image: IMG.oil },
-          { name: "Body Ritual Trio", price: 1790, image: IMG.jar },
-          { name: "Travel Minis Pack", price: 990, image: IMG.tube },
+          { name: "Pauldron Pair — Raw", price: 3890, moq: 1, image: "/products/cosplay-helmet.svg" },
+          { name: "Flexible TPU Gauntlets", price: 4490, moq: 1, image: "/products/figurine.svg" },
+          { name: "Chest Plate — Scan Fit", price: 7990, moq: 1, custom: true, image: "/products/cosplay-helmet.svg" },
+          { name: "Greaves & Knee Guards", price: 3590, moq: 1, image: "/products/figurine.svg" },
+        ],
+      },
+      {
+        name: "Display Stands",
+        slug: "display-stands",
+        products: [
+          { name: "Helmet Display Plinth", price: 1890, moq: 1, image: "/products/desk-organizer.svg" },
+          { name: "Rotating Turntable Base", price: 2290, moq: 1, image: "/products/gear-part.svg" },
+          { name: "Engraved Name Plinth", price: 1190, moq: 1, custom: true, image: "/products/keychain.svg" },
+          { name: "Acrylic-Look Prop Mount", price: 1590, moq: 1, image: "/products/wall-art.svg" },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Functional Parts",
+    slug: "functional-parts",
+    blurb: "Brackets, gears, jigs & enclosures",
+    image: "/FunctionalParts.jpg", // ← category image
+    tone: "bg-amber-50",
+    accent: "text-amber-700",
+    subcategories: [
+      {
+        name: "Brackets & Mounts",
+        slug: "brackets-mounts",
+        products: [
+          { name: "Heavy-Duty L Bracket", price: 340, moq: 4, image: "/products/gear-part.svg" },
+          { name: "VESA Monitor Adapter", price: 890, moq: 1, image: "/products/enclosure.svg" },
+          { name: "Camera Rail Mount", price: 1190, moq: 1, image: "/products/gear-part.svg" },
+          { name: "Custom Machine Bracket", price: 1490, moq: 10, custom: true, image: "/products/gear-part.svg" },
+        ],
+      },
+      {
+        name: "Gears & Mechanisms",
+        slug: "gears-mechanisms",
+        products: [
+          { name: "Nylon Spur Gear Set", price: 1290, moq: 2, image: "/products/gear-part.svg" },
+          { name: "Planetary Gearbox Kit", price: 2790, moq: 1, image: "/products/gear-part.svg" },
+          { name: "Replacement Drive Pulley", price: 590, moq: 4, image: "/products/gear-part.svg" },
+          { name: "Cam & Follower Assembly", price: 1890, moq: 1, image: "/products/gear-part.svg" },
+        ],
+      },
+      {
+        name: "Enclosures & Cases",
+        slug: "enclosures-cases",
+        products: [
+          { name: "Pi 5 Vented Enclosure", price: 990, moq: 1, image: "/products/enclosure.svg" },
+          { name: "IP54 Sensor Housing", price: 1690, moq: 5, image: "/products/enclosure.svg" },
+          { name: "DIN Rail Terminal Box", price: 1290, moq: 5, image: "/products/enclosure.svg" },
+          { name: "Custom PCB Enclosure", price: 2190, moq: 25, custom: true, image: "/products/enclosure.svg" },
+        ],
+      },
+      {
+        name: "Jigs & Fixtures",
+        slug: "jigs-fixtures",
+        products: [
+          { name: "Drill Guide Jig", price: 890, moq: 1, image: "/products/gear-part.svg" },
+          { name: "Assembly Line Fixture", price: 2490, moq: 10, custom: true, image: "/products/enclosure.svg" },
+          { name: "Soldering Board Holder", price: 1190, moq: 1, image: "/products/desk-organizer.svg" },
+          { name: "QC Go / No-Go Gauge", price: 1390, moq: 5, custom: true, image: "/products/gear-part.svg" },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Custom & Bulk",
+    slug: "custom-bulk",
+    blurb: "Personalised prints & batch orders",
+    image: "/CustomBulk.jpg", // ← category image
+    tone: "bg-lime-50",
+    accent: "text-lime-700",
+    subcategories: [
+      {
+        name: "Personalised Gifts",
+        slug: "personalised-gifts",
+        products: [
+          { name: "Name Keychain — Your Text", price: 249, moq: 10, custom: true, image: "/products/keychain.svg" },
+          { name: "Photo Lithophane Frame", price: 1290, moq: 1, custom: true, image: "/products/wall-art.svg" },
+          { name: "Wedding Favour Charms", price: 179, moq: 50, custom: true, image: "/products/keychain.svg" },
+          { name: "Anniversary Sound Wave Art", price: 1590, moq: 1, custom: true, image: "/products/wall-art.svg" },
+        ],
+      },
+      {
+        name: "Corporate Gifting",
+        slug: "corporate-gifting",
+        products: [
+          { name: "Logo Desk Trophy", price: 890, moq: 25, custom: true, image: "/products/figurine.svg" },
+          { name: "Branded Phone Stand", price: 449, moq: 50, custom: true, image: "/products/phone-stand.svg" },
+          { name: "Employee Welcome Kit", price: 1290, moq: 25, custom: true, image: "/products/desk-organizer.svg" },
+          { name: "Conference Badge Holders", price: 129, moq: 100, custom: true, image: "/products/keychain.svg" },
+        ],
+      },
+      {
+        name: "Name Plates & Signage",
+        slug: "name-plates-signage",
+        products: [
+          { name: "Illuminated Door Sign", price: 1890, moq: 1, custom: true, image: "/products/lamp.svg" },
+          { name: "Desk Name Plate", price: 690, moq: 10, custom: true, image: "/products/keychain.svg" },
+          { name: "3D Shop Front Letters", price: 390, moq: 10, custom: true, image: "/products/wall-art.svg" },
+          { name: "Braille Wayfinding Tiles", price: 540, moq: 25, custom: true, image: "/products/wall-art.svg" },
+        ],
+      },
+      {
+        name: "Rapid Prototyping",
+        slug: "rapid-prototyping",
+        products: [
+          { name: "Concept Model — From STL", price: 1990, moq: 1, custom: true, image: "/products/spool.svg" },
+          { name: "Functional Test Batch", price: 1490, moq: 10, custom: true, image: "/products/gear-part.svg" },
+          { name: "Short-Run Production", price: 890, moq: 50, custom: true, image: "/products/enclosure.svg" },
+          { name: "Design + Print Package", price: 4990, moq: 1, custom: true, image: "/products/spool.svg" },
         ],
       },
     ],
@@ -315,6 +326,8 @@ const badgeFor = (i) => {
   return null;
 };
 
+const MATERIAL_ROTATION = ["PLA+", "PETG", "ABS", "Resin", "TPU"];
+
 /** Flat list of every product, deduped by name, with derived display fields. */
 export const allProducts = (() => {
   const seen = new Set();
@@ -325,6 +338,8 @@ export const allProducts = (() => {
         if (seen.has(product.name)) return;
         seen.add(product.name);
         list.push({
+          moq: 1,
+          custom: false,
           ...product,
           category: category.name,
           categorySlug: category.slug,
@@ -343,156 +358,253 @@ export const allProducts = (() => {
     reviews: 48 + ((i * 37) % 420),
     mrp: Math.round((product.price * 1.28) / 10) * 10,
     badge: badgeFor(i),
+    material: MATERIAL_ROTATION[i % MATERIAL_ROTATION.length],
   }));
 })();
 
-const pick = (names) =>
-  names.map((name) => allProducts.find((p) => p.name === name)).filter(Boolean);
+/**
+ * Pull products out of the catalogue by name.
+ * Pass a plain string to reuse the product's own image, or an object with an
+ * `image` to override it just for this rail:
+ *   { name: "Spiral Twist Vase", image: "/featured/vase.jpg" }
+ */
+const pick = (entries) =>
+  entries
+    .map((entry) => {
+      const { name, image } = typeof entry === "string" ? { name: entry } : entry;
+      const product = allProducts.find((p) => p.name === name);
+      if (!product) return null;
+      return image ? { ...product, image } : product;
+    })
+    .filter(Boolean);
 
-/** The 8-card "Shop our favourites" grid (2 rows of 4 on desktop). */
+/**
+ * The 8-card "Shop our favourites" grid (2 rows of 4 on desktop).
+ * Paste the featured image src on each `image:` line below.
+ */
 export const featuredProducts = pick([
-  "Vitamin C Glow Serum",
-  "Bhringraj Growth Oil",
-  "Whipped Shea Butter",
-  "Tulsi Ginger Tea",
-  "Neem & Tulsi Face Wash",
-  "Goat Milk Soap Bar",
-  "Lavender Essential Oil",
-  "The Glow Ritual Box",
+  { name: "Spiral Twist Vase", image: "/Spiral Twist Vase.jpg" },
+  { name: "Articulated Crystal Dragon", image: "/Articulated Crystal Dragon.jpg" },
+  { name: "Arc Headphone Stand", image: "/Arc Headphone Stand.jpg" },
+  { name: "Lithophane Moon Lamp", image: "/Lithophane Moon Lamp.jpg" },
+  { name: "Adjustable Phone Dock", image: "/Adjustable Phone Dock.jpg" },
+  { name: "Low-Poly Chess Set", image: "/Low-Poly Chess Set.jpg" },
+  { name: "Name Keychain — Your Text", image: "/Name KeychaiYour Text.jpg" },
+  { name: "Sci-Fi Ranger Helmet", image: "/Sci-Fi Ranger Helmet.jpg" },
 ]);
 
 /** The vibrant best-seller rail. */
 export const bestSellers = pick([
-  "Rosehip Repair Elixir",
-  "Amla Root Shampoo",
-  "Coffee Body Scrub",
-  "Ashwagandha Powder",
-  "Ceramide Night Balm",
+  { name: "Hex Geometric Planter", image: "/products/planter.svg" },
+  { name: "Modular Pen & Tool Caddy", image: "/products/desk-organizer.svg" },
+  { name: "Knight Commander Mini", image: "/products/figurine.svg" },
+  { name: "Pi 5 Vented Enclosure", image: "/products/enclosure.svg" },
+  { name: "Topographic Map Panel", image: "/products/wall-art.svg" },
 ]);
 
 export const benefits = [
   {
-    icon: "leaf",
-    title: "100% Certified Organic",
-    text: "India Organic & USDA certified farms, traceable to every batch.",
+    icon: "printer",
+    title: "48 Printers, One Roof",
+    text: "42 FDM and 6 resin machines running two shifts a day in Mumbai.",
   },
   {
-    icon: "flask",
-    title: "No Nasties, Ever",
-    text: "Free from parabens, sulphates, silicones and mineral oil.",
+    icon: "layers",
+    title: "0.08 mm Layer Precision",
+    text: "Fine-detail nozzles and calibrated flow on every single job.",
   },
   {
-    icon: "rabbit",
-    title: "Cruelty Free",
-    text: "PETA certified vegan formulas, never tested on animals.",
+    icon: "palette",
+    title: "40+ Colours & Materials",
+    text: "PLA+, PETG, ABS, TPU, carbon-fibre nylon and 8K resin in stock.",
   },
   {
-    icon: "recycle",
-    title: "Plastic Neutral",
-    text: "Every order recovers an equal weight of ocean-bound plastic.",
+    icon: "ruler",
+    title: "Free Design Assistance",
+    text: "Send a sketch or an STL — our team fixes the model before printing.",
   },
   {
     icon: "truck",
-    title: "Free Shipping ₹499+",
-    text: "Carbon-neutral delivery to 19,000+ pin codes across India.",
+    title: "Dispatch in 48 Hours",
+    text: "In-stock prints ship the next working day to 19,000+ pin codes.",
+  },
+];
+
+/** Materials rail — used by the custom-order section. */
+export const materials = [
+  { name: "PLA+", blurb: "Everyday decor & display prints", tone: "bg-sky-50", accent: "text-sky-700" },
+  { name: "PETG", blurb: "Tough, food-safe, outdoor-friendly", tone: "bg-emerald-50", accent: "text-emerald-700" },
+  { name: "ABS", blurb: "Heat resistant functional parts", tone: "bg-amber-50", accent: "text-amber-700" },
+  { name: "TPU", blurb: "Flexible grips, gaskets & wearables", tone: "bg-rose-50", accent: "text-rose-600" },
+  { name: "8K Resin", blurb: "Ultra-fine miniatures & jewellery", tone: "bg-violet-50", accent: "text-violet-700" },
+];
+
+/**
+ * Minimum order quantity ladder for made-to-order work.
+ * `min` is inclusive; the last tier has no upper bound.
+ */
+export const bulkTiers = [
+  {
+    label: "Sample",
+    range: "1 – 9 units",
+    min: 1,
+    discount: "List price",
+    lead: "3 – 5 days",
+    note: "Perfect for testing fit and finish before you commit to a batch.",
+  },
+  {
+    label: "Small Batch",
+    range: "10 – 49 units",
+    min: 10,
+    discount: "12% off",
+    lead: "5 – 7 days",
+    note: "Our most popular tier for gifting, events and market stalls.",
+    popular: true,
+  },
+  {
+    label: "Bulk",
+    range: "50 – 249 units",
+    min: 50,
+    discount: "22% off",
+    lead: "7 – 12 days",
+    note: "Free colour matching and a printed sample before the full run.",
+  },
+  {
+    label: "Production",
+    range: "250+ units",
+    min: 250,
+    discount: "Up to 35% off",
+    lead: "2 – 4 weeks",
+    note: "Dedicated printer capacity, QC report and staggered delivery.",
+  },
+];
+
+/** The four-step made-to-order flow shown in the custom section. */
+export const customSteps = [
+  {
+    icon: "upload",
+    step: "01",
+    title: "Send your idea",
+    text: "Upload an STL, STEP or OBJ file — or just a photo, sketch or rough description.",
+  },
+  {
+    icon: "ruler",
+    step: "02",
+    title: "We model & quote",
+    text: "Our designers fix or build the model, then quote by material, size and quantity.",
+  },
+  {
+    icon: "cube",
+    step: "03",
+    title: "Approve a sample",
+    text: "For every batch above 25 units we print one sample first and post you photos.",
+  },
+  {
+    icon: "boxes",
+    step: "04",
+    title: "Batch print & ship",
+    text: "Your run goes on the floor and ships with a QC sheet for every unit.",
   },
 ];
 
 export const reviews = [
   {
     name: "Ananya Sharma",
-    handle: "@ananyaglows",
+    handle: "@ananyamakes",
     city: "Mumbai",
-    title: "8 weeks of the Glow Serum",
+    title: "500 branded keychains in 6 days",
     quote:
-      "My pigmentation faded so much faster than I expected. This is the first serum I have actually repurchased three times.",
+      "We needed conference giveaways fast. They hit the MOQ pricing, sent a sample on day two and delivered the full run early.",
     rating: 5,
-    product: "Vitamin C Glow Serum",
+    product: "Name Keychain — Your Text",
     tone: "from-rose-400 to-orange-300",
     views: "182K",
   },
   {
     name: "Rhea Kapoor",
-    handle: "@rheaunfiltered",
+    handle: "@rheabuilds",
     city: "Bengaluru",
-    title: "Hair fall diary, day 60",
+    title: "My whole desk setup, printed",
     quote:
-      "I was losing clumps every wash. Two months on the Bhringraj oil and my ponytail is visibly thicker.",
+      "Layer lines are almost invisible on the headphone stand. It is heavier and better finished than the ₹3,000 one I returned.",
     rating: 5,
-    product: "Bhringraj Growth Oil",
+    product: "Arc Headphone Stand",
     tone: "from-primary to-emerald-300",
     views: "246K",
   },
   {
     name: "Meera Iyer",
-    handle: "@meerasritual",
+    handle: "@meeratabletop",
     city: "Chennai",
-    title: "My 5-minute night ritual",
+    title: "Custom minis of our D&D party",
     quote:
-      "The night balm melts in instead of sitting on top. I wake up with skin that actually feels cushioned.",
-    rating: 4,
-    product: "Ceramide Night Balm",
+      "I sent six character descriptions and they modelled every one. The 8K resin detail on the faces is genuinely absurd.",
+    rating: 5,
+    product: "Custom Character Mini",
     tone: "from-violet-400 to-primary",
     views: "97K",
   },
   {
     name: "Kabir Menon",
-    handle: "@kabirbrews",
+    handle: "@kabirprototypes",
     city: "Pune",
-    title: "Swapped coffee for Tulsi",
+    title: "Short-run enclosures for our sensor",
     quote:
-      "Genuinely calmer afternoons and no 4pm crash. The blend smells like my grandmother's kitchen.",
-    rating: 5,
-    product: "Tulsi Ginger Tea",
+      "Fifty PETG housings, tolerance held to 0.15 mm across the batch. They flagged a wall thickness issue before printing.",
+    rating: 4,
+    product: "Custom PCB Enclosure",
     tone: "from-amber-400 to-lime-300",
     views: "63K",
   },
   {
     name: "Sara Fernandes",
-    handle: "@sarasoaps",
+    handle: "@saracosplays",
     city: "Goa",
-    title: "Unboxing the Glow Ritual Box",
+    title: "Ranger helmet, straight off the plate",
     quote:
-      "Zero plastic, everything in cloth and paper, and it arrived in two days. Gifted three already.",
+      "Printed in eight pieces with alignment keys, so assembly took an evening. Smoothed and painted it looks screen accurate.",
     rating: 5,
-    product: "The Glow Ritual Box",
+    product: "Sci-Fi Ranger Helmet",
     tone: "from-sky-400 to-primary",
     views: "141K",
   },
 ];
 
 export const partners = [
-  { name: "Verda Botanicals", logo: "/partners/verda.svg" },
-  { name: "Bloom & Co", logo: "/partners/bloom-co.svg" },
-  { name: "Pure Leaf Certified Organic", logo: "/partners/pure-leaf.svg" },
-  { name: "Natura", logo: "/partners/natura.svg" },
-  { name: "Greenhouse Farm Partners", logo: "/partners/greenhouse.svg" },
+  { name: "Filaworks Filament Co.", logo: "/partners/filaworks.svg" },
+  { name: "Voxel Labs", logo: "/partners/voxel-labs.svg" },
+  { name: "Novajet Resin Systems", logo: "/partners/novajet.svg" },
+  { name: "Meshlab CAD Studio", logo: "/partners/meshlab.svg" },
+  { name: "Titan Forge Engineering", logo: "/partners/titan-forge.svg" },
 ];
 
 export const importantLinks = [
-  { label: "About Us", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Shipment Policy", href: "#" },
+  { label: "About Us", href: "#story" },
+  { label: "Custom Order & MOQ", href: "#custom" },
+  { label: "Materials Guide", href: "#custom" },
+  { label: "Shipping Policy", href: "#" },
   { label: "Terms & Conditions", href: "#" },
   { label: "Return & Refund", href: "#" },
   { label: "Track Your Order", href: "#" },
-  { label: "Store Locator", href: "#" },
-  { label: "Blog & Journal", href: "#" },
+  { label: "Design Blog", href: "#" },
 ];
 
 export const contact = {
   phone: "+91 98200 41276",
   phoneHref: "tel:+919820041276",
-  email: "care@orosorganics.com",
-  emailHref: "mailto:care@orosorganics.com",
-  address: "OROS Organics Pvt. Ltd., 14 Linking Road, Bandra West, Mumbai 400050",
+  email: "print@oros3d.in",
+  emailHref: "mailto:print@oros3d.in",
+  address: "OROS 3D Studio Pvt. Ltd., Unit 14, MIDC Andheri East, Mumbai 400093",
   hours: "Mon – Sat, 10:00 – 19:00 IST",
 };
 
 export const announcements = [
-  "Free carbon-neutral shipping on orders above ₹499",
-  "Flat 20% off your first order — code WELCOME20",
-  "New: Bakuchiol Night Serum is finally back in stock",
+  "Free shipping on every order above ₹999",
+  "Bulk orders from just 10 units — up to 35% off",
+  "Upload your STL and get a custom quote in 6 working hours",
 ];
 
 export const formatPrice = (value) => `₹${value.toLocaleString("en-IN")}`;
+
+/** "1 pc" / "25 pcs" — used wherever a minimum order quantity is shown. */
+export const formatMoq = (value) => `${value} ${value === 1 ? "pc" : "pcs"}`;

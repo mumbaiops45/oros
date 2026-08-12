@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 360" fill="none">
+  <defs>
+    <linearGradient id="crate" x1="70" y1="120" x2="350" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DFF1F7"/>
+      <stop offset="1" stop-color="#7FC3D8"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="70" y1="100" x2="350" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#BCE3EF"/>
+    </linearGradient>
+    <pattern id="layers" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="1.5" fill="#1E7793" opacity="0.12"/>
+    </pattern>
+    <clipPath id="cc"><rect x="96" y="176" width="228" height="128" rx="20"/></clipPath>
+  </defs>
+
+  <ellipse cx="210" cy="316" rx="160" ry="22" fill="#0B4256" opacity="0.12"/>
+
+  <!-- stacked identical prints above the crate = the MOQ idea -->
+  <g>
+    <path d="M138 118c-9 20-14 46-6 66 5 12 33 12 38 0 8-20 3-46-6-66z" fill="#FFFFFF"/>
+    <ellipse cx="151" cy="118" rx="14" ry="4.5" fill="#9FD5E6"/>
+    <path d="M198 104c-9 20-14 46-6 66 5 12 33 12 38 0 8-20 3-46-6-66z" fill="#FFFFFF"/>
+    <ellipse cx="211" cy="104" rx="14" ry="4.5" fill="#9FD5E6"/>
+    <path d="M258 118c-9 20-14 46-6 66 5 12 33 12 38 0 8-20 3-46-6-66z" fill="#FFFFFF"/>
+    <ellipse cx="271" cy="118" rx="14" ry="4.5" fill="#9FD5E6"/>
+  </g>
+
+  <!-- crate -->
+  <rect x="96" y="176" width="228" height="128" rx="20" fill="url(#crate)"/>
+  <g clip-path="url(#cc)"><rect x="96" y="170" width="228" height="140" fill="url(#layers)"/></g>
+  <rect x="88" y="160" width="244" height="34" rx="17" fill="url(#lid)"/>
+  <path d="M210 194v110" stroke="#FFFFFF" stroke-width="6" opacity="0.5"/>
+  <path d="M96 240h228" stroke="#FFFFFF" stroke-width="5" opacity="0.35"/>
+
+  <!-- quantity tag -->
+  <g transform="translate(246 236)">
+    <rect width="104" height="52" rx="16" fill="#FFFFFF"/>
+    <text x="52" y="26" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700"
+          fill="#1E7793" text-anchor="middle">MOQ 25</text>
+    <text x="52" y="42" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700"
+          letter-spacing="2" fill="#7FC3D8" text-anchor="middle">UNITS</text>
+  </g>
+
+  <!-- falling price arrow -->
+  <path d="M74 118c22 26 22 62 0 96" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"
+        stroke-dasharray="3 14" fill="none" opacity="0.8"/>
+  <path d="M74 224l-12-20h24z" fill="#FFFFFF" opacity="0.9"/>
+</svg>

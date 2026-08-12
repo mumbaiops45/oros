@@ -7,14 +7,14 @@ export default function Reviews() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-15">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            #OROSDiaries
+            #PrintedWithOROS
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
-            Real routines, filmed by real customers
+            Unboxings filmed by real customers
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Unedited 60-second reels from people who bought with their own money.
-            Tap any story to watch the full routine.
+            Unedited 60-second clips from makers, cosplayers and product teams who
+            paid with their own money. Tap any story to watch the full build.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export default function Reviews() {
                   {/* Play affordance */}
                   <button
                     type="button"
-                    aria-label={`Play ${review.name}'s reel`}
+                    aria-label={`Play ${review.name}'s unboxing clip`}
                     className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/25 text-white backdrop-blur transition group-hover:scale-110 group-hover:bg-white/40"
                   >
                     <PlayIcon className="ml-0.5 h-6 w-6" />

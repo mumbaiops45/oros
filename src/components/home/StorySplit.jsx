@@ -1,21 +1,21 @@
 import Image from "next/image";
-import { ArrowRightIcon, LeafIcon, ShieldIcon, RecycleIcon } from "@/components/Icons";
+import { ArrowRightIcon, LayersIcon, ShieldIcon, RecycleIcon } from "@/components/Icons";
 
 const POINTS = [
   {
-    icon: LeafIcon,
-    title: "Single-origin harvests",
-    text: "We buy direct from 240 partner farms — no traders, no blending.",
+    icon: LayersIcon,
+    title: "Every model printed in-house",
+    text: "48 machines on one floor — no reseller, no mystery supplier.",
   },
   {
     icon: ShieldIcon,
-    title: "Third-party lab tested",
-    text: "Every batch screened for heavy metals, pesticides and microbes.",
+    title: "Dimensional QC on every batch",
+    text: "Calipered against the CAD file, with a report on bulk orders.",
   },
   {
     icon: RecycleIcon,
-    title: "Refill, don't rebuy",
-    text: "Return five empties and your sixth refill is on the house.",
+    title: "Failed prints never bin",
+    text: "Scrap and supports go back out as recycled PLA pellets.",
   },
 ];
 
@@ -26,16 +26,16 @@ export default function StorySplit() {
         {/* Left — copy */}
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            From our farm to your shelf
+            From our build plate to your desk
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl lg:text-[42px]">
-            Nine years of doing the slow, unglamorous work
+            One printer in a garage, now a floor of forty-eight
           </h2>
           <p className="mt-5 text-sm leading-relaxed text-slate-600 sm:text-base">
-            OROS started in 2016 with one cold-press and a stubborn belief: if a
-            formula needs a disclaimer, it needs a rewrite. We still press in
-            batches of 400 bottles, still bottle within 72 hours of harvest, and
-            still publish the full ingredient origin on every carton.
+            OROS started in 2018 with a single second-hand printer and a queue of
+            friends who needed brackets nobody sold. We still tune every profile
+            by hand, still print a physical sample before a batch goes out, and
+            still put the slicer settings on the box.
           </p>
 
           <ul className="mt-8 space-y-5">
@@ -56,7 +56,7 @@ export default function StorySplit() {
             href="#"
             className="group mt-9 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
           >
-            Read our story
+            Tour the studio
             <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
           </a>
         </div>
@@ -70,8 +70,8 @@ export default function StorySplit() {
             <span className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30" />
 
             <Image
-              src="/story-collection.svg"
-              alt="The OROS botanical collection"
+              src="/workshop-collection.svg"
+              alt="A group of finished OROS 3D prints — vase, enclosure, gear and figurine"
               width={520}
               height={460}
               className="animate-float-soft relative mx-auto w-full max-w-md drop-shadow-2xl"
@@ -79,15 +79,15 @@ export default function StorySplit() {
           </div>
 
           <div className="absolute -bottom-6 left-4 rounded-2xl bg-white px-5 py-4 shadow-xl sm:left-8">
-            <p className="font-display text-2xl font-semibold text-slate-900">240+</p>
+            <p className="font-display text-2xl font-semibold text-slate-900">48</p>
             <p className="mt-0.5 text-[11px] uppercase tracking-wide text-slate-500">
-              Partner farms
+              Printers running
             </p>
           </div>
           <div className="absolute -top-5 right-4 rounded-2xl bg-white px-5 py-4 shadow-xl sm:right-8">
-            <p className="font-display text-2xl font-semibold text-slate-900">72 hrs</p>
+            <p className="font-display text-2xl font-semibold text-slate-900">48 hrs</p>
             <p className="mt-0.5 text-[11px] uppercase tracking-wide text-slate-500">
-              Harvest to bottle
+              Order to dispatch
             </p>
           </div>
         </div>

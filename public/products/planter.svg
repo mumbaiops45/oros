@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="pot" x1="100" y1="190" x2="220" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6B489"/>
+      <stop offset="0.55" stop-color="#DE8352"/>
+      <stop offset="1" stop-color="#9C4B26"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="110" y1="70" x2="215" y2="200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#86E0B4"/>
+      <stop offset="1" stop-color="#2E8A61"/>
+    </linearGradient>
+    <pattern id="layers" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="1.4" fill="#FFFFFF" opacity="0.24"/>
+    </pattern>
+    <clipPath id="cp">
+      <path d="M104 206h112l-17 128a10 10 0 0 1-10 8h-58a10 10 0 0 1-10-8z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="160" cy="346" rx="70" ry="13" fill="#0F172A" opacity="0.10"/>
+
+  <path d="M160 196c-30-6-48-30-46-64 32 2 52 24 54 58z" fill="url(#leaf)"/>
+  <path d="M162 194c4-38 26-60 60-62 2 36-20 60-54 66z" fill="url(#leaf)" opacity="0.85"/>
+  <path d="M160 198c-14-26-10-52 8-72 18 22 20 48 6 74z" fill="url(#leaf)" opacity="0.95"/>
+  <path d="M160 198v-56" stroke="#1F6B49" stroke-width="3" stroke-linecap="round" opacity="0.45"/>
+
+  <path d="M104 206h112l-17 128a10 10 0 0 1-10 8h-58a10 10 0 0 1-10-8z" fill="url(#pot)"/>
+  <g clip-path="url(#cp)">
+    <rect x="96" y="200" width="128" height="150" fill="url(#layers)"/>
+    <path d="M136 206l-8 136M160 206v136M184 206l8 136" stroke="#0F172A" stroke-width="2" opacity="0.14"/>
+    <path d="M112 206l6 136" stroke="#FFFFFF" stroke-width="12" opacity="0.16"/>
+  </g>
+  <rect x="96" y="188" width="128" height="26" rx="11" fill="#EFA476"/>
+  <rect x="96" y="188" width="128" height="9" rx="4.5" fill="#FFFFFF" opacity="0.35"/>
+  <rect x="124" y="336" width="72" height="12" rx="6" fill="#8C4322" opacity="0.55"/>
+</svg>
