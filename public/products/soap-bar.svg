@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="sbar" x1="60" y1="150" x2="260" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6E7CE"/>
+      <stop offset="1" stop-color="#DCC198"/>
+    </linearGradient>
+    <linearGradient id="swrap" x1="120" y1="150" x2="200" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EFE6D6"/>
+    </linearGradient>
+  </defs>
+  <rect x="56" y="146" width="208" height="128" rx="26" fill="url(#sbar)"/>
+  <rect x="56" y="146" width="208" height="26" rx="13" fill="#ffffff" opacity="0.45"/>
+  <circle cx="104" cy="238" r="4" fill="#C4A67A" opacity="0.7"/>
+  <circle cx="126" cy="252" r="3" fill="#C4A67A" opacity="0.6"/>
+  <circle cx="212" cy="230" r="3.5" fill="#C4A67A" opacity="0.6"/>
+  <rect x="112" y="146" width="96" height="128" fill="url(#swrap)"/>
+  <rect x="112" y="146" width="96" height="128" fill="none" stroke="#E3D6C0" stroke-width="1.5"/>
+  <text x="160" y="200" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#8C7048" text-anchor="middle">OROS</text>
+  <rect x="132" y="212" width="56" height="4" rx="2" fill="#D8C7A9"/>
+  <rect x="140" y="223" width="40" height="4" rx="2" fill="#E6DAC4"/>
+  <path d="M160 240c8 4 9 12 4 16-5 4-13 2-14-4 5 1 9-5 10-12z" fill="#C9AE84"/>
+  <rect x="56" y="264" width="208" height="12" rx="6" fill="#B99C71" opacity="0.35"/>
+</svg>

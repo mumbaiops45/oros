@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 620" fill="none">
+  <defs>
+    <linearGradient id="hb" x1="180" y1="150" x2="400" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.45" stop-color="#E4F4F9"/>
+      <stop offset="1" stop-color="#9FD5E6"/>
+    </linearGradient>
+    <linearGradient id="hj" x1="360" y1="380" x2="500" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#BFE5F0"/>
+    </linearGradient>
+    <linearGradient id="hleaf" x1="60" y1="120" x2="240" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8FD3B6"/>
+      <stop offset="1" stop-color="#3E8B6B"/>
+    </linearGradient>
+  </defs>
+
+  <g opacity="0.9">
+    <path d="M118 372c-46-54-40-136 16-186 30 62 34 128 8 190-8 18-16 14-24-4z" fill="url(#hleaf)"/>
+    <path d="M134 376c-2-64 26-124 74-150 6 66-18 128-58 166-10 10-16 6-16-16z" fill="url(#hleaf)" opacity="0.75"/>
+    <path d="M130 380c8-60 4-118-14-162" stroke="#2F6E55" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+  </g>
+  <g opacity="0.85">
+    <path d="M470 300c40 30 48 92 16 132-34-38-46-88-32-126 4-10 10-12 16-6z" fill="url(#hleaf)" opacity="0.8"/>
+  </g>
+
+  <rect x="252" y="66" width="56" height="18" rx="9" fill="#E9EEF1"/>
+  <rect x="296" y="72" width="14" height="42" rx="7" fill="#D3DBE0"/>
+  <rect x="272" y="108" width="52" height="28" rx="11" fill="#E9EEF1"/>
+  <rect x="282" y="132" width="34" height="30" rx="6" fill="#C3CDD3"/>
+  <rect x="196" y="156" width="206" height="392" rx="46" fill="url(#hb)"/>
+  <rect x="222" y="192" width="30" height="318" rx="15" fill="#FFFFFF" opacity="0.75"/>
+  <rect x="360" y="214" width="14" height="270" rx="7" fill="#37A6CA" opacity="0.14"/>
+  <rect x="220" y="268" width="158" height="188" rx="20" fill="#FFFFFF" opacity="0.95"/>
+  <text x="299" y="330" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" letter-spacing="6" fill="#1E7793" text-anchor="middle">OROS</text>
+  <text x="299" y="356" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="5" fill="#5FA8C0" text-anchor="middle">PURE BOTANICALS</text>
+  <rect x="252" y="376" width="94" height="6" rx="3" fill="#CDE9F1"/>
+  <rect x="266" y="392" width="66" height="6" rx="3" fill="#E1F1F6"/>
+  <path d="M299 414c14 8 17 24 7 32-10 8-25 4-26-8 9 1 18-10 19-24z" fill="#37A6CA" opacity="0.75"/>
+
+  <rect x="376" y="404" width="140" height="144" rx="34" fill="url(#hj)"/>
+  <rect x="366" y="376" width="160" height="46" rx="20" fill="#FFFFFF"/>
+  <rect x="366" y="408" width="160" height="12" rx="6" fill="#37A6CA" opacity="0.18"/>
+  <text x="446" y="486" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3" fill="#2C8AA9" text-anchor="middle">OROS</text>
+  <rect x="412" y="500" width="68" height="5" rx="2.5" fill="#CFEAF2"/>
+</svg>

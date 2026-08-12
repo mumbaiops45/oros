@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" fill="none">
+  <defs>
+    <linearGradient id="tinbody" x1="60" y1="150" x2="260" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#CFE0D2"/>
+      <stop offset="1" stop-color="#8FB39A"/>
+    </linearGradient>
+    <radialGradient id="tinlid" cx="0.38" cy="0.32" r="0.75">
+      <stop stop-color="#EAF2EC"/>
+      <stop offset="1" stop-color="#A8C4B1"/>
+    </radialGradient>
+  </defs>
+  <rect x="60" y="228" width="200" height="66" rx="26" fill="url(#tinbody)"/>
+  <ellipse cx="160" cy="228" rx="100" ry="52" fill="url(#tinlid)"/>
+  <ellipse cx="160" cy="228" rx="82" ry="42" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  <text x="160" y="222" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="4" fill="#4F7A5E" text-anchor="middle">OROS</text>
+  <text x="160" y="244" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="3" fill="#6B937A" text-anchor="middle">ORGANIC BALM</text>
+  <path d="M60 262c30 18 70 28 100 28s70-10 100-28v10c0 12-45 26-100 26S60 284 60 272z" fill="#6E9A7D" opacity="0.35"/>
+</svg>

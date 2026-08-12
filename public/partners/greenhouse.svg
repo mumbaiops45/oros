@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 44" fill="none">
+  <path d="M8 22L20 8l12 14v12H8z" fill="none" stroke="#94A3AD" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M20 14v20M13 22h14" stroke="#C3CDD4" stroke-width="2" stroke-linecap="round"/>
+  <text x="44" y="26" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="1" fill="#7C8A95">GREENHOUSE</text>
+  <text x="45" y="36" font-family="Arial, Helvetica, sans-serif" font-size="7" letter-spacing="3" fill="#A9B4BD">FARM PARTNERS</text>
+</svg>

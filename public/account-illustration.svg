@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 360" fill="none">
+  <defs>
+    <linearGradient id="ac1" x1="110" y1="60" x2="330" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C6E7F1"/>
+    </linearGradient>
+  </defs>
+  <rect x="96" y="52" width="228" height="256" rx="28" fill="url(#ac1)"/>
+  <rect x="96" y="52" width="228" height="60" rx="28" fill="#37A6CA" opacity="0.85"/>
+  <rect x="96" y="92" width="228" height="20" fill="#37A6CA" opacity="0.85"/>
+  <circle cx="210" cy="150" r="38" fill="#FFFFFF"/>
+  <circle cx="210" cy="140" r="15" fill="#37A6CA" opacity="0.75"/>
+  <path d="M186 172c4-12 13-19 24-19s20 7 24 19z" fill="#37A6CA" opacity="0.75"/>
+  <rect x="140" y="204" width="140" height="12" rx="6" fill="#FFFFFF" opacity="0.95"/>
+  <rect x="164" y="228" width="92" height="12" rx="6" fill="#FFFFFF" opacity="0.7"/>
+  <rect x="146" y="256" width="128" height="30" rx="15" fill="#37A6CA"/>
+  <text x="210" y="276" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="2" fill="#FFFFFF" text-anchor="middle">JOIN OROS</text>
+  <circle cx="86" cy="98" r="18" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="342" cy="256" r="24" fill="#FFFFFF" opacity="0.45"/>
+  <circle cx="352" cy="110" r="10" fill="#FFFFFF" opacity="0.55"/>
+</svg>
