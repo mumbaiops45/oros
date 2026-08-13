@@ -1,7 +1,7 @@
 import { ArrowRightIcon, BoxesIcon, CubeIcon, StarIcon } from "@/components/Icons";
 
 const STATS = [
-  { value: "180,000+", label: "Parts printed" },
+  { value: "180,000+", label: "Part printed" },
   { value: "4.9 / 5", label: "Average rating" },
   { value: "0.08 mm", label: "Layer precision" },
 ];
