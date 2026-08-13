@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { categories, announcements } from "@/data/catalog";
 import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
@@ -26,6 +26,21 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [tickerIndex, setTickerIndex] = useState(0);
+  const closeTimer = useRef(null);
+
+  const openMenu = () => {
+    clearTimeout(closeTimer.current);
+    setMenuOpen(true);
+  };
+
+  // Short grace period: the pointer has to cross the navbar's own padding on
+  // its way down to the panel, and that strip belongs to neither element.
+  const closeMenu = () => {
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setMenuOpen(false), 180);
+  };
+
+  useEffect(() => () => clearTimeout(closeTimer.current), []);
 
   // Announcement bar is pinned to the very top and folds away on scroll.
   useEffect(() => {
@@ -65,8 +80,8 @@ export default function Header() {
           <nav
             className={`flex items-center gap-4 rounded-2xl bg-white px-4 py-3 transition-shadow duration-300 sm:px-6 ${
               scrolled
-                ? "shadow-[0_14px_40px_-16px_rgba(15,23,42,0.45)]"
-                : "shadow-[0_10px_34px_-18px_rgba(15,23,42,0.35)]"
+                ? "shadow-[0_14px_40px_-16px_rgba(32,57,74,0.45)]"
+                : "shadow-[0_10px_34px_-18px_rgba(32,57,74,0.35)]"
             }`}
           >
             {/* Left — category dropdown + links */}
@@ -75,33 +90,40 @@ export default function Header() {
                 type="button"
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open menu"
-                className="rounded-full p-2 text-slate-700 hover:bg-slate-100 lg:hidden"
+                className="rounded-full p-2 text-navy hover:bg-cream lg:hidden"
               >
                 <MenuIcon />
               </button>
 
               <div
                 className="hidden lg:block"
-                onMouseEnter={() => setMenuOpen(true)}
-                onMouseLeave={() => setMenuOpen(false)}
+                onMouseEnter={openMenu}
+                onMouseLeave={closeMenu}
               >
                 <button
                   type="button"
                   aria-expanded={menuOpen}
-                  className={`flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition ${
-                    menuOpen ? "bg-slate-100 text-slate-900" : "text-slate-700 hover:bg-slate-50"
+                  className={`relative flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition ${
+                    menuOpen ? "bg-cream text-ink" : "text-navy hover:bg-cream"
                   }`}
                 >
                   Category
                   <ChevronDownIcon
                     className={`h-4 w-4 transition ${menuOpen ? "rotate-180" : ""}`}
                   />
+                  {/* Invisible bridge across the navbar padding so the pointer
+                      stays inside the hover region all the way to the panel. */}
+                  {menuOpen && (
+                    <span aria-hidden="true" className="absolute inset-x-0 top-full h-5" />
+                  )}
                 </button>
 
                 {/* Panel is anchored to the navbar, not the button, so it can span
                     the full width for the product pane. */}
                 <div
-                  className={`absolute left-0 right-0 top-full pt-3 transition duration-200 ${
+                  onMouseEnter={openMenu}
+                  onMouseLeave={closeMenu}
+                  className={`absolute left-0 right-0 top-full pt-1 transition duration-200 ${
                     menuOpen
                       ? "pointer-events-auto translate-y-0 opacity-100"
                       : "pointer-events-none -translate-y-2 opacity-0"
@@ -115,7 +137,7 @@ export default function Header() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="hidden rounded-full px-3.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 xl:block"
+                  className="hidden rounded-full px-3.5 py-2 text-sm font-medium text-navy/80 transition hover:bg-cream hover:text-ink xl:block"
                 >
                   {link.label}
                 </a>
@@ -124,10 +146,10 @@ export default function Header() {
 
             {/* Centre — wordmark */}
             <a href="#" className="flex shrink-0 flex-col items-center leading-none">
-              <span className="font-display text-2xl font-semibold tracking-[0.3em] text-slate-900 sm:text-[26px]">
+              <span className="font-display text-2xl font-semibold tracking-[0.3em] text-ink sm:text-[26px]">
                 OROS
               </span>
-              <span className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.42em] text-slate-400">
+              <span className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.42em] text-navy/50">
                 3D Studio
               </span>
             </a>
@@ -138,13 +160,13 @@ export default function Header() {
               <a
                 href="#custom"
                 title="Bulk & custom orders — minimum order quantity starts at 10 units"
-                className="group relative mr-1 flex items-center gap-2 rounded-full bg-primary px-3 py-2.5 text-white shadow-[0_10px_22px_-12px_rgba(55,166,202,0.9)] transition hover:-translate-y-0.5 sm:px-3.5"
+                className="group relative mr-1 flex items-center gap-2 rounded-full bg-primary px-3 py-2.5 text-white shadow-[0_10px_22px_-12px_rgba(97,150,170,0.9)] transition hover:-translate-y-0.5 sm:px-3.5"
               >
                 <BoxesIcon className="h-[18px] w-[18px]" />
                 <span className="hidden text-xs font-bold leading-none xl:inline">
                   Bulk&nbsp;/&nbsp;MOQ
                 </span>
-                <span className="absolute -right-1 -top-1 flex h-4 items-center justify-center rounded-full bg-slate-900 px-1.5 text-[9px] font-bold text-white">
+                <span className="absolute -right-1 -top-1 flex h-4 items-center justify-center rounded-full bg-ink px-1.5 text-[9px] font-bold text-white">
                   10+
                 </span>
               </a>

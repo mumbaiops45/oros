@@ -62,7 +62,7 @@ export default function DualCta() {
         </div>
 
         {/* Panel 2 — see featured products */}
-        <div className="relative overflow-hidden rounded-4xl bg-linear-to-br from-slate-50 to-primary/15 p-8 ring-1 ring-slate-100 sm:p-10">
+        <div className="relative overflow-hidden rounded-4xl bg-linear-to-br from-cream to-primary/20 p-8 ring-1 ring-navy/10 sm:p-10">
           <span className="pointer-events-none absolute -right-14 -top-14 h-52 w-52 rounded-full bg-white/70" />
 
           <div className="relative flex h-full flex-col gap-8 sm:flex-row sm:items-center">
@@ -72,24 +72,24 @@ export default function DualCta() {
                 Bulk &amp; corporate
               </span>
 
-              <h2 className="mt-4 font-display text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl">
+              <h2 className="mt-4 font-display text-2xl font-semibold leading-tight text-ink sm:text-3xl">
                 Ordering for an event, a team or a shop?
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              <p className="mt-3 text-sm leading-relaxed text-navy/80">
                 Tell us the design and the count. Batch pricing kicks in from the
                 tenth unit and we quote within six working hours.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
                 <div>
-                  <p className="font-display text-2xl font-semibold text-slate-900">10 pcs</p>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-500">
+                  <p className="font-display text-2xl font-semibold text-ink">10 pcs</p>
+                  <p className="text-[11px] uppercase tracking-wide text-navy/65">
                     Minimum order qty
                   </p>
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-semibold text-slate-900">Up to 35%</p>
-                  <p className="text-[11px] uppercase tracking-wide text-slate-500">
+                  <p className="font-display text-2xl font-semibold text-ink">Up to 35%</p>
+                  <p className="text-[11px] uppercase tracking-wide text-navy/65">
                     Batch savings
                   </p>
                 </div>

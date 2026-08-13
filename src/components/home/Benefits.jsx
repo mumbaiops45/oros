@@ -9,10 +9,10 @@ export default function Benefits() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
             Why OROS 3D
           </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">
             A real print farm, not a drop-ship desk
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-navy/80 sm:text-base">
             Every model on this site comes off our own machines in Mumbai — which
             is why we can change a colour, a size or a quantity without changing
             the price of everything else.
@@ -31,10 +31,10 @@ export default function Benefits() {
                     <Icon className="h-9 w-9" />
                   </span>
                 </div>
-                <h3 className="font-display text-base font-semibold text-slate-900">
+                <h3 className="font-display text-base font-semibold text-ink">
                   {benefit.title}
                 </h3>
-                <p className="mx-auto mt-2 max-w-[16rem] text-[13px] leading-relaxed text-slate-500">
+                <p className="mx-auto mt-2 max-w-[16rem] text-[13px] leading-relaxed text-navy/65">
                   {benefit.text}
                 </p>
               </li>

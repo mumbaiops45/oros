@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ArrowRightIcon, BoxesIcon, CubeIcon, StarIcon } from "@/components/Icons";
 
 const STATS = [
@@ -70,17 +69,16 @@ export default function Hero() {
         </div>
 
         {/* Right — floating transparent product shot */}
-        <div className="relative mx-auto w-full max-w-lg">
+        <div className="relative mx-auto w-full">
           <div className="absolute left-1/2 top-1/2 h-[78%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/15 blur-2xl" />
           <div className="absolute left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/25" />
 
-          <Image
-            src="/hero-printer.svg"
-            alt="An OROS 3D printer laying down the final layers of a spiral vase"
-            width={560}
-            height={620}
-            priority
-            className="animate-float relative mx-auto w-full drop-shadow-2xl"
+          {/* Plain <img> so a transparent PNG can be dropped in and fill the whole column */}
+          <img
+            src="/hero2.png"
+            alt="An OROS 3D printed piece shown against the hero backdrop"
+            fetchPriority="high"
+            className="animate-float relative block h-90 w-full object-contain drop-shadow-2xl sm:h-115 lg:h-120"
           />
 
           {/* Floating trust chips */}
@@ -89,8 +87,8 @@ export default function Hero() {
               <StarIcon className="h-4 w-4" />
             </span>
             <div className="leading-tight">
-              <p className="text-xs font-bold text-slate-900">4.9 / 5</p>
-              <p className="text-[10px] text-slate-500">12,480 reviews</p>
+              <p className="text-xs font-bold text-ink">4.9 / 5</p>
+              <p className="text-[10px] text-navy/65">12,480 reviews</p>
             </div>
           </div>
 
@@ -100,8 +98,8 @@ export default function Hero() {
               <BoxesIcon className="h-4 w-4" />
             </span>
             <div className="leading-tight">
-              <p className="text-xs font-bold text-slate-900">Bulk from 10 pcs</p>
-              <p className="text-[10px] text-slate-500">Save up to 35%</p>
+              <p className="text-xs font-bold text-ink">Bulk from 10 pcs</p>
+              <p className="text-[10px] text-navy/65">Save up to 35%</p>
             </div>
           </div>
         </div>

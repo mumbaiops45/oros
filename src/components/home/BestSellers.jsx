@@ -36,7 +36,7 @@ export default function BestSellers() {
         <ul className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-5">
           {bestSellers.map((product, i) => (
             <li key={product.slug}>
-              <ProductCard product={product} index={i} onDark />
+              <ProductCard product={product} index={i} />
             </li>
           ))}
         </ul>

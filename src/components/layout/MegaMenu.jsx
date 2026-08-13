@@ -18,10 +18,10 @@ export default function MegaMenu({ categories }) {
   const activeSub = activeCategory.subcategories[subIndex] ?? activeCategory.subcategories[0];
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-[0_28px_70px_-25px_rgba(15,23,42,0.35)]">
+    <div className="overflow-hidden rounded-3xl border border-navy/10 bg-white shadow-[0_28px_70px_-25px_rgba(32,57,74,0.35)]">
       <div className="grid grid-cols-[210px_210px_1fr]">
         {/* Pane 1 — categories */}
-        <ul className="border-r border-slate-100 bg-slate-50/70 p-3">
+        <ul className="border-r border-navy/10 bg-cream p-3">
           {categories.map((category, i) => {
             const active = i === categoryIndex;
             return (
@@ -39,7 +39,7 @@ export default function MegaMenu({ categories }) {
                   className={`flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-left text-sm transition ${
                     active
                       ? "bg-white font-semibold text-primary shadow-sm"
-                      : "text-slate-600 hover:bg-white hover:text-slate-900"
+                      : "text-navy/80 hover:bg-white hover:text-ink"
                   }`}
                 >
                   <span>{category.name}</span>
@@ -55,8 +55,8 @@ export default function MegaMenu({ categories }) {
         </ul>
 
         {/* Pane 2 — subcategories of the hovered category */}
-        <ul className="border-r border-slate-100 p-3">
-          <li className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+        <ul className="border-r border-navy/10 p-3">
+          <li className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-navy/50">
             {activeCategory.name}
           </li>
           {activeCategory.subcategories.map((sub, i) => {
@@ -70,7 +70,7 @@ export default function MegaMenu({ categories }) {
                   className={`flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-left text-sm transition ${
                     active
                       ? "bg-primary/10 font-semibold text-primary"
-                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                      : "text-navy/80 hover:bg-cream hover:text-ink"
                   }`}
                 >
                   <span>{sub.name}</span>
@@ -86,7 +86,7 @@ export default function MegaMenu({ categories }) {
         {/* Pane 3 — products of the hovered subcategory */}
         <div className="p-5">
           <div className="mb-4 flex items-end justify-between">
-            <p className="font-display text-lg font-semibold text-slate-900">{activeSub.name}</p>
+            <p className="font-display text-lg font-semibold text-ink">{activeSub.name}</p>
             <a href="#" className="text-xs font-semibold text-primary hover:underline">
               View all {activeSub.name.toLowerCase()}
             </a>
@@ -97,7 +97,7 @@ export default function MegaMenu({ categories }) {
               <li key={product.name}>
                 <a
                   href="#"
-                  className="group block rounded-2xl border border-slate-100 p-3 transition hover:border-primary/40 hover:shadow-md"
+                  className="group block rounded-2xl border border-navy/10 p-3 transition hover:border-primary/40 hover:shadow-md"
                 >
                   <div
                     className={`mb-3 flex h-28 items-center justify-center rounded-xl ${activeCategory.tone}`}
@@ -110,10 +110,10 @@ export default function MegaMenu({ categories }) {
                       className="h-24 w-auto transition duration-300 group-hover:scale-110"
                     />
                   </div>
-                  <p className="line-clamp-2 text-center text-[13px] font-medium leading-snug text-slate-700 group-hover:text-primary">
+                  <p className="line-clamp-2 text-center text-[13px] font-medium leading-snug text-navy group-hover:text-primary">
                     {product.name}
                   </p>
-                  <p className="mt-1.5 text-center text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                  <p className="mt-1.5 text-center text-[10px] font-semibold uppercase tracking-wide text-navy/50">
                     {product.custom ? "Custom · " : ""}Min {formatMoq(product.moq ?? 1)}
                   </p>
                 </a>
@@ -131,10 +131,10 @@ export default function MegaMenu({ categories }) {
                 <BoxesIcon className="h-4 w-4" />
               </span>
               <span>
-                <span className="block text-[13px] font-semibold text-slate-900">
+                <span className="block text-[13px] font-semibold text-ink">
                   Need it in bulk or made to your design?
                 </span>
-                <span className="block text-[11px] text-slate-500">
+                <span className="block text-[11px] text-navy/65">
                   Minimum order quantity starts at 10 units — up to 35% off
                 </span>
               </span>

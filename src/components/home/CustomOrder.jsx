@@ -26,7 +26,7 @@ export default function CustomOrder() {
   const belowMoq = qty < MOQ;
 
   return (
-    <section id="custom" className="relative overflow-hidden bg-slate-50/70 py-16 lg:py-24">
+    <section id="custom" className="relative overflow-hidden bg-cream py-16 lg:py-24">
       <div className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
 
@@ -36,13 +36,13 @@ export default function CustomOrder() {
             <BoxesIcon className="h-3.5 w-3.5" />
             Custom &amp; bulk orders
           </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
+          <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">
             Your design, our printers, your quantity
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-navy/80 sm:text-base">
             Send an STL, a sketch or just an idea. We model it, print a sample and
             run the full batch — with a{" "}
-            <strong className="font-semibold text-slate-900">
+            <strong className="font-semibold text-ink">
               minimum order quantity of {MOQ} units
             </strong>{" "}
             on anything made to order.
@@ -51,11 +51,11 @@ export default function CustomOrder() {
 
         <div className="grid items-start gap-6 lg:grid-cols-[1.02fr_1fr]">
           {/* Left — how a made-to-order job runs */}
-          <div className="rounded-4xl bg-white p-7 shadow-[0_24px_60px_-40px_rgba(15,23,42,0.55)] sm:p-9">
-            <h3 className="font-display text-xl font-semibold text-slate-900">
+          <div className="rounded-4xl bg-white p-7 shadow-[0_24px_60px_-40px_rgba(32,57,74,0.55)] sm:p-9">
+            <h3 className="font-display text-xl font-semibold text-ink">
               How a custom order works
             </h3>
-            <p className="mt-2 text-sm text-slate-500">
+            <p className="mt-2 text-sm text-navy/65">
               Four steps, one point of contact, no minimum design fee.
             </p>
 
@@ -71,8 +71,8 @@ export default function CustomOrder() {
                       </span>
                     </span>
                     <div>
-                      <h4 className="text-sm font-semibold text-slate-900">{step.title}</h4>
-                      <p className="mt-1 text-[13px] leading-relaxed text-slate-500">
+                      <h4 className="text-sm font-semibold text-ink">{step.title}</h4>
+                      <p className="mt-1 text-[13px] leading-relaxed text-navy/65">
                         {step.text}
                       </p>
                     </div>
@@ -82,8 +82,8 @@ export default function CustomOrder() {
             </ol>
 
             {/* Materials the batch can be run in */}
-            <div className="mt-8 border-t border-slate-100 pt-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <div className="mt-8 border-t border-navy/10 pt-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/50">
                 Choose a material
               </p>
               <ul className="mt-3 flex flex-wrap gap-2">
@@ -96,7 +96,7 @@ export default function CustomOrder() {
                     <span className={`block text-[13px] font-bold ${material.accent}`}>
                       {material.name}
                     </span>
-                    <span className="block text-[10px] leading-tight text-slate-500">
+                    <span className="block text-[10px] leading-tight text-navy/65">
                       {material.blurb}
                     </span>
                   </li>
@@ -134,7 +134,7 @@ export default function CustomOrder() {
                 type="button"
                 aria-label="Decrease quantity"
                 onClick={() => setQty((q) => Math.max(1, q - 5))}
-                className="h-11 w-11 shrink-0 rounded-xl bg-slate-100 text-lg font-bold text-slate-700 transition hover:bg-slate-200"
+                className="h-11 w-11 shrink-0 rounded-xl bg-cream text-lg font-bold text-navy transition hover:bg-navy/15"
               >
                 –
               </button>
@@ -145,9 +145,9 @@ export default function CustomOrder() {
                   min={1}
                   value={qty}
                   onChange={(e) => setQty(Math.max(1, Number(e.target.value) || 1))}
-                  className="w-full bg-transparent text-center font-display text-3xl font-semibold text-slate-900 outline-none"
+                  className="w-full bg-transparent text-center font-display text-3xl font-semibold text-ink outline-none"
                 />
-                <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-navy/50">
                   units
                 </span>
               </label>
@@ -241,14 +241,14 @@ export default function CustomOrder() {
         <div className="mt-12">
           <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h3 className="font-display text-2xl font-semibold text-slate-900">
+              <h3 className="font-display text-2xl font-semibold text-ink">
                 Minimum order quantity &amp; batch pricing
               </h3>
-              <p className="mt-1.5 text-sm text-slate-600">
+              <p className="mt-1.5 text-sm text-navy/80">
                 The more identical units in a run, the less each one costs to print.
               </p>
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-navy/50">
               Prices exclude GST · mixed designs are quoted per design
             </p>
           </div>
@@ -259,8 +259,8 @@ export default function CustomOrder() {
                 <div
                   className={`relative flex h-full flex-col rounded-3xl p-6 transition duration-300 hover:-translate-y-1.5 ${
                     bulkTier.popular
-                      ? "bg-slate-900 text-white shadow-[0_26px_50px_-30px_rgba(15,23,42,0.8)]"
-                      : "border border-slate-200 bg-white"
+                      ? "bg-ink text-white shadow-[0_26px_50px_-30px_rgba(32,57,74,0.8)]"
+                      : "border border-navy/15 bg-white"
                   }`}
                 >
                   {bulkTier.popular && (
@@ -271,14 +271,14 @@ export default function CustomOrder() {
 
                   <p
                     className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                      bulkTier.popular ? "text-white/60" : "text-slate-400"
+                      bulkTier.popular ? "text-white/60" : "text-navy/50"
                     }`}
                   >
                     {bulkTier.label}
                   </p>
                   <p
                     className={`mt-2 font-display text-xl font-semibold ${
-                      bulkTier.popular ? "text-white" : "text-slate-900"
+                      bulkTier.popular ? "text-white" : "text-ink"
                     }`}
                   >
                     {bulkTier.range}
@@ -290,7 +290,7 @@ export default function CustomOrder() {
 
                   <ul
                     className={`mt-4 mb-5 space-y-2 text-[13px] ${
-                      bulkTier.popular ? "text-white/80" : "text-slate-600"
+                      bulkTier.popular ? "text-white/80" : "text-navy/80"
                     }`}
                   >
                     <li className="flex gap-2">
@@ -309,7 +309,7 @@ export default function CustomOrder() {
                     className={`mt-auto w-full rounded-full px-5 py-2.5 text-xs font-bold transition ${
                       bulkTier.popular
                         ? "bg-primary text-white hover:bg-primary/90"
-                        : "bg-slate-100 text-slate-700 hover:bg-primary hover:text-white"
+                        : "bg-cream text-navy hover:bg-primary hover:text-white"
                     }`}
                   >
                     Quote {bulkTier.min}

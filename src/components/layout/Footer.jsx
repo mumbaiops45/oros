@@ -31,20 +31,20 @@ export default function Footer() {
     <footer className="bg-primary">
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-15 lg:py-20">
         {/* White card holds the grid; everything around it is primary */}
-        <div className="rounded-[28px] bg-white p-7 shadow-[0_30px_60px_-30px_rgba(15,23,42,0.45)] sm:p-10 lg:p-12">
+        <div className="rounded-[28px] bg-white p-7 shadow-[0_30px_60px_-30px_rgba(32,57,74,0.45)] sm:p-10 lg:p-12">
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12">
             {/* 1 — logo + description */}
             <div className="lg:col-span-4">
               <div className="flex flex-col leading-none">
-                <span className="font-display text-3xl font-semibold tracking-[0.3em] text-slate-900">
+                <span className="font-display text-3xl font-semibold tracking-[0.3em] text-ink">
                   OROS
                 </span>
-                <span className="mt-1 text-[9px] font-medium uppercase tracking-[0.42em] text-slate-400">
+                <span className="mt-1 text-[9px] font-medium uppercase tracking-[0.42em] text-navy/50">
                   3D Studio
                 </span>
               </div>
 
-              <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-600">
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-navy/80">
                 We design and 3D print everyday objects on 48 machines in Mumbai —
                 decor, desk gear, figurines, cosplay props and functional parts.
                 Bring us a file or an idea and we will print it in the material,
@@ -62,7 +62,7 @@ export default function Footer() {
 
             {/* 2 — categories */}
             <div className="lg:col-span-3">
-              <h3 className="font-display text-base font-semibold text-slate-900">
+              <h3 className="font-display text-base font-semibold text-ink">
                 Category
               </h3>
               <span className="mt-2 block h-0.5 w-9 rounded-full bg-primary" />
@@ -71,7 +71,7 @@ export default function Footer() {
                   <li key={category.slug}>
                     <a
                       href="#categories"
-                      className="text-sm text-slate-600 transition hover:text-primary"
+                      className="text-sm text-navy/80 transition hover:text-primary"
                     >
                       {category.name}
                     </a>
@@ -82,7 +82,7 @@ export default function Footer() {
 
             {/* 3 — important links */}
             <div className="lg:col-span-2">
-              <h3 className="font-display text-base font-semibold text-slate-900">
+              <h3 className="font-display text-base font-semibold text-ink">
                 Important Links
               </h3>
               <span className="mt-2 block h-0.5 w-9 rounded-full bg-primary" />
@@ -91,7 +91,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-slate-600 transition hover:text-primary"
+                      className="text-sm text-navy/80 transition hover:text-primary"
                     >
                       {link.label}
                     </a>
@@ -102,11 +102,11 @@ export default function Footer() {
 
             {/* 4 — contact */}
             <div className="lg:col-span-3">
-              <h3 className="font-display text-base font-semibold text-slate-900">
+              <h3 className="font-display text-base font-semibold text-ink">
                 Contact
               </h3>
               <span className="mt-2 block h-0.5 w-9 rounded-full bg-primary" />
-              <ul className="mt-5 space-y-4 text-sm text-slate-600">
+              <ul className="mt-5 space-y-4 text-sm text-navy/80">
                 <li>
                   <a href={contact.phoneHref} className="flex gap-3 transition hover:text-primary">
                     <PhoneIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -132,9 +132,9 @@ export default function Footer() {
           </div>
 
           {/* Social + partners */}
-          <div className="mt-10 flex flex-col gap-8 border-t border-slate-100 pt-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-10 flex flex-col gap-8 border-t border-navy/10 pt-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/50">
                 Follow us
               </p>
               <div className="mt-3 flex flex-wrap gap-2.5">
@@ -152,7 +152,7 @@ export default function Footer() {
             </div>
 
             <div className="lg:text-right">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-navy/50">
                 Materials &amp; tech partners
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-x-7 gap-y-4 lg:justify-end">

@@ -9,10 +9,10 @@ export default function Reviews() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
             #PrintedWithOROS
           </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-semibold text-ink sm:text-4xl">
             Unboxings filmed by real customers
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-navy/80 sm:text-base">
             Unedited 60-second clips from makers, cosplayers and product teams who
             paid with their own money. Tap any story to watch the full build.
           </p>
@@ -24,13 +24,13 @@ export default function Reviews() {
             <li key={review.name} className="w-[268px] shrink-0 snap-start sm:w-[280px]">
               <div className="group">
                 {/* Phone mockup */}
-                <div className="relative aspect-[9/16] overflow-hidden rounded-[2.25rem] border-[6px] border-slate-900 bg-slate-900 shadow-[0_28px_60px_-30px_rgba(15,23,42,0.75)] transition duration-300 group-hover:-translate-y-2">
+                <div className="relative aspect-[9/16] overflow-hidden rounded-[2.25rem] border-[6px] border-ink bg-ink shadow-[0_28px_60px_-30px_rgba(32,57,74,0.75)] transition duration-300 group-hover:-translate-y-2">
                   <div className={`absolute inset-0 bg-linear-to-br ${review.tone}`} />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.5),transparent_55%)]" />
                   <div className="absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-black/80 via-black/35 to-transparent" />
 
                   {/* Notch */}
-                  <span className="absolute left-1/2 top-2.5 h-5 w-20 -translate-x-1/2 rounded-full bg-slate-900" />
+                  <span className="absolute left-1/2 top-2.5 h-5 w-20 -translate-x-1/2 rounded-full bg-ink" />
 
                   {/* Progress ticks */}
                   <div className="absolute inset-x-4 top-9 flex gap-1">
@@ -81,7 +81,7 @@ export default function Reviews() {
                       <StarIcon key={i} className="h-3.5 w-3.5" filled={i < review.rating} />
                     ))}
                   </div>
-                  <p className="mt-2 text-[13px] leading-relaxed text-slate-600">
+                  <p className="mt-2 text-[13px] leading-relaxed text-navy/80">
                     &ldquo;{review.quote}&rdquo;
                   </p>
                 </div>
@@ -90,7 +90,7 @@ export default function Reviews() {
           ))}
         </ul>
 
-        <p className="mt-2 text-center text-xs text-slate-400 sm:hidden">
+        <p className="mt-2 text-center text-xs text-navy/50 sm:hidden">
           Swipe to see more stories →
         </p>
       </div>

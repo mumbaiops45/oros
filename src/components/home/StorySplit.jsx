@@ -28,10 +28,10 @@ export default function StorySplit() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
             From our build plate to your desk
           </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl lg:text-[42px]">
+          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl lg:text-[42px]">
             One printer in a garage, now a floor of forty-eight
           </h2>
-          <p className="mt-5 text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mt-5 text-sm leading-relaxed text-navy/80 sm:text-base">
             OROS started in 2018 with a single second-hand printer and a queue of
             friends who needed brackets nobody sold. We still tune every profile
             by hand, still print a physical sample before a batch goes out, and
@@ -45,8 +45,8 @@ export default function StorySplit() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-slate-500">{text}</p>
+                  <h3 className="text-sm font-semibold text-ink">{title}</h3>
+                  <p className="mt-1 text-[13px] leading-relaxed text-navy/65">{text}</p>
                 </div>
               </li>
             ))}
@@ -79,14 +79,14 @@ export default function StorySplit() {
           </div>
 
           <div className="absolute -bottom-6 left-4 rounded-2xl bg-white px-5 py-4 shadow-xl sm:left-8">
-            <p className="font-display text-2xl font-semibold text-slate-900">48</p>
-            <p className="mt-0.5 text-[11px] uppercase tracking-wide text-slate-500">
+            <p className="font-display text-2xl font-semibold text-ink">48</p>
+            <p className="mt-0.5 text-[11px] uppercase tracking-wide text-navy/65">
               Printers running
             </p>
           </div>
           <div className="absolute -top-5 right-4 rounded-2xl bg-white px-5 py-4 shadow-xl sm:right-8">
-            <p className="font-display text-2xl font-semibold text-slate-900">48 hrs</p>
-            <p className="mt-0.5 text-[11px] uppercase tracking-wide text-slate-500">
+            <p className="font-display text-2xl font-semibold text-ink">48 hrs</p>
+            <p className="mt-0.5 text-[11px] uppercase tracking-wide text-navy/65">
               Order to dispatch
             </p>
           </div>

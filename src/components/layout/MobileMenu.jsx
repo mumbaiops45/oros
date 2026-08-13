@@ -14,15 +14,15 @@ export default function MobileMenu({ categories, open, onClose }) {
         type="button"
         aria-label="Close menu"
         onClick={onClose}
-        className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm"
+        className="fixed inset-0 z-40 bg-ink/40 backdrop-blur-sm"
       />
       <div className="fixed inset-x-3 top-3 z-50 max-h-[88vh] overflow-y-auto rounded-3xl bg-white p-5 shadow-2xl">
         <div className="mb-4 flex items-center justify-between">
           <span className="flex flex-col leading-none">
-            <span className="font-display text-xl font-semibold tracking-[0.28em] text-slate-900">
+            <span className="font-display text-xl font-semibold tracking-[0.28em] text-ink">
               OROS
             </span>
-            <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.42em] text-slate-400">
+            <span className="mt-1 text-[8px] font-medium uppercase tracking-[0.42em] text-navy/50">
               3D Studio
             </span>
           </span>
@@ -30,7 +30,7 @@ export default function MobileMenu({ categories, open, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="rounded-full p-2 text-slate-500 hover:bg-slate-100"
+            className="rounded-full p-2 text-navy/65 hover:bg-cream"
           >
             <CloseIcon />
           </button>
@@ -53,7 +53,7 @@ export default function MobileMenu({ categories, open, onClose }) {
           </span>
         </a>
 
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-navy/50">
           Category
         </p>
 
@@ -66,11 +66,11 @@ export default function MobileMenu({ categories, open, onClose }) {
                   type="button"
                   onClick={() => setOpenIndex(expanded ? -1 : i)}
                   aria-expanded={expanded}
-                  className="flex w-full items-center justify-between py-3 text-left text-sm font-semibold text-slate-800"
+                  className="flex w-full items-center justify-between py-3 text-left text-sm font-semibold text-ink"
                 >
                   {category.name}
                   <ChevronDownIcon
-                    className={`h-4 w-4 text-slate-400 transition ${expanded ? "rotate-180" : ""}`}
+                    className={`h-4 w-4 text-navy/50 transition ${expanded ? "rotate-180" : ""}`}
                   />
                 </button>
                 {expanded && (
@@ -80,7 +80,7 @@ export default function MobileMenu({ categories, open, onClose }) {
                         <a
                           href="#"
                           onClick={onClose}
-                          className="block rounded-xl bg-slate-50 px-3 py-2 text-[13px] text-slate-600"
+                          className="block rounded-xl bg-cream px-3 py-2 text-[13px] text-navy/80"
                         >
                           {sub.name}
                         </a>
@@ -104,7 +104,7 @@ export default function MobileMenu({ categories, open, onClose }) {
           <a
             href="#"
             onClick={onClose}
-            className="rounded-full border border-slate-200 px-5 py-3 text-center text-sm font-semibold text-slate-700"
+            className="rounded-full border border-navy/15 px-5 py-3 text-center text-sm font-semibold text-navy"
           >
             Create an account
           </a>

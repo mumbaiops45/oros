@@ -3,13 +3,19 @@
 @import "tailwindcss";
 
 /* --------------------------------------------------------------------------
-   Design tokens
-   The ONLY colour declared here is the brand primary. Everything else in the
-   UI is built from white / black / Tailwind's stock palette so the brand stays
-   easy to re-theme from this single value.
+   Design tokens — client brand palette
+   Five colours, declared once here. `primary` drives the hero, buttons, links
+   and accents across the whole site; the other four are the surface colours
+   used for section bands and product-card backgrounds.
+   Each one is available as a Tailwind utility: bg-primary, text-navy,
+   border-cream, bg-ink, bg-onyx …
    -------------------------------------------------------------------------- */
 @theme {
-  --color-primary: #37a6ca;
+  --color-primary: #6196aa; /* brand blue — hero, CTAs, accents */
+  --color-navy: #20394a; /* deep slate blue */
+  --color-cream: #f9f5ed; /* warm off-white */
+  --color-ink: #030706; /* near-black green */
+  --color-onyx: #090003; /* near-black */
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;

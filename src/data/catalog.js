@@ -395,11 +395,11 @@ export const featuredProducts = pick([
 
 /** The vibrant best-seller rail. */
 export const bestSellers = pick([
-  { name: "Hex Geometric Planter", image: "/products/planter.svg" },
-  { name: "Modular Pen & Tool Caddy", image: "/products/desk-organizer.svg" },
-  { name: "Knight Commander Mini", image: "/products/figurine.svg" },
-  { name: "Pi 5 Vented Enclosure", image: "/products/enclosure.svg" },
-  { name: "Topographic Map Panel", image: "/products/wall-art.svg" },
+  { name: "Hex Geometric Planter", image: "/Hex Geometric Planter.jpg" },
+  { name: "Modular Pen & Tool Caddy", image: "/Modular Pen Tool Caddy.jpg" },
+  { name: "Knight Commander Mini", image: "/Knight Commander Mini.jpg" },
+  { name: "Pi 5 Vented Enclosure", image: "/Pi 5 Vented Enclosure.jpg" },
+  { name: "Topographic Map Panel", image: "/Topographic Map Panel.jpg" },
 ]);
 
 export const benefits = [
