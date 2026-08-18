@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { categories } from "@/data/catalog";
+import { categories as demoCategories } from "@/data/catalog";
+import { useCatalog } from "@/hooks/useCatalog";
+import { orFallback, toNavCategory } from "@/lib/adapters";
 import {
   ArrowRightIcon,
   ChevronLeftIcon,
@@ -21,6 +23,13 @@ const CARD_TONES = [
 ];
 
 export default function CategoryShowcase() {
+  const { categories: liveCategories } = useCatalog();
+
+  const categories = orFallback(
+    liveCategories.map(toNavCategory),
+    demoCategories
+  );
+
   const railRef = useRef(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -99,7 +108,7 @@ export default function CategoryShowcase() {
             const tone = CARD_TONES[i % CARD_TONES.length];
             return (
               <li
-                key={category.slug}
+                key={category.id || category.slug}
                 className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[calc(25%-0.75rem)]"
               >
                 <a

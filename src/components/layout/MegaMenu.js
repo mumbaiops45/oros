@@ -2,20 +2,101 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { formatMoq } from "@/data/catalog";
+import { useSubcategoryProducts } from "@/hooks/useCatalog";
+import { productHref, toCardProduct } from "@/lib/adapters";
 import { ArrowRightIcon, BoxesIcon, ChevronRightIcon } from "@/components/Icons";
+
+// Category tints are a presentation choice, not catalogue data, so they are
+// assigned by position rather than stored on the record.
+const TONES = [
+  "bg-sky-50",
+  "bg-emerald-50",
+  "bg-amber-50",
+  "bg-violet-50",
+  "bg-rose-50",
+  "bg-cream",
+];
+
+/** Pane 3 for a subcategory that came from the API — products are fetched. */
+function LiveProducts({ subcategoryId, tone }) {
+  const { products, loading } = useSubcategoryProducts(subcategoryId);
+
+  if (loading) {
+    return (
+      <ul className="grid grid-cols-4 gap-3">
+        {[0, 1, 2, 3].map((index) => (
+          <li
+            key={index}
+            className="h-44 animate-pulse rounded-2xl border border-navy/10 bg-cream"
+          />
+        ))}
+      </ul>
+    );
+  }
+
+  if (products.length === 0) {
+    return (
+      <p className="rounded-2xl border border-dashed border-navy/15 px-4 py-10 text-center text-sm text-navy/55">
+        No published products in this subcategory yet.
+      </p>
+    );
+  }
+
+  return <ProductGrid products={products.map(toCardProduct)} tone={tone} />;
+}
+
+function ProductGrid({ products, tone }) {
+  return (
+    <ul className="grid grid-cols-4 gap-3">
+      {products.map((product) => (
+        <li key={product.id || product.name}>
+          <Link
+            href={productHref(product)}
+            className="group block rounded-2xl border border-navy/10 p-3 transition hover:border-primary/40 hover:shadow-md"
+          >
+            <div className={`mb-3 flex h-28 items-center justify-center rounded-xl ${tone}`}>
+              <Image
+                src={product.image}
+                alt={product.imageAlt || product.name}
+                width={110}
+                height={110}
+                className="h-24 w-auto object-contain transition duration-300 group-hover:scale-110"
+              />
+            </div>
+            <p className="line-clamp-2 text-center text-[13px] leading-snug font-medium text-navy group-hover:text-primary">
+              {product.name}
+            </p>
+            <p className="mt-1.5 text-center text-[10px] font-semibold tracking-wide text-navy/50 uppercase">
+              {product.custom ? "Custom · " : ""}Min {formatMoq(product.moq ?? 1)}
+            </p>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 /**
  * Three-pane category menu.
  * pane 1: categories → pane 2: subcategories of the hovered category →
- * pane 3: fills the remaining width with product cards (image + title only).
+ * pane 3: fills the remaining width with product cards.
+ *
+ * Categories arrive already nested. A subcategory carries either its own
+ * `products` array (the static demo catalogue) or an `id` the API can be
+ * asked for — pane 3 handles both.
  */
 export default function MegaMenu({ categories }) {
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
 
-  const activeCategory = categories[categoryIndex];
-  const activeSub = activeCategory.subcategories[subIndex] ?? activeCategory.subcategories[0];
+  const activeCategory = categories[categoryIndex] ?? categories[0];
+  const subcategories = activeCategory?.subcategories ?? [];
+  const activeSub = subcategories[subIndex] ?? subcategories[0];
+  const tone = TONES[categoryIndex % TONES.length];
+
+  if (!activeCategory) return null;
 
   return (
     <div className="overflow-hidden rounded-3xl border border-navy/10 bg-white shadow-[0_28px_70px_-25px_rgba(32,57,74,0.35)]">
@@ -25,7 +106,7 @@ export default function MegaMenu({ categories }) {
           {categories.map((category, i) => {
             const active = i === categoryIndex;
             return (
-              <li key={category.slug}>
+              <li key={category.id || category.slug}>
                 <button
                   type="button"
                   onMouseEnter={() => {
@@ -56,13 +137,18 @@ export default function MegaMenu({ categories }) {
 
         {/* Pane 2 — subcategories of the hovered category */}
         <ul className="border-r border-navy/10 p-3">
-          <li className="px-3 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-navy/50">
+          <li className="px-3 pt-1 pb-2 text-[10px] font-semibold tracking-[0.18em] text-navy/50 uppercase">
             {activeCategory.name}
           </li>
-          {activeCategory.subcategories.map((sub, i) => {
+          {subcategories.length === 0 && (
+            <li className="px-3 py-2 text-[13px] text-navy/50">
+              No subcategories yet
+            </li>
+          )}
+          {subcategories.map((sub, i) => {
             const active = i === subIndex;
             return (
-              <li key={sub.slug}>
+              <li key={sub.id || sub.slug}>
                 <button
                   type="button"
                   onMouseEnter={() => setSubIndex(i)}
@@ -85,41 +171,24 @@ export default function MegaMenu({ categories }) {
 
         {/* Pane 3 — products of the hovered subcategory */}
         <div className="p-5">
-          <div className="mb-4 flex items-end justify-between">
-            <p className="font-display text-lg font-semibold text-ink">{activeSub.name}</p>
-            <a href="#" className="text-xs font-semibold text-primary hover:underline">
-              View all {activeSub.name.toLowerCase()}
-            </a>
-          </div>
-
-          <ul className="grid grid-cols-4 gap-3">
-            {activeSub.products.map((product) => (
-              <li key={product.name}>
-                <a
-                  href="#"
-                  className="group block rounded-2xl border border-navy/10 p-3 transition hover:border-primary/40 hover:shadow-md"
-                >
-                  <div
-                    className={`mb-3 flex h-28 items-center justify-center rounded-xl ${activeCategory.tone}`}
-                  >
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={110}
-                      height={110}
-                      className="h-24 w-auto transition duration-300 group-hover:scale-110"
-                    />
-                  </div>
-                  <p className="line-clamp-2 text-center text-[13px] font-medium leading-snug text-navy group-hover:text-primary">
-                    {product.name}
-                  </p>
-                  <p className="mt-1.5 text-center text-[10px] font-semibold uppercase tracking-wide text-navy/50">
-                    {product.custom ? "Custom · " : ""}Min {formatMoq(product.moq ?? 1)}
-                  </p>
+          {activeSub && (
+            <>
+              <div className="mb-4 flex items-end justify-between">
+                <p className="font-display text-lg font-semibold text-ink">
+                  {activeSub.name}
+                </p>
+                <a href="#" className="text-xs font-semibold text-primary hover:underline">
+                  View all {activeSub.name.toLowerCase()}
                 </a>
-              </li>
-            ))}
-          </ul>
+              </div>
+
+              {activeSub.products ? (
+                <ProductGrid products={activeSub.products} tone={tone} />
+              ) : (
+                <LiveProducts subcategoryId={activeSub.id} tone={tone} />
+              )}
+            </>
+          )}
 
           {/* Bulk / MOQ shortcut — the same entry point as the navbar button */}
           <a

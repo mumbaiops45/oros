@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { formatMoq, formatPrice } from "@/data/catalog";
+import { productHref } from "@/lib/adapters";
 import { BagIcon, BoxesIcon, HeartIcon, StarIcon } from "@/components/Icons";
 
 /**
@@ -77,7 +79,7 @@ export default function ProductCard({ product, index = 0 }) {
 
         <Image
           src={product.image}
-          alt={product.name}
+          alt={product.imageAlt || product.name}
           width={200}
           height={200}
           className="relative h-44 w-full rounded-[10px] object-cover"
@@ -89,19 +91,36 @@ export default function ProductCard({ product, index = 0 }) {
           {product.category}
         </p>
         <h3 className="mt-1.5 line-clamp-2 text-sm font-semibold leading-snug text-ink">
-          {product.name}
+          {/* Stretched link — the whole card is the click target, and the
+              buttons above sit on a higher layer to stay reachable. */}
+          <Link
+            href={productHref(product)}
+            className="transition after:absolute after:inset-0 after:z-[1] group-hover:text-primary"
+          >
+            {product.name}
+          </Link>
         </h3>
 
-        <div className="mt-2 flex items-center gap-1.5">
-          <StarIcon className="h-3.5 w-3.5 text-amber-400" />
-          <span className="text-xs font-semibold text-navy">{product.rating}</span>
-          <span className="text-xs text-navy/50">({product.reviews})</span>
-          {product.material && (
-            <span className="ml-auto rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold text-navy/70">
-              {product.material}
-            </span>
-          )}
-        </div>
+{/* Ratings and material are not columns the API stores, so the row
+            only appears for records that carry them. */}
+        {(product.rating || product.material) && (
+          <div className="mt-2 flex items-center gap-1.5">
+            {product.rating && (
+              <>
+                <StarIcon className="h-3.5 w-3.5 text-amber-400" />
+                <span className="text-xs font-semibold text-navy">
+                  {product.rating}
+                </span>
+                <span className="text-xs text-navy/50">({product.reviews})</span>
+              </>
+            )}
+            {product.material && (
+              <span className="ml-auto rounded-full bg-cream px-2 py-0.5 text-[10px] font-semibold text-navy/70">
+                {product.material}
+              </span>
+            )}
+          </div>
+        )}
 
         {/* Minimum order quantity — shown on every card */}
         <div className="mt-2.5 flex items-center gap-1.5 rounded-lg bg-primary/10 px-2 py-1.5">
@@ -119,14 +138,16 @@ export default function ProductCard({ product, index = 0 }) {
             <span className="text-base font-bold text-ink">
               {formatPrice(product.price)}
             </span>
-            <span className="ml-1.5 text-xs text-navy/45 line-through">
-              {formatPrice(product.mrp)}
-            </span>
+            {product.mrp && (
+              <span className="ml-1.5 text-xs text-navy/45 line-through">
+                {formatPrice(product.mrp)}
+              </span>
+            )}
           </div>
           <button
             type="button"
             aria-label={`Add ${product.name} to cart`}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-white"
+            className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-white"
           >
             <BagIcon className="h-4 w-4" />
           </button>

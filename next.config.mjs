@@ -2,12 +2,19 @@
 const nextConfig = {
   reactCompiler: true,
   images: {
-    // Every image in this project is a first-party SVG served from /public.
-    // No remotePatterns are configured, so the optimiser can never be pointed
-    // at third-party SVG. The CSP below sandboxes them regardless.
+    // First-party SVG served from /public, plus product and category media
+    // uploaded to Cloudinary by the admin panel. The CSP below sandboxes
+    // every optimised image regardless of where it came from.
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

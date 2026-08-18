@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { categories, announcements } from "@/data/catalog";
+import { categories as demoCategories, announcements } from "@/data/catalog";
+import { useCatalog } from "@/hooks/useCatalog";
+import { useAuth } from "@/hooks/useAuth";
+import { firstName } from "@/lib/auth";
+import { orFallback, toNavCategory } from "@/lib/adapters";
+import Image from "next/image";
+import Link from "next/link";
+import AccountDrawer from "./AccountDrawer";
 import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
 import {
@@ -14,17 +21,22 @@ import {
   UserIcon,
 } from "@/components/Icons";
 
-const NAV_LINKS = [
-  { label: "Shop All", href: "#products" },
-  { label: "Custom Order", href: "#custom" },
-  { label: "Best Sellers", href: "#bestsellers" },
-  { label: "Our Studio", href: "#story" },
-];
-
 export default function Header() {
+  const { categories: liveCategories } = useCatalog();
+  const { user } = useAuth();
+
+  // Live tree from the API. Until categories have been created in the admin
+  // panel the API returns nothing, and an empty menu is worse than the demo
+  // catalogue — so fall back to it rather than render a blank panel.
+  const categories = orFallback(
+    liveCategories.map(toNavCategory),
+    demoCategories
+  );
+
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false);
   const [tickerIndex, setTickerIndex] = useState(0);
   const closeTimer = useRef(null);
 
@@ -84,7 +96,7 @@ export default function Header() {
                 : "shadow-[0_10px_34px_-18px_rgba(32,57,74,0.35)]"
             }`}
           >
-            {/* Left — category dropdown + links */}
+            {/* Left — category dropdown */}
             <div className="flex flex-1 items-center gap-1">
               <button
                 type="button"
@@ -132,27 +144,23 @@ export default function Header() {
                   <MegaMenu categories={categories} />
                 </div>
               </div>
-
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="hidden rounded-full px-3.5 py-2 text-sm font-medium text-navy/80 transition hover:bg-cream hover:text-ink xl:block"
-                >
-                  {link.label}
-                </a>
-              ))}
             </div>
 
-            {/* Centre — wordmark */}
-            <a href="#" className="flex shrink-0 flex-col items-center leading-none">
-              <span className="font-display text-2xl font-semibold tracking-[0.3em] text-ink sm:text-[26px]">
-                OROS
-              </span>
-              <span className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.42em] text-navy/50">
-                3D Studio
-              </span>
-            </a>
+            {/* Centre — brand mark */}
+            <Link
+              href="/"
+              aria-label="OROS 3D Studio — home"
+              className=" flex shrink-0 items-center justify-center leading-none"
+            >
+              <Image
+                src="/logo/Orosent-22.svg"
+                alt="OROS 3D Studio"
+                width={160}
+                height={48}
+                priority
+                className="h-20 w-auto object-contain scale-300 sm:h-12"
+              />
+            </Link>
 
             {/* Right — bulk order sits alongside account, wishlist and cart */}
             <div className="flex flex-1 items-center justify-end gap-1">
@@ -171,13 +179,31 @@ export default function Header() {
                 </span>
               </a>
 
-              <a
-                href="#"
-                aria-label="Account"
-                className="rounded-full p-2.5 text-primary transition hover:bg-primary/10"
-              >
-                <UserIcon />
-              </a>
+              {/* Signed in, the account control wears the customer's name and
+                  opens the side sheet; signed out it is a plain icon link. */}
+              {user ? (
+                <button
+                  type="button"
+                  onClick={() => setAccountOpen(true)}
+                  aria-label={`Account — signed in as ${user.name}`}
+                  className="flex items-center gap-2 rounded-full py-1.5 pr-3.5 pl-1.5 text-primary transition hover:bg-primary/10"
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                    <UserIcon className="h-[18px] w-[18px]" />
+                  </span>
+                  <span className="hidden max-w-24 truncate text-xs font-bold text-navy sm:inline">
+                    {firstName(user)}
+                  </span>
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  aria-label="Sign in"
+                  className="rounded-full p-2.5 text-primary transition hover:bg-primary/10"
+                >
+                  <UserIcon />
+                </Link>
+              )}
               <a
                 href="#"
                 aria-label="Wishlist"
@@ -207,6 +233,11 @@ export default function Header() {
         categories={categories}
         open={mobileOpen}
         onClose={() => setMobileOpen(false)}
+      />
+
+      <AccountDrawer
+        open={accountOpen}
+        onClose={() => setAccountOpen(false)}
       />
     </header>
   );
