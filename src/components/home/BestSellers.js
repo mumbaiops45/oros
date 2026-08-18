@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useProducts } from "@/hooks/useProducts";
-import { toCardProduct } from "@/lib/adapters";
+import { PRODUCTS_HREF, toCardProduct } from "@/lib/adapters";
 import ProductCard from "@/components/ProductCard";
 import { ArrowRightIcon, SparkIcon } from "@/components/Icons";
 
@@ -45,13 +46,13 @@ export default function BestSellers() {
             </p>
           </div>
 
-          <a
-            href="#"
+          <Link
+            href={PRODUCTS_HREF}
             className="group inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-white px-6 py-3 text-sm font-bold text-primary transition hover:-translate-y-0.5 hover:shadow-xl sm:self-auto"
           >
             Shop best sellers
             <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
-          </a>
+          </Link>
         </div>
 
         <ul className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-5">

@@ -5,7 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatMoq } from "@/data/catalog";
 import { useSubcategoryProducts } from "@/hooks/useCatalog";
-import { productHref, toCardProduct } from "@/lib/adapters";
+import {
+  categoryHref,
+  productHref,
+  subcategoryHref,
+  toCardProduct,
+  toDemoCardProduct,
+} from "@/lib/adapters";
 import { ArrowRightIcon, BoxesIcon, ChevronRightIcon } from "@/components/Icons";
 
 // Category tints are a presentation choice, not catalogue data, so they are
@@ -20,7 +26,7 @@ const TONES = [
 ];
 
 /** Pane 3 for a subcategory that came from the API — products are fetched. */
-function LiveProducts({ subcategoryId, tone }) {
+function LiveProducts({ subcategoryId, tone, onNavigate }) {
   const { products, loading } = useSubcategoryProducts(subcategoryId);
 
   if (loading) {
@@ -44,16 +50,23 @@ function LiveProducts({ subcategoryId, tone }) {
     );
   }
 
-  return <ProductGrid products={products.map(toCardProduct)} tone={tone} />;
+  return (
+    <ProductGrid
+      products={products.map(toCardProduct)}
+      tone={tone}
+      onNavigate={onNavigate}
+    />
+  );
 }
 
-function ProductGrid({ products, tone }) {
+function ProductGrid({ products, tone, onNavigate }) {
   return (
     <ul className="grid grid-cols-4 gap-3">
       {products.map((product) => (
         <li key={product.id || product.name}>
           <Link
             href={productHref(product)}
+            onClick={onNavigate}
             className="group block rounded-2xl border border-navy/10 p-3 transition hover:border-primary/40 hover:shadow-md"
           >
             <div className={`mb-3 flex h-28 items-center justify-center rounded-xl ${tone}`}>
@@ -87,7 +100,7 @@ function ProductGrid({ products, tone }) {
  * `products` array (the static demo catalogue) or an `id` the API can be
  * asked for — pane 3 handles both.
  */
-export default function MegaMenu({ categories }) {
+export default function MegaMenu({ categories, onNavigate }) {
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
 
@@ -107,8 +120,8 @@ export default function MegaMenu({ categories }) {
             const active = i === categoryIndex;
             return (
               <li key={category.id || category.slug}>
-                <button
-                  type="button"
+                <Link
+                  href={categoryHref(category)}
                   onMouseEnter={() => {
                     setCategoryIndex(i);
                     setSubIndex(0);
@@ -117,6 +130,7 @@ export default function MegaMenu({ categories }) {
                     setCategoryIndex(i);
                     setSubIndex(0);
                   }}
+                  onClick={onNavigate}
                   className={`flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-left text-sm transition ${
                     active
                       ? "bg-white font-semibold text-primary shadow-sm"
@@ -129,7 +143,7 @@ export default function MegaMenu({ categories }) {
                       active ? "translate-x-0.5 opacity-100" : "opacity-40"
                     }`}
                   />
-                </button>
+                </Link>
               </li>
             );
           })}
@@ -137,8 +151,14 @@ export default function MegaMenu({ categories }) {
 
         {/* Pane 2 — subcategories of the hovered category */}
         <ul className="border-r border-navy/10 p-3">
-          <li className="px-3 pt-1 pb-2 text-[10px] font-semibold tracking-[0.18em] text-navy/50 uppercase">
-            {activeCategory.name}
+          <li className="px-3 pt-1 pb-2">
+            <Link
+              href={categoryHref(activeCategory)}
+              onClick={onNavigate}
+              className="text-[10px] font-semibold tracking-[0.18em] text-navy/50 uppercase transition hover:text-primary"
+            >
+              All {activeCategory.name}
+            </Link>
           </li>
           {subcategories.length === 0 && (
             <li className="px-3 py-2 text-[13px] text-navy/50">
@@ -149,10 +169,11 @@ export default function MegaMenu({ categories }) {
             const active = i === subIndex;
             return (
               <li key={sub.id || sub.slug}>
-                <button
-                  type="button"
+                <Link
+                  href={subcategoryHref(activeCategory, sub)}
                   onMouseEnter={() => setSubIndex(i)}
                   onFocus={() => setSubIndex(i)}
+                  onClick={onNavigate}
                   className={`flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-left text-sm transition ${
                     active
                       ? "bg-primary/10 font-semibold text-primary"
@@ -163,7 +184,7 @@ export default function MegaMenu({ categories }) {
                   <ChevronRightIcon
                     className={`h-4 w-4 shrink-0 transition ${active ? "opacity-100" : "opacity-0"}`}
                   />
-                </button>
+                </Link>
               </li>
             );
           })}
@@ -174,18 +195,39 @@ export default function MegaMenu({ categories }) {
           {activeSub && (
             <>
               <div className="mb-4 flex items-end justify-between">
-                <p className="font-display text-lg font-semibold text-ink">
+                <Link
+                  href={subcategoryHref(activeCategory, activeSub)}
+                  onClick={onNavigate}
+                  className="font-display text-lg font-semibold text-ink transition hover:text-primary"
+                >
                   {activeSub.name}
-                </p>
-                <a href="#" className="text-xs font-semibold text-primary hover:underline">
+                </Link>
+                <Link
+                  href={subcategoryHref(activeCategory, activeSub)}
+                  onClick={onNavigate}
+                  className="text-xs font-semibold text-primary hover:underline"
+                >
                   View all {activeSub.name.toLowerCase()}
-                </a>
+                </Link>
               </div>
 
               {activeSub.products ? (
-                <ProductGrid products={activeSub.products} tone={tone} />
+                <ProductGrid
+                  products={activeSub.products.map((product) =>
+                    toDemoCardProduct(product, {
+                      category: activeCategory.name,
+                      subcategory: activeSub.name,
+                    })
+                  )}
+                  tone={tone}
+                  onNavigate={onNavigate}
+                />
               ) : (
-                <LiveProducts subcategoryId={activeSub.id} tone={tone} />
+                <LiveProducts
+                  subcategoryId={activeSub.id}
+                  tone={tone}
+                  onNavigate={onNavigate}
+                />
               )}
             </>
           )}

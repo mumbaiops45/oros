@@ -3,6 +3,7 @@
 import { use, useMemo, useState } from "react";
 import Link from "next/link";
 import { useProductBySlug } from "@/hooks/useProduct";
+import { PRODUCTS_HREF, categoryHref, subcategoryHref } from "@/lib/adapters";
 import { formatMoney, slabForQty, unitPriceFor } from "@/lib/pricing";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductOptions from "@/components/product/ProductOptions";
@@ -69,7 +70,7 @@ export default function ProductPage({ params }) {
           {error || "This product may have been unpublished or renamed."}
         </p>
         <Link
-          href="/"
+          href={PRODUCTS_HREF}
           className="mt-7 inline-flex rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5"
         >
           Back to the shop
@@ -91,14 +92,37 @@ export default function ProductPage({ params }) {
   return (
     <>
       <div className="mx-auto max-w-7xl px-5 pt-32 pb-20 sm:px-8 lg:px-15 lg:pt-36">
-        <nav className="mb-7 flex flex-wrap items-center gap-2 text-xs text-navy/55">
-          <Link href="/" className="hover:text-primary">
+        <nav
+          aria-label="Breadcrumb"
+          className="mb-7 flex flex-wrap items-center gap-2 text-xs text-navy/55"
+        >
+          <Link href="/" className="transition hover:text-primary">
             Home
           </Link>
-          <span>/</span>
-          <span>{product.category?.name}</span>
-          <span>/</span>
-          <span className="text-navy/80">{product.subcategory?.name}</span>
+          {product.category?.slug && (
+            <>
+              <span aria-hidden="true">/</span>
+              <Link
+                href={categoryHref(product.category)}
+                className="transition hover:text-primary"
+              >
+                {product.category.name}
+              </Link>
+            </>
+          )}
+          {product.category?.slug && product.subcategory?.slug && (
+            <>
+              <span aria-hidden="true">/</span>
+              <Link
+                href={subcategoryHref(product.category, product.subcategory)}
+                className="transition hover:text-primary"
+              >
+                {product.subcategory.name}
+              </Link>
+            </>
+          )}
+          <span aria-hidden="true">/</span>
+          <span className="text-navy/80">{product.name}</span>
         </nav>
 
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">

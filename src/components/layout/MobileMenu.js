@@ -1,6 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import {
+  CATEGORIES_HREF,
+  PRODUCTS_HREF,
+  categoryHref,
+  subcategoryHref,
+} from "@/lib/adapters";
 import { BoxesIcon, ChevronDownIcon, CloseIcon } from "@/components/Icons";
 
 export default function MobileMenu({ categories, open, onClose }) {
@@ -53,37 +60,57 @@ export default function MobileMenu({ categories, open, onClose }) {
           </span>
         </a>
 
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-navy/50">
-          Category
-        </p>
+        <div className="mb-2 flex items-center justify-between">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-navy/50">
+            Category
+          </p>
+          <Link
+            href={CATEGORIES_HREF}
+            onClick={onClose}
+            className="text-[11px] font-bold text-primary"
+          >
+            See all
+          </Link>
+        </div>
 
         <ul className="divide-y divide-slate-100">
           {categories.map((category, i) => {
             const expanded = openIndex === i;
             return (
               <li key={category.slug} className="py-1">
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(expanded ? -1 : i)}
-                  aria-expanded={expanded}
-                  className="flex w-full items-center justify-between py-3 text-left text-sm font-semibold text-ink"
-                >
-                  {category.name}
-                  <ChevronDownIcon
-                    className={`h-4 w-4 text-navy/50 transition ${expanded ? "rotate-180" : ""}`}
-                  />
-                </button>
+                <div className="flex items-center justify-between gap-2">
+                  <Link
+                    href={categoryHref(category)}
+                    onClick={onClose}
+                    className="flex-1 py-3 text-left text-sm font-semibold text-ink"
+                  >
+                    {category.name}
+                  </Link>
+                  {/* Split control: the name goes straight to the category,
+                      the chevron opens its ranges in place. */}
+                  <button
+                    type="button"
+                    onClick={() => setOpenIndex(expanded ? -1 : i)}
+                    aria-expanded={expanded}
+                    aria-label={`${expanded ? "Hide" : "Show"} ${category.name} ranges`}
+                    className="rounded-full p-2 text-navy/50 hover:bg-cream"
+                  >
+                    <ChevronDownIcon
+                      className={`h-4 w-4 transition ${expanded ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                </div>
                 {expanded && (
                   <ul className="grid grid-cols-2 gap-2 pb-3">
                     {category.subcategories.map((sub) => (
                       <li key={sub.slug}>
-                        <a
-                          href="#"
+                        <Link
+                          href={subcategoryHref(category, sub)}
                           onClick={onClose}
                           className="block rounded-xl bg-cream px-3 py-2 text-[13px] text-navy/80"
                         >
                           {sub.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -94,20 +121,20 @@ export default function MobileMenu({ categories, open, onClose }) {
         </ul>
 
         <div className="mt-5 grid gap-2">
-          <a
-            href="#products"
+          <Link
+            href={PRODUCTS_HREF}
             onClick={onClose}
             className="rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-white"
           >
             Shop all prints
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/register"
             onClick={onClose}
             className="rounded-full border border-navy/15 px-5 py-3 text-center text-sm font-semibold text-navy"
           >
             Create an account
-          </a>
+          </Link>
         </div>
       </div>
     </div>

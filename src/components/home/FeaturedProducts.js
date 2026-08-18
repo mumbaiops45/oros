@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useProducts } from "@/hooks/useProducts";
-import { toCardProduct } from "@/lib/adapters";
+import { PRODUCTS_HREF, toCardProduct } from "@/lib/adapters";
 import ProductCard from "@/components/ProductCard";
 import { ArrowRightIcon } from "@/components/Icons";
 
@@ -57,14 +58,18 @@ export default function FeaturedProducts() {
           </p>
         )}
 
+        {/* The rail is only the first page of the catalogue — this opens the
+            full, paged grid on /products. */}
         <div className="mt-12 text-center">
-          <a
-            href="#"
+          <Link
+            href={PRODUCTS_HREF}
             className="group inline-flex items-center gap-2 rounded-full border-2 border-primary px-8 py-3.5 text-sm font-bold text-primary transition hover:bg-primary hover:text-white"
           >
-            {total > 0 ? `View all ${total} prints` : "View all prints"}
+            {total > products.length
+              ? `Show more — all ${total} prints`
+              : "Show all prints"}
             <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

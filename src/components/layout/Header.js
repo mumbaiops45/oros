@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { categories as demoCategories, announcements } from "@/data/catalog";
-import { useCatalog } from "@/hooks/useCatalog";
+import { announcements } from "@/data/catalog";
+import { useNavCategories } from "@/hooks/useCatalog";
 import { useAuth } from "@/hooks/useAuth";
 import { firstName } from "@/lib/auth";
-import { orFallback, toNavCategory } from "@/lib/adapters";
+import { CATEGORIES_HREF } from "@/lib/adapters";
 import Image from "next/image";
 import Link from "next/link";
 import AccountDrawer from "./AccountDrawer";
@@ -22,16 +22,10 @@ import {
 } from "@/components/Icons";
 
 export default function Header() {
-  const { categories: liveCategories } = useCatalog();
+  // Live tree from the API, falling back to the demo catalogue while the
+  // admin panel is still empty — an empty menu is worse than a placeholder.
+  const { categories } = useNavCategories();
   const { user } = useAuth();
-
-  // Live tree from the API. Until categories have been created in the admin
-  // panel the API returns nothing, and an empty menu is worse than the demo
-  // catalogue — so fall back to it rather than render a blank panel.
-  const categories = orFallback(
-    liveCategories.map(toNavCategory),
-    demoCategories
-  );
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -43,6 +37,13 @@ export default function Header() {
   const openMenu = () => {
     clearTimeout(closeTimer.current);
     setMenuOpen(true);
+  };
+
+  // Following a link out of the panel has to shut it immediately — the
+  // pointer never leaves, so the grace period below would keep it open.
+  const closeNow = () => {
+    clearTimeout(closeTimer.current);
+    setMenuOpen(false);
   };
 
   // Short grace period: the pointer has to cross the navbar's own padding on
@@ -112,8 +113,10 @@ export default function Header() {
                 onMouseEnter={openMenu}
                 onMouseLeave={closeMenu}
               >
-                <button
-                  type="button"
+                {/* Hovering opens the panel; clicking goes to the full
+                    category browser for anyone who would rather not hover. */}
+                <Link
+                  href={CATEGORIES_HREF}
                   aria-expanded={menuOpen}
                   className={`relative flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-semibold transition ${
                     menuOpen ? "bg-cream text-ink" : "text-navy hover:bg-cream"
@@ -128,7 +131,7 @@ export default function Header() {
                   {menuOpen && (
                     <span aria-hidden="true" className="absolute inset-x-0 top-full h-5" />
                   )}
-                </button>
+                </Link>
 
                 {/* Panel is anchored to the navbar, not the button, so it can span
                     the full width for the product pane. */}
@@ -141,7 +144,7 @@ export default function Header() {
                       : "pointer-events-none -translate-y-2 opacity-0"
                   }`}
                 >
-                  <MegaMenu categories={categories} />
+                  <MegaMenu categories={categories} onNavigate={closeNow} />
                 </div>
               </div>
             </div>
@@ -158,7 +161,7 @@ export default function Header() {
                 width={160}
                 height={48}
                 priority
-                className="h-20 w-auto object-contain scale-300 sm:h-12"
+                className="h-10 w-auto object-contain scale-300 sm:h-12"
               />
             </Link>
 

@@ -10,5 +10,9 @@ export function useSubCategories({ category = "", page = 1, limit = 500 } = {}) 
     [category, page, limit]
   );
 
-  return { subcategories: data?.subCategory || [], ...rest };
+  return {
+    subcategories: data?.subCategory || [],
+    pagination: data?.pagination || null,
+    ...rest,
+  };
 }

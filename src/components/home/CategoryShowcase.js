@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { categories as demoCategories } from "@/data/catalog";
-import { useCatalog } from "@/hooks/useCatalog";
-import { orFallback, toNavCategory } from "@/lib/adapters";
+import Link from "next/link";
+import { useNavCategories } from "@/hooks/useCatalog";
+import { CATEGORIES_HREF, categoryHref } from "@/lib/adapters";
 import {
   ArrowRightIcon,
   ChevronLeftIcon,
@@ -23,12 +23,7 @@ const CARD_TONES = [
 ];
 
 export default function CategoryShowcase() {
-  const { categories: liveCategories } = useCatalog();
-
-  const categories = orFallback(
-    liveCategories.map(toNavCategory),
-    demoCategories
-  );
+  const { categories } = useNavCategories();
 
   const railRef = useRef(null);
   const [atStart, setAtStart] = useState(true);
@@ -67,13 +62,13 @@ export default function CategoryShowcase() {
             </h2>
           </div>
           <div className="flex items-center gap-3 self-start sm:self-auto">
-            <a
-              href="#products"
+            <Link
+              href={CATEGORIES_HREF}
               className="group inline-flex items-center gap-2 text-sm font-semibold text-primary"
             >
               Browse all categories
               <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
-            </a>
+            </Link>
 
             <div className="flex items-center gap-2">
               <button
@@ -111,16 +106,16 @@ export default function CategoryShowcase() {
                 key={category.id || category.slug}
                 className="w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-[calc(25%-0.75rem)]"
               >
-                <a
-                  href="#products"
-                  className="relative block aspect-5/4 overflow-hidden rounded-md"
+                <Link
+                  href={categoryHref(category)}
+                  className="group relative block aspect-5/4 overflow-hidden rounded-md"
                 >
                   <Image
                     src={category.image}
                     alt={category.name}
                     fill
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 46vw, 78vw"
-                    className="object-cover"
+                    className="object-cover transition duration-500 group-hover:scale-105"
                   />
 
                   {/* Solid brand tone at the foot, fading up over the photo */}
@@ -135,8 +130,16 @@ export default function CategoryShowcase() {
                     <p className={`mt-1 line-clamp-1 text-[13px] leading-relaxed ${tone.body}`}>
                       {category.blurb}
                     </p>
+                    <span
+                      className={`mt-2 inline-flex items-center gap-1.5 text-xs font-bold ${tone.title}`}
+                    >
+                      {category.subcategories?.length
+                        ? `${category.subcategories.length} ${category.subcategories.length === 1 ? "range" : "ranges"}`
+                        : "Explore"}
+                      <ArrowRightIcon className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+                    </span>
                   </div>
-                </a>
+                </Link>
               </li>
             );
           })}

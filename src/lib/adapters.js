@@ -25,6 +25,7 @@ export const toCardProduct = (product) => ({
   category: product.category?.name || "",
   categorySlug: product.category?.slug || "",
   subcategory: product.subcategory?.name || "",
+  subcategorySlug: product.subcategory?.slug || "",
   moq: product.minQty ?? 1,
   custom: Boolean(product.isCustomisable),
   leadTimeDays: product.leadTimeDays,
@@ -61,3 +62,69 @@ export const orFallback = (live, fallback) =>
  */
 export const productHref = (product) =>
   `/product/${product.slug || slugify(product.name || "")}`;
+
+/**
+ * The static demo catalogue nests its subcategories (and their products)
+ * inline and carries no ids, so it is reshaped into the same nav shape the
+ * API produces. Everything downstream — header, rails, browse pages — then
+ * reads one shape and never has to ask where the record came from.
+ *
+ * A demo subcategory keeps its `products` array; a live one carries an `id`
+ * the API can be asked for instead.
+ */
+export const toNavDemoCategory = (category) => ({
+  id: category.slug,
+  name: category.name,
+  slug: category.slug,
+  blurb: category.blurb || "",
+  image: category.image || CATEGORY_IMAGE_FALLBACK,
+  demo: true,
+  subcategories: (category.subcategories || []).map((sub) => ({
+    id: sub.slug,
+    name: sub.name,
+    slug: sub.slug,
+    blurb: "",
+    image: sub.products?.[0]?.image || CATEGORY_IMAGE_FALLBACK,
+    demo: true,
+    products: sub.products || [],
+  })),
+});
+
+/** A nested demo product as the shared product card wants it. */
+export const toDemoCardProduct = (
+  product,
+  { category = "", subcategory = "" } = {}
+) => ({
+  id: product.slug || slugify(product.name || ""),
+  name: product.name,
+  slug: product.slug || slugify(product.name || ""),
+  price: product.price,
+  image: product.image || PRODUCT_IMAGE_FALLBACK,
+  imageAlt: product.name,
+  category: product.category || category,
+  subcategory: product.subcategory || subcategory,
+  moq: product.moq ?? 1,
+  custom: Boolean(product.custom),
+  blurb: "",
+  rating: product.rating,
+  reviews: product.reviews,
+  mrp: product.mrp,
+  badge: product.badge,
+  material: product.material,
+});
+
+/* ------------------------------------------------------------------
+   STOREFRONT URLS
+
+   One place decides what a catalogue record's page is, so a route rename
+   is a single edit rather than a grep across every rail.
+------------------------------------------------------------------ */
+
+export const CATEGORIES_HREF = "/categories";
+export const PRODUCTS_HREF = "/products";
+
+export const categoryHref = (category) =>
+  `/categories/${category?.slug || slugify(category?.name || "")}`;
+
+export const subcategoryHref = (category, subcategory) =>
+  `${categoryHref(category)}/${subcategory?.slug || slugify(subcategory?.name || "")}`;
