@@ -156,12 +156,12 @@ export default function Header() {
               className=" flex shrink-0 items-center justify-center leading-none"
             >
               <Image
-                src="/logo/Orosent-22.svg"
+                src="/logo/Orosent-20.svg"
                 alt="OROS 3D Studio"
                 width={160}
                 height={48}
                 priority
-                className="h-10 w-auto object-contain scale-300 sm:h-12"
+                className="h-10 w-auto object-contain scale-150 sm:h-12"
               />
             </Link>
 
