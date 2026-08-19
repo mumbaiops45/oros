@@ -4,8 +4,9 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/hooks/useCart";
 import { dashboardPath, isAdmin } from "@/lib/auth";
-import { BoxesIcon, CloseIcon, UserIcon } from "@/components/Icons";
+import { BagIcon, BoxesIcon, CloseIcon, UserIcon } from "@/components/Icons";
 
 /**
  * The account sheet, anchored to the right edge. Signed in it holds the two
@@ -16,6 +17,7 @@ import { BoxesIcon, CloseIcon, UserIcon } from "@/components/Icons";
 export default function AccountDrawer({ open, onClose }) {
   const router = useRouter();
   const { user, ready, logout } = useAuth();
+  const { count: cartCount } = useCart();
 
   useEffect(() => {
     if (!open) return undefined;
@@ -135,6 +137,31 @@ export default function AccountDrawer({ open, onClose }) {
                 </span>
                 <BoxesIcon className="h-5 w-5 shrink-0 text-primary" />
               </Link>
+
+              {!staff && (
+                <Link
+                  href="/account?tab=cart"
+                  onClick={onClose}
+                  className="flex items-center justify-between gap-3 rounded-2xl border border-navy/10 px-4 py-4 transition hover:border-primary/40 hover:bg-cream"
+                >
+                  <span>
+                    <span className="block text-sm font-semibold text-ink">Cart</span>
+                    <span className="mt-0.5 block text-xs text-navy/60">
+                      {cartCount
+                        ? `${cartCount} item${cartCount === 1 ? "" : "s"} waiting`
+                        : "Nothing in it yet"}
+                    </span>
+                  </span>
+                  <span className="relative shrink-0 text-primary">
+                    <BagIcon className="h-5 w-5" />
+                    {cartCount > 0 && (
+                      <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-bold text-white">
+                        {cartCount > 99 ? "99+" : cartCount}
+                      </span>
+                    )}
+                  </span>
+                </Link>
+              )}
 
               <button
                 type="button"

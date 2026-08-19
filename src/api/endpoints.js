@@ -58,3 +58,12 @@ export const BULK = {
   import: "/product/bulk-import",
   media: "/product/bulk-media",
 };
+
+export const CART = {
+  list: "/cart",
+  add: "/cart",
+  update: (id) => `/cart/${id}`,
+  remove: (id) => `/cart/${id}`,
+  // must stay above /cart/:id on the server, hence its own literal path
+  clear: "/cart/clear",
+};

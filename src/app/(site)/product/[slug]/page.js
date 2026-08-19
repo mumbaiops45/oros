@@ -1,8 +1,11 @@
 "use client";
 
 import { use, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useProductBySlug } from "@/hooks/useProduct";
+import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/hooks/useCart";
 import { PRODUCTS_HREF, categoryHref, subcategoryHref } from "@/lib/adapters";
 import { formatMoney, slabForQty, unitPriceFor } from "@/lib/pricing";
 import ProductGallery from "@/components/product/ProductGallery";
@@ -20,10 +23,15 @@ export default function ProductPage({ params }) {
   const { product, specs, media, options, priceSlabs, loading, error } =
     useProductBySlug(slug);
 
+  const router = useRouter();
+  const { user } = useAuth();
+  const { add: addToCart } = useCart();
+
   const [qty, setQty] = useState(1);
   const [selection, setSelection] = useState({});
   const [bulkOpen, setBulkOpen] = useState(false);
-  const [cartNotice, setCartNotice] = useState(false);
+  const [adding, setAdding] = useState(false);
+  const [cartNotice, setCartNotice] = useState(null);
 
   const minQty = product?.minQty ?? 1;
   const quantity = Math.max(qty, minQty);
@@ -40,6 +48,56 @@ export default function ProductPage({ params }) {
   const missingRequired = options.filter(
     (option) => option.isRequired && !selection[option._id]
   );
+
+  /**
+   * The cart stores an option as a { name, value } pair, not the ids the
+   * picker works in — the server hashes that pair list into the variantKey
+   * that decides whether this is a new line or a top-up of an existing one.
+   */
+  const asCartOptions = () =>
+    options
+      .filter((option) => selection[option._id] !== undefined && selection[option._id] !== "")
+      .map((option) => {
+        const chosen = selection[option._id];
+        const stored = (option.values || []).find((value) => value._id === chosen);
+
+        return { name: option.name, value: stored ? stored.value : String(chosen) };
+      });
+
+  const onAddToCart = async () => {
+    if (!user) {
+      router.push(`/login?next=/product/${slug}`);
+      return;
+    }
+
+    if (missingRequired.length > 0) {
+      setCartNotice({
+        tone: "error",
+        text: `Choose ${missingRequired.map((option) => option.name).join(", ")} first.`,
+      });
+      return;
+    }
+
+    setAdding(true);
+    setCartNotice(null);
+
+    try {
+      await addToCart({
+        product: product._id,
+        qty: quantity,
+        selectedOptions: asCartOptions(),
+      });
+
+      setCartNotice({
+        tone: "success",
+        text: `${quantity} × ${product.name} added to your cart.`,
+      });
+    } catch (error) {
+      setCartNotice({ tone: "error", text: error.message });
+    } finally {
+      setAdding(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -202,15 +260,18 @@ export default function ProductPage({ params }) {
               </div>
 
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                {/* Cart is not built yet — the button stays visible so the
-                    layout is final, and says so rather than failing silently. */}
                 <button
                   type="button"
-                  onClick={() => setCartNotice(true)}
-                  className="flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:shadow-[0_18px_34px_-20px_rgba(97,150,170,1)]"
+                  onClick={onAddToCart}
+                  disabled={adding}
+                  className="flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:shadow-[0_18px_34px_-20px_rgba(97,150,170,1)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                 >
-                  <BagIcon className="h-4 w-4" />
-                  Add to cart
+                  {adding ? (
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                  ) : (
+                    <BagIcon className="h-4 w-4" />
+                  )}
+                  {adding ? "Adding…" : user ? "Add to cart" : "Sign in to add"}
                 </button>
 
                 <button
@@ -231,17 +292,24 @@ export default function ProductPage({ params }) {
               )}
 
               {cartNotice && (
-                <p className="mt-3 rounded-xl border border-primary/25 bg-primary/10 px-4 py-3 text-sm text-navy">
-                  The cart is still being built. Use{" "}
-                  <button
-                    type="button"
-                    onClick={() => setBulkOpen(true)}
-                    className="font-semibold text-primary hover:underline"
-                  >
-                    bulk order
-                  </button>{" "}
-                  to place this order with the studio today.
-                </p>
+                <div
+                  role="status"
+                  className={`mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm ${
+                    cartNotice.tone === "success"
+                      ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                      : "border-rose-200 bg-rose-50 text-rose-700"
+                  }`}
+                >
+                  <span>{cartNotice.text}</span>
+                  {cartNotice.tone === "success" && (
+                    <Link
+                      href="/account?tab=cart"
+                      className="font-bold underline underline-offset-2"
+                    >
+                      View cart
+                    </Link>
+                  )}
+                </div>
               )}
 
               <p className="mt-4 flex items-center gap-2 text-xs text-navy/55">

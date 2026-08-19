@@ -1,6 +1,7 @@
 export * from "./useApi";
 export * from "./useCountdown";
 export * from "./useAuth";
+export * from "./useCart";
 export * from "./useCatalog";
 export * from "./useCategories";
 export * from "./useSubCategories";

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { announcements } from "@/data/catalog";
 import { useNavCategories } from "@/hooks/useCatalog";
 import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/hooks/useCart";
 import { firstName } from "@/lib/auth";
 import { CATEGORIES_HREF } from "@/lib/adapters";
 import Image from "next/image";
@@ -26,6 +27,7 @@ export default function Header() {
   // admin panel is still empty — an empty menu is worse than a placeholder.
   const { categories } = useNavCategories();
   const { user } = useAuth();
+  const { count: cartCount } = useCart();
 
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -217,16 +219,22 @@ export default function Header() {
                   3
                 </span>
               </a>
-              <a
-                href="#"
-                aria-label="Cart"
+              {/* Badge counts the distinct lines on the server cart, so it
+                  only appears once there is something in it. */}
+              <Link
+                href={user ? "/account?tab=cart" : "/login?next=/account"}
+                aria-label={
+                  cartCount ? `Cart — ${cartCount} item${cartCount === 1 ? "" : "s"}` : "Cart"
+                }
                 className="relative rounded-full p-2.5 text-primary transition hover:bg-primary/10"
               >
                 <BagIcon />
-                <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-bold text-white">
-                  2
-                </span>
-              </a>
+                {cartCount > 0 && (
+                  <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-bold text-white">
+                    {cartCount > 99 ? "99+" : cartCount}
+                  </span>
+                )}
+              </Link>
             </div>
           </nav>
         </div>

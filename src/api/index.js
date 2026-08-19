@@ -3,4 +3,5 @@ export * from "./category.api";
 export * from "./subCategory.api";
 export * from "./product.api";
 export * from "./bulk.api";
+export * from "./cart.api";
 export * as endpoints from "./endpoints";
