@@ -12,6 +12,7 @@ const NAV = [
   { href: "/admin/products", label: "Products" },
   { href: "/admin/categories", label: "Categories" },
   { href: "/admin/subcategories", label: "Subcategories" },
+  { href: "/admin/packages", label: "Shipping boxes" },
   { href: "/admin/bulk", label: "Bulk import" },
 ];
 

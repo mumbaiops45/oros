@@ -18,7 +18,11 @@ import {
   updateSpec,
   swapMediaOrder,
   uploadMediaQueue,
+  deleteProductShipping,
+  getProductShipping,
+  saveProductShipping,
 } from "@/api";
+import { useApi } from "@/hooks/useApi";
 import MediaQueue, { revokeQueueItem } from "@/components/admin/MediaQueue";
 import {
   Alert,
@@ -28,8 +32,10 @@ import {
   Checkbox,
   ConfirmDialog,
   EmptyState,
+  Field,
   Input,
   Select,
+  Spinner,
   Table,
   Td,
 } from "@/components/admin/ui";
@@ -870,5 +876,200 @@ export function MediaPanel({ productId, media, onReload }) {
         />
       </Card>
     </div>
+  );
+}
+
+/* ==================================================================
+   SHIPPING  (weight + box dimensions)
+   ================================================================== */
+
+export const BLANK_SHIPPING = { weight: "", length: "", width: "", height: "" };
+
+/** The model's own minimums — the API rejects anything under them. */
+const SHIPPING_FIELDS = [
+  {
+    name: "weight",
+    label: "Weight (kg)",
+    min: 0,
+    hint: "Packed weight of one unit",
+  },
+  { name: "length", label: "Length (cm)", min: 0.5 },
+  { name: "width", label: "Width (cm)", min: 0.5 },
+  { name: "height", label: "Height (cm)", min: 0.5 },
+];
+
+/** Numbers on the wire, strings in the inputs. */
+export const toShippingPayload = (values) => ({
+  weight: Number(values.weight),
+  length: Number(values.length),
+  width: Number(values.width),
+  height: Number(values.height),
+});
+
+/** True once all four are filled in — a partial row is not worth sending. */
+export const hasShippingValues = (values) =>
+  SHIPPING_FIELDS.every((field) => String(values?.[field.name] || "").trim());
+
+/**
+ * The four inputs on their own, so the create screen can collect them
+ * before the product exists and this panel can edit them after.
+ */
+export function ShippingFields({ values, onChange, disabled, required = true }) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {SHIPPING_FIELDS.map((field) => (
+        <Field key={field.name} label={field.label} hint={field.hint} required={required}>
+          <Input
+            type="number"
+            step="0.1"
+            min={field.min}
+            value={values[field.name]}
+            disabled={disabled}
+            onChange={(event) =>
+              onChange({ ...values, [field.name]: event.target.value })
+            }
+            required={required}
+          />
+        </Field>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * One shipping row per product, and the packing engine refuses to pack a
+ * cart containing a product without one — so this is required before a
+ * product can actually be sold, not an optional extra.
+ *
+ * The row is not part of GET /product/:id, so the panel fetches it itself
+ * and the same form covers create and edit.
+ */
+export function ShippingPanel({ productId, productName }) {
+  const { data, error, loading, reload, setError } = useApi(
+    () => getProductShipping(productId),
+    [productId]
+  );
+
+  const shipping = data?.shipping || null;
+
+  const [draft, setDraft] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const [saveError, setSaveError] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  // `draft` stays null until the row lands, then mirrors it — so the inputs
+  // are never rendered with values from the previous product.
+  const values =
+    draft ??
+    (shipping
+      ? {
+          weight: String(shipping.weight ?? ""),
+          length: String(shipping.length ?? ""),
+          width: String(shipping.width ?? ""),
+          height: String(shipping.height ?? ""),
+        }
+      : { ...BLANK_SHIPPING });
+
+  const run = async (action) => {
+    setBusy(true);
+    setSaveError("");
+
+    try {
+      await action();
+      setDraft(null);
+      await reload();
+      return true;
+    } catch (mutationError) {
+      setSaveError(mutationError.message);
+      return false;
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const save = (event) => {
+    event.preventDefault();
+
+    return run(() =>
+      saveProductShipping(productId, shipping?._id, toShippingPayload(values))
+    );
+  };
+
+  const remove = async () => {
+    const ok = await run(() => deleteProductShipping(shipping._id));
+    if (ok) setDeleting(false);
+  };
+
+  if (loading) {
+    return (
+      <Card title="Shipping">
+        <div className="flex justify-center py-10">
+          <Spinner className="h-8 w-8" />
+        </div>
+      </Card>
+    );
+  }
+
+  const volume =
+    values.length && values.width && values.height
+      ? Math.round(
+          Number(values.length) * Number(values.width) * Number(values.height)
+        )
+      : null;
+
+  return (
+    <Card
+      title="Shipping"
+      description="Packed weight and box size of a single unit — the packing engine needs both before this product can be checked out"
+      actions={
+        <Badge tone={shipping ? "yes" : "no"}>{shipping ? "Set" : "Missing"}</Badge>
+      }
+    >
+      <Alert onDismiss={() => setError("")}>{error}</Alert>
+      <Alert onDismiss={() => setSaveError("")}>{saveError}</Alert>
+
+      {!shipping && (
+        <Alert tone="info">
+          {productName ? `“${productName}”` : "This product"} has no shipping
+          details, so any cart containing it cannot be packed.
+        </Alert>
+      )}
+
+      <form onSubmit={save} className="grid gap-4">
+        <ShippingFields values={values} onChange={setDraft} disabled={busy} />
+
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-xs text-slate-500">
+            {volume
+              ? `Volume ${volume.toLocaleString("en-IN")} cm³ — this must fit inside one of the shipping boxes.`
+              : "Fill in all four to see the volume."}
+          </p>
+
+          <div className="flex gap-2">
+            {shipping && (
+              <Button
+                variant="secondary"
+                disabled={busy}
+                onClick={() => setDeleting(true)}
+              >
+                Delete
+              </Button>
+            )}
+            <Button type="submit" loading={busy}>
+              {shipping ? "Save shipping" : "Add shipping"}
+            </Button>
+          </div>
+        </div>
+      </form>
+
+      <ConfirmDialog
+        open={deleting}
+        title="Delete shipping details"
+        message="Without weight and dimensions this product can no longer be packed into a shipment."
+        loading={busy}
+        onCancel={() => setDeleting(false)}
+        onConfirm={remove}
+      />
+    </Card>
   );
 }

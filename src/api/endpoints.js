@@ -48,6 +48,12 @@ export const PRODUCT = {
   priceSlab: (productId, slabId) =>
     `/product/${productId}/price-slabs/${slabId}`,
 
+  // weight + box dimensions, keyed by product. The API scopes create/list by
+  // a ?productId query rather than a nested path, and edits/deletes by the
+  // shipping row's own id.
+  shipping: "/product/shipping",
+  shippingItem: (id) => `/product/shipping/${id}`,
+
   media: (productId) => `/product/${productId}/media`,
   mediaItem: (productId, mediaId) =>
     `/product/${productId}/media/${mediaId}`,
@@ -66,4 +72,25 @@ export const CART = {
   remove: (id) => `/cart/${id}`,
   // must stay above /cart/:id on the server, hence its own literal path
   clear: "/cart/clear",
+};
+
+export const ADDRESS = {
+  // one address per customer, so every verb targets the same collection path
+  get: "/address",
+  save: "/address",
+  update: "/address",
+  remove: "/address",
+};
+
+export const SHIPPING_PACKAGE = {
+  list: "/shipping-package",
+  detail: (id) => `/shipping-package/${id}`,
+  create: "/shipping-package",
+  update: (id) => `/shipping-package/${id}`,
+  remove: (id) => `/shipping-package/${id}`,
+};
+
+export const SHIPPING = {
+  // packs the signed-in customer's cart into boxes and echoes the addresses
+  prepare: "/shipping/prepare",
 };

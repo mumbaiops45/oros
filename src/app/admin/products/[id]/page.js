@@ -8,6 +8,7 @@ import {
   MediaPanel,
   OptionsPanel,
   PriceSlabsPanel,
+  ShippingPanel,
   SpecsPanel,
 } from "@/components/admin/productPanels";
 import { getProduct, updateProduct } from "@/api";
@@ -26,6 +27,7 @@ const TABS = [
   { key: "options", label: "Options" },
   { key: "slabs", label: "Price slabs" },
   { key: "media", label: "Media" },
+  { key: "shipping", label: "Shipping" },
 ];
 
 export default function EditProductPage({ params }) {
@@ -154,6 +156,12 @@ export default function EditProductPage({ params }) {
 
       {tab === "media" && (
         <MediaPanel productId={id} media={media} onReload={reload} />
+      )}
+
+      {/* The shipping row is not part of GET /product/:id, so the panel
+          loads and reloads it on its own. */}
+      {tab === "shipping" && (
+        <ShippingPanel productId={id} productName={product.name} />
       )}
     </>
   );

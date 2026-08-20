@@ -212,3 +212,38 @@ export const swapMediaOrder = async (productId, a, b) => {
   await updateMedia(productId, a._id, { sortOrder: b.sortOrder });
   await updateMedia(productId, b._id, { sortOrder: a.sortOrder });
 };
+
+/* ------------------------------------------------------------------
+   SHIPPING (weight + dimensions, one row per product)
+
+   The API scopes these by `?productId` instead of a nested path, and a
+   product may have at most one row — creating a second answers 409.
+------------------------------------------------------------------ */
+
+/** Returns { shipping } — the row, or null when the product has none. */
+export const getProductShipping = async (productId) => {
+  try {
+    return await api
+      .get(PRODUCT.shipping, { params: { productId } })
+      .then(unwrap);
+  } catch (error) {
+    // "not set yet" is the normal state for a fresh product, not a failure
+    if (error.status === 404) return { shipping: null };
+    throw error;
+  }
+};
+
+export const createProductShipping = (productId, values) =>
+  api.post(PRODUCT.shipping, values, { params: { productId } }).then(unwrap);
+
+export const updateProductShipping = (id, values) =>
+  api.patch(PRODUCT.shippingItem(id), values).then(unwrap);
+
+export const deleteProductShipping = (id) =>
+  api.delete(PRODUCT.shippingItem(id)).then(unwrap);
+
+/** Creates the row on first save and patches it on every save after. */
+export const saveProductShipping = (productId, existingId, values) =>
+  existingId
+    ? updateProductShipping(existingId, values)
+    : createProductShipping(productId, values);
