@@ -93,4 +93,6 @@ export const SHIPPING_PACKAGE = {
 export const SHIPPING = {
   // packs the signed-in customer's cart into boxes and echoes the addresses
   prepare: "/shipping/prepare",
+  // packs the cart again server-side, then quotes couriers against it
+  rates: "/shipping/rates",
 };

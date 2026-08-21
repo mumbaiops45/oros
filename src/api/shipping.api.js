@@ -11,3 +11,13 @@ import { SHIPPING } from "./endpoints";
  * customer, so showing `error.message` as-is is the right thing to do.
  */
 export const prepareShipping = () => api.get(SHIPPING.prepare).then(unwrap);
+
+/**
+ * Courier quotes for the cart as packed.
+ *
+ * The pincode is the only thing sent — the server re-packs the cart itself
+ * rather than trusting weights from the browser — and answers with
+ * { pickupPincode, deliveryPincode, packages, rates }.
+ */
+export const getShippingRates = (deliveryPincode) =>
+  api.post(SHIPPING.rates, { deliveryPincode }).then(unwrap);

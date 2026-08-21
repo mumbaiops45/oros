@@ -6,7 +6,6 @@ import { useCart } from "@/hooks/useCart";
 import { formatMoney } from "@/lib/pricing";
 import { PRODUCTS_HREF } from "@/lib/adapters";
 import { BagIcon, BoxesIcon, CloseIcon } from "@/components/Icons";
-import CheckoutDialog from "./CheckoutDialog";
 
 /** The option pairs the customer picked, rendered as one quiet line. */
 function OptionLine({ selectedOptions = [] }) {
@@ -99,7 +98,6 @@ export default function CartPanel() {
 
   const [busy, setBusy] = useState(false);
   const [failure, setFailure] = useState("");
-  const [checkingOut, setCheckingOut] = useState(false);
 
   // Every mutation refetches the list, so one flag covers the whole panel
   // rather than tracking which row is mid-flight.
@@ -200,24 +198,16 @@ export default function CartPanel() {
           >
             Clear cart
           </button>
-          {/* Checkout is a dialog rather than a route: the address is the
-              only thing still missing before the cart can be packed. */}
-          <button
-            type="button"
-            disabled={busy}
-            onClick={() => setCheckingOut(true)}
-            className="rounded-full bg-primary px-7 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-50"
+          {/* Checkout is its own page — the address form and the courier
+              quotes need more room than this panel has. */}
+          <Link
+            href="/checkout"
+            className="rounded-full bg-primary px-7 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5"
           >
             Checkout
-          </button>
+          </Link>
         </div>
       </div>
-
-      {/* Mounted only while open so each checkout starts from a fresh
-          address fetch and a freshly packed cart. */}
-      {checkingOut && (
-        <CheckoutDialog total={total} onClose={() => setCheckingOut(false)} />
-      )}
     </div>
   );
 }

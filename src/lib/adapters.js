@@ -105,6 +105,8 @@ export const toDemoCardProduct = (
   subcategory: product.subcategory || subcategory,
   moq: product.moq ?? 1,
   custom: Boolean(product.custom),
+  // no row in Mongo behind it, so nothing can be added to a real cart
+  demo: true,
   blurb: "",
   rating: product.rating,
   reviews: product.reviews,

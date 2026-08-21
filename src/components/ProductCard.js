@@ -1,8 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { formatMoq, formatPrice } from "@/data/catalog";
 import { productHref } from "@/lib/adapters";
-import { BagIcon, BoxesIcon, HeartIcon, StarIcon } from "@/components/Icons";
+import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/hooks/useCart";
+import {
+  BagIcon,
+  BoxesIcon,
+  CheckIcon,
+  HeartIcon,
+  StarIcon,
+} from "@/components/Icons";
 
 /**
  * Thumbnail backgrounds rotate through the full brand palette — every card in
@@ -26,6 +38,51 @@ export default function ProductCard({ product, index = 0 }) {
   const tone = THUMB_TONES[index % THUMB_TONES.length];
   const onTone = tone.dark;
   const moq = product.moq ?? 1;
+
+  const router = useRouter();
+  const { user } = useAuth();
+  const { add } = useCart();
+
+  const [adding, setAdding] = useState(false);
+  const [added, setAdded] = useState(false);
+  const [failure, setFailure] = useState("");
+
+  /**
+   * A card knows the product's MOQ but not its options, so anything that
+   * needs choosing — a customisable print, or a demo record with no row in
+   * Mongo behind it — is sent to the product page instead of guessed at.
+   */
+  const needsProductPage = product.custom || product.demo || !product.id;
+
+  const onAddToCart = async () => {
+    if (needsProductPage) {
+      router.push(productHref(product));
+      return;
+    }
+
+    if (!user) {
+      router.push(`/login?next=${productHref(product)}`);
+      return;
+    }
+
+    setAdding(true);
+    setFailure("");
+
+    try {
+      await add({ product: product.id, qty: moq, selectedOptions: [] });
+
+      setAdded(true);
+      window.setTimeout(() => setAdded(false), 2000);
+    } catch (addError) {
+      setFailure(addError.message);
+    } finally {
+      setAdding(false);
+    }
+  };
+
+  const cartLabel = needsProductPage
+    ? `Choose options for ${product.name}`
+    : `Add ${product.name} to cart`;
 
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-navy/10 bg-white transition duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_22px_45px_-28px_rgba(32,57,74,0.6)]">
@@ -133,6 +190,12 @@ export default function ProductCard({ product, index = 0 }) {
           </span>
         </div>
 
+        {failure && (
+          <p className="relative z-10 mt-2.5 rounded-lg bg-rose-50 px-2 py-1.5 text-[11px] leading-snug text-rose-700">
+            {failure}
+          </p>
+        )}
+
         <div className="mt-auto flex items-end justify-between gap-2 pt-4">
           <div>
             <span className="text-base font-bold text-ink">
@@ -143,13 +206,33 @@ export default function ProductCard({ product, index = 0 }) {
                 {formatPrice(product.mrp)}
               </span>
             )}
+            {moq > 1 && !needsProductPage && (
+              <span className="ml-1.5 text-[11px] text-navy/50">
+                · adds {moq}
+              </span>
+            )}
           </div>
+
+          {/* Sits above the stretched link so it stays clickable. */}
           <button
             type="button"
-            aria-label={`Add ${product.name} to cart`}
-            className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-white"
+            onClick={onAddToCart}
+            disabled={adding}
+            aria-label={cartLabel}
+            title={cartLabel}
+            className={`relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition disabled:cursor-wait ${
+              added
+                ? "bg-emerald-500 text-white"
+                : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white"
+            }`}
           >
-            <BagIcon className="h-4 w-4" />
+            {adding ? (
+              <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+            ) : added ? (
+              <CheckIcon className="h-4 w-4" />
+            ) : (
+              <BagIcon className="h-4 w-4" />
+            )}
           </button>
         </div>
       </div>
