@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getShippingRates, prepareShipping } from "@/api/shipping.api";
+import { createOrder } from "@/api/order.api";
 import { useAddress, EMPTY_ADDRESS, toAddressForm } from "@/hooks/useAddress";
 import { useAuth } from "@/hooks/useAuth";
 import { useCart } from "@/hooks/useCart";
@@ -125,10 +126,14 @@ export default function CheckoutView() {
   const [packing, setPacking] = useState(false);
   const [packError, setPackError] = useState("");
 
+  const [quoteId, setQuoteId] = useState(null);
   const [rates, setRates] = useState([]);
   const [ratesLoading, setRatesLoading] = useState(false);
   const [ratesError, setRatesError] = useState("");
   const [courier, setCourier] = useState(null);
+
+  const [placing, setPlacing] = useState(false);
+  const [orderError, setOrderError] = useState("");
 
   useEffect(() => {
     if (!ready) return;
@@ -196,10 +201,14 @@ export default function CheckoutView() {
           (a, b) => a.totalCharge - b.totalCharge
         );
 
+        // the quote is stored server-side and expires — the order is placed
+        // against its id, never against a price from this page
+        setQuoteId(data?.quoteId || null);
         setRates(quoted);
         setCourier(quoted[0] || null);
       } catch (error) {
         if (!cancelled) {
+          setQuoteId(null);
           setRates([]);
           setCourier(null);
           setRatesError(error.message);
@@ -215,6 +224,28 @@ export default function CheckoutView() {
       cancelled = true;
     };
   }, [deliveryPincode]);
+
+  /**
+   * The order is placed against the stored quote, so the server prices the
+   * shipping itself. Quotes expire after ten minutes — if this comes back
+   * saying so, re-quoting is what fixes it.
+   */
+  const placeOrder = async () => {
+    setPlacing(true);
+    setOrderError("");
+
+    try {
+      const data = await createOrder({
+        shippingQuoteId: quoteId,
+        shippingCourierId: courier.courierId,
+      });
+
+      router.push(`/account?tab=orders&placed=${data?.order?._id || ""}`);
+    } catch (error) {
+      setOrderError(error.message);
+      setPlacing(false);
+    }
+  };
 
   const submit = async (values) => {
     setSaving(true);
@@ -455,15 +486,24 @@ export default function CheckoutView() {
               </p>
             </div>
 
-            {/* Payment is the next piece of the API — the address is stored,
-                the cart is packed and the courier is picked either way. */}
+            {orderError && (
+              <p className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs leading-relaxed text-rose-700">
+                {orderError}
+              </p>
+            )}
+
+            {/* The order is created as PENDING_PAYMENT — taking the money is
+                the next piece of the API. */}
             <button
               type="button"
-              disabled
-              title="Payment is not live yet"
-              className="mt-5 w-full rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-white opacity-60"
+              onClick={placeOrder}
+              disabled={!quoteId || !courier || placing}
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Continue to payment
+              {placing && (
+                <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              )}
+              {placing ? "Placing order…" : "Place order"}
             </button>
 
             <Link

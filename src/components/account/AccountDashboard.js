@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { useCart } from "@/hooks/useCart";
 import { isAdmin } from "@/lib/auth";
 import { formatMoney } from "@/lib/pricing";
 import CartPanel from "./CartPanel";
+import OrdersPanel from "./OrdersPanel";
 import {
   BagIcon,
   BoxesIcon,
@@ -24,21 +24,6 @@ const TABS = [
   { key: "details", label: "Details" },
 ];
 
-/** A section whose API is not built yet. */
-function Pending({ icon: Icon, title, description, action }) {
-  return (
-    <div className="rounded-3xl border border-dashed border-navy/20 bg-white px-6 py-12 text-center">
-      <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-        <Icon className="h-5 w-5" />
-      </span>
-      <p className="mt-4 text-sm font-semibold text-ink">{title}</p>
-      <p className="mx-auto mt-1.5 max-w-sm text-sm leading-relaxed text-navy/65">
-        {description}
-      </p>
-      {action && <div className="mt-5 flex justify-center">{action}</div>}
-    </div>
-  );
-}
 
 function StatCard({ icon: Icon, label, value }) {
   return (
@@ -230,20 +215,7 @@ export default function AccountDashboard() {
                 <h2 className="mb-4 font-display text-xl font-semibold text-ink">
                   Your orders
                 </h2>
-                {/* No orders endpoint exists yet — this is where the list lands. */}
-                <Pending
-                  icon={TruckIcon}
-                  title="No orders yet"
-                  description="Once checkout goes live, every order you place shows up here with its print status and delivery date."
-                  action={
-                    <Link
-                      href="/"
-                      className="rounded-full bg-primary px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5"
-                    >
-                      Browse the shop
-                    </Link>
-                  }
-                />
+                <OrdersPanel />
               </section>
             )}
 

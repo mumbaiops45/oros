@@ -96,3 +96,8 @@ export const SHIPPING = {
   // packs the cart again server-side, then quotes couriers against it
   rates: "/shipping/rates",
 };
+
+export const ORDER = {
+  create: "/orders",
+  mine: "/orders/my-orders",
+};

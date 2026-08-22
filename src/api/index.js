@@ -7,4 +7,5 @@ export * from "./cart.api";
 export * from "./address.api";
 export * from "./shipping.api";
 export * from "./shippingPackage.api";
+export * from "./order.api";
 export * as endpoints from "./endpoints";
